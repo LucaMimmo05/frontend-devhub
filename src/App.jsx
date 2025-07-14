@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
+import Login from "./pages/Login/Login";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import Register from "./pages/Register/Register";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
@@ -28,6 +29,7 @@ const App = () => {
                         }
                     />
                     <Route path="/login" element={<AuthRedirect />} />
+                    <Route path="/register" element={<Register />} />
                 </Routes>
             </Router>
         </AuthProvider>

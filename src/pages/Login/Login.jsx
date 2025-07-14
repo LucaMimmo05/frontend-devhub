@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "../styles/login.css";
-import InputField from "../components/InputField";
+import "./login.css";
+import InputField from "../../components/InputField";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -35,7 +35,7 @@ const Login = () => {
     return (
         <div className="login-container">
             <div className="login-left">
-                <img src="src/assets/DevHub-logo.svg" alt="" height={30} width={120} />
+                <img src="src/assets/devHub-logo.svg" alt="" height={30} width={120} />
                 <div className="form-cont">
                     <h1>Welcome Back!</h1>
                     <form action="" className="login-form" onSubmit={handleSubmit}>
