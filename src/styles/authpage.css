@@ -1,0 +1,222 @@
+
+.auth-container {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.auth-main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+
+.auth-left-section,
+.auth-right-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 46px 75px;
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+}
+
+
+.auth-main.login-mode .auth-left-section {
+    width: 55%;
+    background-color: white;
+}
+
+.auth-main.login-mode .auth-right-section {
+    width: 45%;
+    background-color: var(--bg);
+}
+
+
+.auth-main.register-mode .auth-left-section {
+    width: 45%;
+    background-color: var(--bg);
+}
+
+.auth-main.register-mode .auth-right-section {
+    width: 55%;
+    background-color: white;
+}
+
+
+.form-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+}
+
+.form-container img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.form-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+}
+
+.form-cont h1 {
+    text-align: center;
+    color: #02061b;
+    font-family: Roboto;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.form-cont p {
+    color: #000;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.form-cont span {
+    color: #000;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.blue-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 41px;
+    position: relative;
+}
+
+.blue-section img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.blue-section h1 {
+    color: #fff;
+    text-align: center;
+    font-family: "Fira Code" !important;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-inline: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 1px solid;
+    width: 0;
+    opacity: 0;
+}
+
+.blue-section h1.typing {
+    animation:
+        typing 3s steps(var(--steps, 22)) forwards,
+        blink 1s step-end infinite;
+    animation-delay: 0s, 0s;
+    opacity: 1;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.auth-form input {
+    border-radius: 10px;
+    border: 1px solid #898989;
+    display: flex;
+    width: 350px;
+    height: 40px;
+    flex-shrink: 0;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth-form button {
+    display: flex;
+    width: 160px;
+    height: 45px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    background: #329afe;
+    border: none;
+    color: #f1f1f1;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.typing-1 {
+    --steps: 22;
+}
+
+.typing-2 {
+    --steps: 36;
+    animation-delay: 1.8s, 1.8s;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+        opacity: 1;
+    }
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes delete {
+    from {
+        width: 100%;
+        opacity: 1;
+    }
+    to {
+        width: 0;
+        opacity: 0;
+    }
+}
