@@ -7,7 +7,47 @@ export const AuthProvider = ({ children }) => {
     const [accessToken, setAccessToken] = useState(null);
     const [refreshToken, setRefreshToken] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(null); // Aggiungiamo lo stato per i dati utente
 
+    // Funzione per capitalizzare la prima lettera di una stringa
+    const capitalizeFirstLetter = useCallback(str => {
+        if (!str) return "";
+
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }, []);
+
+    // Funzione per estrarre i dati utente dal token
+    const getUserDataFromToken = useCallback(
+        token => {
+            if (!token) return null;
+
+            try {
+                const base64Url = token.split(".")[1];
+                const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+                const jsonPayload = decodeURIComponent(
+                    window
+                        .atob(base64)
+                        .split("")
+                        .map(c => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+                        .join("")
+                );
+                const payload = JSON.parse(jsonPayload);
+
+                return {
+                    id: payload.sub,
+                    email: payload.surname, // L'email è nel campo surname
+                    name: capitalizeFirstLetter(payload.email), // Il nome è nel campo email, capitalizzato
+                    surname: capitalizeFirstLetter(payload.name), // Il cognome è nel campo name, capitalizzato
+                    role: payload.groups?.find(g => g !== "access-token") || "USER",
+                };
+            } catch (error) {
+                console.error("Error parsing user data from token:", error);
+
+                return null;
+            }
+        },
+        [capitalizeFirstLetter]
+    );
     const isTokenExpired = token => {
         if (!token) return true;
 
@@ -72,14 +112,32 @@ export const AuthProvider = ({ children }) => {
         const initializeAuth = async () => {
             const access = localStorage.getItem("accessToken");
             const refresh = localStorage.getItem("refreshToken");
+            const storedUserData = localStorage.getItem("userData");
 
             if (access && refresh) {
+                // Carica i dati utente dal localStorage se disponibili
+                if (storedUserData) {
+                    try {
+                        const userData = JSON.parse(storedUserData);
+
+                        setUser(userData);
+                    } catch (error) {
+                        console.error("Error parsing stored user data:", error);
+                    }
+                }
+
                 if (isTokenExpired(access)) {
                     console.log("Access token expired, trying to refresh...");
 
                     const newToken = await refreshAccessTokenInternal(refresh);
 
                     if (newToken) {
+                        const newUserData = getUserDataFromToken(newToken);
+
+                        if (newUserData) {
+                            localStorage.setItem("userData", JSON.stringify(newUserData));
+                            setUser(newUserData);
+                        }
                         setAccessToken(newToken);
                         setRefreshToken(refresh);
                     } else {
@@ -95,6 +153,12 @@ export const AuthProvider = ({ children }) => {
                         const newToken = await refreshAccessTokenInternal(refresh);
 
                         if (newToken) {
+                            const newUserData = getUserDataFromToken(newToken);
+
+                            if (newUserData) {
+                                localStorage.setItem("userData", JSON.stringify(newUserData));
+                                setUser(newUserData);
+                            }
                             setAccessToken(newToken);
                             setRefreshToken(refresh);
                         } else {
@@ -108,11 +172,21 @@ export const AuthProvider = ({ children }) => {
         };
 
         initializeAuth();
-    }, []);
+    }, [getUserDataFromToken]);
 
     const login = (access, refresh) => {
+        // Salva i token
         localStorage.setItem("accessToken", access);
         localStorage.setItem("refreshToken", refresh);
+
+        // Estrae e salva i dati utente dal token
+        const userData = getUserDataFromToken(access);
+
+        if (userData) {
+            localStorage.setItem("userData", JSON.stringify(userData));
+            setUser(userData);
+        }
+
         setAccessToken(access);
         setRefreshToken(refresh);
     };
@@ -120,11 +194,12 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
+        localStorage.removeItem("userData");
         setAccessToken(null);
         setRefreshToken(null);
+        setUser(null);
     };
 
-    // Funzione pubblica per il refresh del token
     const refreshAccessToken = useCallback(async () => {
         if (!refreshToken) {
             logout();
@@ -135,6 +210,12 @@ export const AuthProvider = ({ children }) => {
         const newToken = await refreshAccessTokenInternal(refreshToken);
 
         if (newToken) {
+            const newUserData = getUserDataFromToken(newToken);
+
+            if (newUserData) {
+                localStorage.setItem("userData", JSON.stringify(newUserData));
+                setUser(newUserData);
+            }
             setAccessToken(newToken);
 
             return newToken;
@@ -143,7 +224,7 @@ export const AuthProvider = ({ children }) => {
 
             return null;
         }
-    }, [refreshToken]);
+    }, [refreshToken, getUserDataFromToken]);
 
     useEffect(() => {
         const requestInterceptor = axios.interceptors.request.use(
@@ -200,6 +281,7 @@ export const AuthProvider = ({ children }) => {
                 logout,
                 loading,
                 refreshAccessToken,
+                user,
             }}
         >
             {children}
