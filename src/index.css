@@ -8,7 +8,12 @@
     font-family: "Roboto", sans-serif;
 }
 
-
 :root {
     --bg: #02061b;
+    --box-color: #0A1029;
+}
+
+.box {
+    border-radius: 15px;
+    background: var(--box-color);
 }

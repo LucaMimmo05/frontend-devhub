@@ -5,10 +5,11 @@ import { useState } from "react";
 
 import { useAuth } from "../context/AuthContext";
 
-const Sidebar = () => {
+const Sidebar = ({ onActiveItem }) => {
     const [active, isActive] = useState("Dashboard");
     const handleItemClick = item => {
         isActive(item);
+        onActiveItem(item);
     };
 
     const { user } = useAuth();
