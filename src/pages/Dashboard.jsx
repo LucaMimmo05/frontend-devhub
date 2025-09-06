@@ -9,7 +9,6 @@ const Dashboard = () => {
         setActiveItem(value);
     };
     const renderDashboard = () => {
-        console.log("Active item:" + activeItem);
         switch (activeItem) {
             case "Dashboard":
                 return <Home />;
