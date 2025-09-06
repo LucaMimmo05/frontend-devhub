@@ -1,0 +1,26 @@
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 16px;
+}
+
+.circle-priority {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.circle-priority.green {
+    background-color: #2F9721;
+}
+
+.circle-priority.yellow {
+    background-color: #9A9E1D;
+}
+
+.circle-priority.red {
+    background-color: #A01010;
+}
