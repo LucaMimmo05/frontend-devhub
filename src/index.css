@@ -16,4 +16,5 @@
 .box {
     border-radius: 15px;
     background: var(--box-color);
+    padding: 30px;
 }

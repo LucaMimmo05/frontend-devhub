@@ -35,9 +35,9 @@ export const AuthProvider = ({ children }) => {
 
                 return {
                     id: payload.sub,
-                    email: payload.surname, // L'email è nel campo surname
-                    name: capitalizeFirstLetter(payload.email), // Il nome è nel campo email, capitalizzato
-                    surname: capitalizeFirstLetter(payload.name), // Il cognome è nel campo name, capitalizzato
+                    email: payload.email,
+                    name: capitalizeFirstLetter(payload.name),
+                    surname: capitalizeFirstLetter(payload.surname),
                     role: payload.groups?.find(g => g !== "access-token") || "USER",
                 };
             } catch (error) {
@@ -74,10 +74,8 @@ export const AuthProvider = ({ children }) => {
 
     const verifyTokenWithServer = async token => {
         try {
-            await axios.get("http://localhost:8080/api/auth/verify", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+            await axios.post("http://localhost:8080/api/auth/verify", {
+                token: token, // access token
             });
 
             return true;
@@ -88,10 +86,11 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    // Refresh access token con body JSON
     const refreshAccessTokenInternal = async refreshTokenValue => {
         try {
             const response = await axios.post("http://localhost:8080/api/auth/refresh", {
-                refreshToken: refreshTokenValue,
+                refreshToken: refreshTokenValue, // 👈 anche qui
             });
 
             const newAccessToken = response.data.accessToken;
@@ -101,8 +100,7 @@ export const AuthProvider = ({ children }) => {
             return newAccessToken;
         } catch (error) {
             console.error("Refresh token failed:", error);
-            localStorage.removeItem("accessToken");
-            localStorage.removeItem("refreshToken");
+            logout();
 
             return null;
         }
@@ -123,6 +121,15 @@ export const AuthProvider = ({ children }) => {
                         setUser(userData);
                     } catch (error) {
                         console.error("Error parsing stored user data:", error);
+                    }
+                }
+
+                if (!storedUserData) {
+                    const userData = getUserDataFromToken(access);
+
+                    if (userData) {
+                        localStorage.setItem("userData", JSON.stringify(userData));
+                        setUser(userData);
                     }
                 }
 

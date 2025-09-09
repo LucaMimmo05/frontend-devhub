@@ -37,7 +37,7 @@
     justify-content: center;
     gap: 10px;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     padding: 10px 10px 10px 0;
 }
@@ -85,7 +85,6 @@
 
 .home-main-box {
     display: flex;
-    padding: 30px;
     flex-direction: column;
     align-items: flex-start;
     gap: 30px;
@@ -115,7 +114,54 @@
 
 .left-bottom-box {
     grid-area: left;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.left-bottom-box p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.left-bottom-box h4 {
+    color: #fff;
+
+    /* subheading-box */
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.left-bottom-box h2 {
+    color: #fff;
+
+    /* heading-box */
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.left-bottom-box .title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 .center-bottom-box {
     grid-area: center;
+}
+
+.right-box .title {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    gap: 10px;
 }

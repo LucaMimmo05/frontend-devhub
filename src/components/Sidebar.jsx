@@ -4,13 +4,33 @@ import SidebarItem from "./SIdebarItem";
 import { useState } from "react";
 
 import { useAuth } from "../context/AuthContext";
+import ConnectGitHub from "./ConnectGitHub";
+import { useEffect } from "react";
 
 const Sidebar = ({ onActiveItem }) => {
     const [active, isActive] = useState("Dashboard");
+    const [isConnected, setIsConnected] = useState(false);
     const handleItemClick = item => {
         isActive(item);
         onActiveItem(item);
     };
+
+    useEffect(() => {
+        // Controlla se esiste il token al montaggio
+        const token = localStorage.getItem("githubToken");
+
+        if (token) {
+            setIsConnected(true);
+        }
+
+        const handleLogin = () => setIsConnected(true);
+
+        window.addEventListener("githubLogin", handleLogin);
+
+        return () => {
+            window.removeEventListener("githubLogin", handleLogin);
+        };
+    }, []);
 
     const { user } = useAuth();
 
@@ -68,7 +88,7 @@ const Sidebar = ({ onActiveItem }) => {
                     </div>
                 </div>
             </div>
-
+            {!isConnected && <ConnectGitHub />}
             <div className="sidebar-bottom">
                 <hr />
                 <div className="profile">
