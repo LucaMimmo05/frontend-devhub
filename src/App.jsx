@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
 import AuthPage from "./pages/AuthPage";
+import GitHubCallback from "./pages/GitHubCallBack";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 
 const ProtectedRoute = ({ children }) => {
@@ -27,6 +28,7 @@ const App = () => {
                             </ProtectedRoute>
                         }
                     />
+                    <Route path="/github/callback" element={<GitHubCallback />} />
                     <Route path="/login" element={<AuthRedirect />} />
                     <Route path="/register" element={<AuthRedirect />} />
                 </Routes>
