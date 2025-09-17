@@ -3,12 +3,14 @@ import { useAuth } from "../context/AuthContext";
 import "../styles/home.css";
 import axios from "axios";
 import Task from "./Task";
+import RepositoryItem from "./RepositoryItem";
 const Home = () => {
     const { user } = useAuth();
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [tasks, setTasks] = useState([]);
     const [command, setCommand] = useState({});
+    const [repos, setRepos] = useState([]);
 
     useEffect(() => {
         const getFormattedDate = () => {
@@ -36,6 +38,7 @@ const Home = () => {
 
         getTasks();
         getCommand();
+        getRepos();
 
         setDate(getFormattedDate());
         setTime(getFormattedTime());
@@ -66,13 +69,25 @@ const Home = () => {
 
     const getCommand = async () => {
         axios
-            .get("http://localhost:8080/api/command/random", {
+            .get(`http://localhost:8080/api/command/random/${user.id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 },
             })
             .then(response => {
                 setCommand(response.data);
+            })
+            .catch(error => {
+                console.error("Errore nella richiesta: ", error);
+            });
+    };
+
+    const getRepos = async () => {
+        axios
+            .get(`http://localhost:8080/github/repos/${user.id}`)
+            .then(response => {
+                setRepos(response.data);
+                console.log("repos: ", response.data);
             })
             .catch(error => {
                 console.error("Errore nella richiesta: ", error);
@@ -125,24 +140,30 @@ const Home = () => {
                     </div>
                     <div className="tasks">
                         <div className="task-left">
-                            <div className="task-cont">
-                                {tasks.slice(0, 4).map(task => (
-                                    <Task key={task.id} title={task.title} priority={task.priority} />
-                                ))}
-                            </div>
+                            {tasks.length > 0 ? (
+                                <>
+                                    <div className="task-cont">
+                                        {tasks.slice(0, 6).map(task => (
+                                            <Task key={task.id} title={task.title} priority={task.priority} />
+                                        ))}
+                                    </div>
+                                </>
+                            ) : (
+                                <h4>All task completed</h4>
+                            )}
                             <button>
                                 See tasks{" "}
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
+                                    width="20"
+                                    height="20"
                                     viewBox="0 0 24 24"
                                     fill="none"
                                 >
                                     <path
                                         d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18"
                                         stroke="#F1F1F1"
-                                        strokeWidth="2"
+                                        strokeWidth="1.5"
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                     />
@@ -200,13 +221,24 @@ const Home = () => {
                         </svg>
                         <h2>Top Repositories</h2>
                     </div>
+                    <div className="repository-cont">
+                        {repos.slice(0, 9).map(repo => (
+                            <RepositoryItem key={repo.id} data={repo} />
+                        ))}
+                    </div>
                 </div>
                 <div className="box left-bottom-box">
-                    <div className="title">
-                        <h2>{command.title}</h2>
-                        <h4>{command.commandText}</h4>
-                    </div>
-                    <p>{command.description}</p>
+                    {Object.keys(command).length > 0 > 0 ? (
+                        <>
+                            <div className="title">
+                                <h2>{command.title}</h2>
+                                <h4>{command.commandText}</h4>
+                            </div>
+                            <p>{command.description}</p>
+                        </>
+                    ) : (
+                        <h4>Nothing to see</h4>
+                    )}
                 </div>
                 <div className="box center-bottom-box"></div>
             </div>

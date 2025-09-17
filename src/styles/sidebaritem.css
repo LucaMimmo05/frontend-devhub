@@ -2,14 +2,14 @@
     display: flex;
     gap: 10px;
     padding: 10px;
-    align-items: flex-start;
+    align-items: center;
     border-radius: 10px;
     cursor: pointer;
 }
 
 .sidebar-item p {
     color: #f1f1f1;
-    font-size: 20px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

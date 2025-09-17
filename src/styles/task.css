@@ -1,26 +1,51 @@
-
 .task {
     display: flex;
     align-items: center;
     gap: 10px;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
+    padding: 10px 24px;
+    
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.task.yellow {
+    background-color: #fae31820;
+}
+
+.task.red {
+    background-color: #ff040420;
+}
+
+.task.green {
+    background-color: #2f972120;
+}
+.task.yellow p {
+    color: #fae318;
+}
+.task.red p {
+    color: #a01010;
+}
+
+.task.green p {
+    color: #2f9721;
 }
 
 .circle-priority {
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
 }
 
 .circle-priority.green {
-    background-color: #2F9721;
+    background-color: #2f9721;
 }
 
 .circle-priority.yellow {
-    background-color: #9A9E1D;
+    background-color: #fae318;
 }
 
 .circle-priority.red {
-    background-color: #A01010;
+    background-color: #ff0404;
 }

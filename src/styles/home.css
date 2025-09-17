@@ -20,11 +20,12 @@
 .home-date-time {
     display: flex;
     align-items: flex-end;
+    justify-content: center;
 }
 
 .home-date-time p {
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -55,6 +56,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    color: white;
 }
 
 .task-left button {
@@ -62,15 +64,15 @@
     padding: 10px;
     justify-content: center;
     align-items: center;
-    width: auto;
+    width: 220px;
     gap: 5px;
     border-radius: 10px;
     background: var(--primary, #121733);
     border: none;
     color: white;
     color: #fff;
-    font-family: Roboto;
-    font-size: 20px;
+    font-family: inherit;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -79,7 +81,7 @@
 
 .task-cont {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -110,6 +112,9 @@
 }
 .right-box {
     grid-area: right;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .left-bottom-box {
@@ -121,18 +126,20 @@
 }
 
 .left-bottom-box p {
-    font-size: 16px;
+    color: rgb(130, 130, 130);
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    font-family: inherit;
 }
 
 .left-bottom-box h4 {
     color: #fff;
 
     /* subheading-box */
-    font-family: Roboto;
-    font-size: 18px;
+    font-family: inherit;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -142,8 +149,7 @@
     color: #fff;
 
     /* heading-box */
-    font-family: Roboto;
-    font-size: 24px;
+    font-family: inherit;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -164,4 +170,10 @@
     color: white;
     font-size: 16px;
     gap: 10px;
+}
+
+.repository-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }

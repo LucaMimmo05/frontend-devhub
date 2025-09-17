@@ -1,0 +1,27 @@
+.repository-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.repository-item .text {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.repository-item h4 {
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+}
+
+.repository-item hr {
+    border: none;
+    border-top: 1px solid #162038;
+}
+
+
+.avatar {
+    border-radius: 50%;
+}

@@ -18,8 +18,7 @@ const Task = ({ title, priority }) => {
     }
 
     return (
-        <div className="task">
-            <div className={`circle-priority ${color}`}></div>
+        <div className={`task ${color}`}>
             <p>{title}</p>
         </div>
     );
