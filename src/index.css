@@ -18,3 +18,7 @@
     background: var(--box-color);
     padding: 30px;
 }
+
+.box h2 {
+    font-size: 20px;
+}
