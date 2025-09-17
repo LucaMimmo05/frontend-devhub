@@ -181,7 +181,7 @@ export const AuthProvider = ({ children }) => {
         initializeAuth();
     }, [getUserDataFromToken]);
 
-    const login = (access, refresh) => {
+    const login = async (access, refresh) => {
         // Salva i token
         localStorage.setItem("accessToken", access);
         localStorage.setItem("refreshToken", refresh);
@@ -192,6 +192,19 @@ export const AuthProvider = ({ children }) => {
         if (userData) {
             localStorage.setItem("userData", JSON.stringify(userData));
             setUser(userData);
+
+            try {
+                // Chiamata API GitHub usando l'id dell'utente
+                const response = await axios.get(`http://localhost:8080/github/${userData.id}`);
+
+                console.log("git token:", response.data);
+
+                const githubToken = response.data.accessToken;
+
+                localStorage.setItem("githubToken", githubToken);
+            } catch (error) {
+                console.error("Errore nel recupero del token GitHub:", error);
+            }
         }
 
         setAccessToken(access);
