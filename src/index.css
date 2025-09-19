@@ -10,7 +10,8 @@
 
 :root {
     --bg: #02061b;
-    --box-color: #0A1029;
+    --box-color: #0a1029;
+    --secondary: #329afe;
 }
 
 .box {
