@@ -4,6 +4,7 @@ import "../styles/home.css";
 import axios from "axios";
 import Task from "./Task";
 import RepositoryItem from "./RepositoryItem";
+import Calendar from "./Calendar";
 const Home = () => {
     const { user } = useAuth();
     const [date, setDate] = useState("");
@@ -50,6 +51,7 @@ const Home = () => {
 
         // eslint-disable-next-line no-undef
         return () => clearInterval(interval);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getTasks = async () => {
@@ -84,10 +86,9 @@ const Home = () => {
 
     const getRepos = async () => {
         axios
-            .get(`http://localhost:8080/github/repos/${user.id}`)
+            .get(`http://localhost:8080/github/repos/${user.id}?sort=updated&per_page=10`)
             .then(response => {
                 setRepos(response.data);
-                console.log("repos: ", response.data);
             })
             .catch(error => {
                 console.error("Errore nella richiesta: ", error);
@@ -222,7 +223,7 @@ const Home = () => {
                         <h2>Top Repositories</h2>
                     </div>
                     <div className="repository-cont">
-                        {repos.slice(0, 9).map(repo => (
+                        {repos.slice(0, 7).map(repo => (
                             <RepositoryItem key={repo.id} data={repo} />
                         ))}
                     </div>
@@ -240,7 +241,9 @@ const Home = () => {
                         <h4>Nothing to see</h4>
                     )}
                 </div>
-                <div className="box center-bottom-box"></div>
+                <div className="box center-bottom-box">
+                    <Calendar />
+                </div>
             </div>
         </div>
     );

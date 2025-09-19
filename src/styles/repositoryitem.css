@@ -2,12 +2,19 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    
 }
 
 .repository-item .text {
     display: flex;
     align-items: center;
     gap: 20px;
+    padding: 10px;
+}
+
+.repository-item .text:hover {
+    background-color: #162038;
+    border-radius: 16px;
 }
 
 .repository-item h4 {
@@ -21,6 +28,11 @@
     border-top: 1px solid #162038;
 }
 
+.repository-item a {
+    text-decoration: none; /* niente sottolineatura */
+    color: inherit; /* eredita il colore del testo dal genitore */
+    display: block; /* rende cliccabile tutta l'area */
+}
 
 .avatar {
     border-radius: 50%;

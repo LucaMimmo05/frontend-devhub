@@ -64,7 +64,7 @@
     padding: 10px;
     justify-content: center;
     align-items: center;
-    width: 220px;
+    width: 180px;
     gap: 5px;
     border-radius: 10px;
     background: var(--primary, #121733);
@@ -77,6 +77,10 @@
     font-weight: 400;
     line-height: normal;
     cursor: pointer;
+}
+
+.task-left button:hover {
+    background-color:var(--secondary);
 }
 
 .task-cont {
@@ -103,7 +107,7 @@
         "main main right"
         "left center right";
     width: 100%;
-    padding-top: 30px;
+    padding-top: 20px;
     height: 100%;
 }
 
@@ -126,7 +130,7 @@
 }
 
 .left-bottom-box p {
-    color: rgb(130, 130, 130);
+    color: rgb(218, 218, 218);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

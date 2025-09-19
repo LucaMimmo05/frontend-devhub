@@ -1,7 +1,7 @@
 .dashboard {
     background-color: var(--bg);
     height: 100vh;
-    padding: 35px 30px;
+    padding: 25px 30px;
     display: flex;
 }
 
