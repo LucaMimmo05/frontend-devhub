@@ -2,6 +2,7 @@ import Sidebar from "../components/Sidebar";
 import "../styles/dashboard.css";
 import { useState } from "react";
 import Home from "../components/Home";
+import Projects from "../components/Projects";
 
 const Dashboard = () => {
     const [activeItem, setActiveItem] = useState("Dashboard");
@@ -12,6 +13,9 @@ const Dashboard = () => {
         switch (activeItem) {
             case "Dashboard":
                 return <Home />;
+
+            case "Projects":
+                return <Projects />;
         }
     };
 
