@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import "../styles/home.css";
-import axios from "axios";
 import Task from "./Task";
 import RepositoryItem from "./RepositoryItem";
 import Calendar from "./Calendar";
+import { getTasks, getCommand, getRepos } from "../service/api";
+import { getFormattedDate, getFormattedTime } from "../utility/dateformatter";
 const Home = () => {
     const { user } = useAuth();
     const [date, setDate] = useState("");
@@ -14,86 +15,54 @@ const Home = () => {
     const [repos, setRepos] = useState([]);
 
     useEffect(() => {
-        const getFormattedDate = () => {
-            const now = new Date();
-            const options = { weekday: "long", day: "numeric", month: "long" };
-            // eslint-disable-next-line no-undef
-            const parts = new Intl.DateTimeFormat("en-US", options).formatToParts(now);
-            const weekday = parts.find(p => p.type === "weekday").value;
-            const day = parts.find(p => p.type === "day").value;
-            const month = parts.find(p => p.type === "month").value;
-            const formattedDate = `${weekday} ${day}, ${month}`;
+        const fetchTasks = async () => {
+            try {
+                const res = await getTasks(localStorage.getItem("accessToken"));
 
-            return `${formattedDate}`;
+                setTasks(res);
+            } catch (error) {
+                console.error("Error fetching tasks:", error);
+            }
         };
 
-        const getFormattedTime = () => {
-            const now = new Date();
-            const formattedTime = now.toLocaleTimeString("en-US", {
-                hour: "2-digit",
-                minute: "2-digit",
-            });
+        fetchTasks();
 
-            return formattedTime;
+        const fetchCommand = async () => {
+            try {
+                const res = await getCommand(user.id, localStorage.getItem("accessToken"));
+
+                setCommand(res);
+            } catch (error) {
+                console.error("Error fetching command:", error);
+            }
         };
 
-        getTasks();
-        getCommand();
-        getRepos();
+        fetchCommand();
 
-        setDate(getFormattedDate());
-        setTime(getFormattedTime());
+        const fetchRepos = async () => {
+            try {
+                const res = await getRepos(user.id);
+
+                setRepos(res);
+            } catch (error) {
+                console.error("Error fetching repositories:", error);
+            }
+        };
+
+        fetchRepos();
+
+        setDate(getFormattedDate(Date.now()));
+        setTime(getFormattedTime(Date.now()));
         // eslint-disable-next-line no-undef
         const interval = setInterval(() => {
-            setDate(getFormattedDate());
-            setTime(getFormattedTime());
+            setDate(getFormattedDate(Date.now()));
+            setTime(getFormattedTime(Date.now()));
         }, 1000);
 
         // eslint-disable-next-line no-undef
         return () => clearInterval(interval);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const getTasks = async () => {
-        axios
-            .get("http://localhost:8080/api/task", {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-                },
-            })
-            .then(response => {
-                setTasks(response.data);
-            })
-            .catch(error => {
-                console.error("Errore nella richiesta: ", error);
-            });
-    };
-
-    const getCommand = async () => {
-        axios
-            .get(`http://localhost:8080/api/command/random/${user.id}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-                },
-            })
-            .then(response => {
-                setCommand(response.data);
-            })
-            .catch(error => {
-                console.error("Errore nella richiesta: ", error);
-            });
-    };
-
-    const getRepos = async () => {
-        axios
-            .get(`http://localhost:8080/github/repos/${user.id}?sort=updated&per_page=10`)
-            .then(response => {
-                setRepos(response.data);
-            })
-            .catch(error => {
-                console.error("Errore nella richiesta: ", error);
-            });
-    };
 
     return (
         <div className="home">
@@ -141,7 +110,7 @@ const Home = () => {
                     </div>
                     <div className="tasks">
                         <div className="task-left">
-                            {tasks.length > 0 ? (
+                            {tasks && tasks.length > 0 ? (
                                 <>
                                     <div className="task-cont">
                                         {tasks.slice(0, 6).map(task => (
@@ -223,13 +192,11 @@ const Home = () => {
                         <h2>Top Repositories</h2>
                     </div>
                     <div className="repository-cont">
-                        {repos.slice(0, 7).map(repo => (
-                            <RepositoryItem key={repo.id} data={repo} />
-                        ))}
+                        {repos && repos.slice(0, 7).map(repo => <RepositoryItem key={repo.id} data={repo} />)}
                     </div>
                 </div>
                 <div className="box left-bottom-box">
-                    {Object.keys(command).length > 0 > 0 ? (
+                    {command && Object.keys(command).length > 0 > 0 ? (
                         <>
                             <div className="title">
                                 <h2>{command.title}</h2>

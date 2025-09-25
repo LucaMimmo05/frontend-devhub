@@ -80,9 +80,9 @@ const Sidebar = ({ onActiveItem }) => {
                             />
                             <SidebarItem
                                 icon={"src/assets/sidebar/command.svg"}
-                                text="Command"
-                                onClick={() => handleItemClick("Command")}
-                                isActive={active === "Command"}
+                                text="Commands"
+                                onClick={() => handleItemClick("Commands")}
+                                isActive={active === "Commands"}
                             />
                         </div>
                     </div>

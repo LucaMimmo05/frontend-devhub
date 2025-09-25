@@ -3,7 +3,10 @@ import "./App.css";
 import Dashboard from "./pages/Dashboard";
 import AuthPage from "./pages/AuthPage";
 import GitHubCallback from "./pages/GitHubCallBack";
+import NotFound from "./pages/NotFound";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import { PageProvider } from "./context/PageContext";
+import { ProjectProvider } from "./context/ProjectContext";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
@@ -19,19 +22,25 @@ const App = () => {
     return (
         <AuthProvider>
             <Router>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <ProtectedRoute>
-                                <Dashboard />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route path="/github/callback" element={<GitHubCallback />} />
-                    <Route path="/login" element={<AuthRedirect />} />
-                    <Route path="/register" element={<AuthRedirect />} />
-                </Routes>
+                <PageProvider>
+                    <ProjectProvider>
+                        <Routes>
+                            <Route
+                                path="/"
+                                element={
+                                    <ProtectedRoute>
+                                        <Dashboard />
+                                    </ProtectedRoute>
+                                }
+                            />
+
+                            <Route path="/github/callback" element={<GitHubCallback />} />
+                            <Route path="/login" element={<AuthRedirect />} />
+                            <Route path="/register" element={<AuthRedirect />} />
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                    </ProjectProvider>
+                </PageProvider>
             </Router>
         </AuthProvider>
     );

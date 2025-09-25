@@ -2,29 +2,25 @@ import { useState } from "react";
 import "../styles/projects.css";
 import Project from "./Project";
 
-import axios from "axios";
 import { useEffect } from "react";
+import { getAllProjects } from "../service/api";
+import AddButton from "./AddButton";
 
 const Projects = () => {
     const [projects, setProjects] = useState([]);
-    const getProjects = async () => {
-        axios
-            .get("http://localhost:8080/api/project", {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-                },
-            })
-            .then(response => {
-                console.log(response.data);
-                setProjects(response.data);
-            })
-            .catch(error => {
-                console.log("Error occured:" + error);
-            });
-    };
 
     useEffect(() => {
-        getProjects();
+        const fetchProjects = async () => {
+            try {
+                const res = await getAllProjects(localStorage.getItem("accessToken"));
+
+                setProjects(res);
+            } catch (error) {
+                console.error("Errore nel recupero dei progetti:", error);
+            }
+        };
+
+        fetchProjects();
     }, []);
 
     return (
@@ -34,13 +30,11 @@ const Projects = () => {
                     <h1>Projects</h1>
                     <p>Your active and archived projects in one place.</p>
                 </div>
-                <button>+</button>
+                <AddButton type={"add"} />
             </div>
 
             <div className="projects-content">
-                {projects.map(project => (
-                    <Project key={project.id} data={project} />
-                ))}
+                {projects && projects.map(project => <Project key={project.id} data={project} />)}
             </div>
         </div>
     );

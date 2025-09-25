@@ -1,21 +1,28 @@
 import Sidebar from "../components/Sidebar";
 import "../styles/dashboard.css";
-import { useState } from "react";
 import Home from "../components/Home";
 import Projects from "../components/Projects";
+import { usePage } from "../context/PageContext";
+import ProjectDetails from "../components/ProjectDetails";
 
 const Dashboard = () => {
-    const [activeItem, setActiveItem] = useState("Dashboard");
+    const { currentPage, setCurrentPage } = usePage();
+
     const getActiveItem = value => {
-        setActiveItem(value);
+        setCurrentPage(value);
     };
     const renderDashboard = () => {
-        switch (activeItem) {
+        switch (currentPage) {
             case "Dashboard":
                 return <Home />;
 
             case "Projects":
                 return <Projects />;
+
+            case "Project Details":
+                return <ProjectDetails />;
+            default:
+                return <Home />;
         }
     };
 

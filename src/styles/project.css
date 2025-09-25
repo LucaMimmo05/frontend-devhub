@@ -11,6 +11,8 @@
 
 .project-top {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .project-top h2 {
@@ -49,6 +51,33 @@
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+}
+
+
+
+.project-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.project-status .circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.project-status .PENDING {
+  background-color: orange;
+}
+
+.project-status .IN_PROGRESS {
+  background-color: yellow;
+}
+
+.project-status .DONE {
+  background-color: green;
 }
 
 /* .project-bottom button:hover {
