@@ -1,0 +1,39 @@
+.tags-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-block: 6px;
+    border: none;
+    border-bottom: 1px solid #2A3366;
+}
+
+.tag {
+    background: #007bff;
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-inline: 6px;
+    gap: 6px;
+}
+
+.tag button {
+    background: transparent;
+    border: none;
+    color: var(-bg);
+    cursor: pointer;
+    font-size: 16px;
+    
+}
+
+.tag-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: white;
+    padding: 4px 0;
+}
+
+.tag-input:focus {
+    outline: none;
+}

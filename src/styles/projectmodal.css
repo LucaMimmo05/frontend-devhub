@@ -1,0 +1,139 @@
+.blur-bg {
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(5px);
+}
+
+.project-modal {
+    z-index: 1000;
+    position: absolute;
+    background-color: #0a1029;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    width: 60vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.project-modal span {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.project-modal h2 {
+    font-size: 35px;
+}
+.project-modal-inputs {
+    display: flex;
+    gap: 20px;
+}
+
+.project-modal-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.project-modal-left,
+.project-modal-right {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.desc-input {
+    border-radius: 10px;
+    background: #161f46;
+    padding: 10px;
+    border: none;
+    height: 78px;
+    color: white;
+    resize: none;
+}
+
+.desc-input:focus {
+    outline: none;
+}
+
+.project-modal-status {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-modal-select {
+    background-color: var(--box-color);
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 8px;
+    font-size: 14px;
+}
+
+.project-notes {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notes-input {
+    border-radius: 10px;
+    background: #161f46;
+    padding: 10px;
+    border: none;
+    flex: 1;
+    color: white;
+    resize: none;
+}
+.notes-input:focus {
+    outline: none;
+}
+
+.project-modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.project-modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex: 1;
+    align-items: flex-end;
+}
+
+.project-modal-buttons .button-cancel,
+.project-modal-buttons .button-save {
+    width: 128px;
+    padding: 10px 10px;
+    gap: 10px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-size: 16px;
+}
+
+.button-cancel {
+    border-radius: 10px;
+    background:  #121733;
+}
+
+.button-save {
+    border-radius: 10px;
+    background: #329afe;
+}

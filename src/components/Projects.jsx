@@ -5,9 +5,11 @@ import Project from "./Project";
 import { useEffect } from "react";
 import { getAllProjects } from "../service/api";
 import AddButton from "./AddButton";
+import ProjectsModal from "./ProjectsModal";
 
 const Projects = () => {
     const [projects, setProjects] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -23,6 +25,14 @@ const Projects = () => {
         fetchProjects();
     }, []);
 
+    const handleClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleclose = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <div className="projects">
             <div className="projects-top">
@@ -30,8 +40,10 @@ const Projects = () => {
                     <h1>Projects</h1>
                     <p>Your active and archived projects in one place.</p>
                 </div>
-                <AddButton type={"add"} />
+                <AddButton type={"add"} onClick={handleClick} />
             </div>
+
+            {isModalOpen && <ProjectsModal onClose={handleclose} title={"Create Project"} />}
 
             <div className="projects-content">
                 {projects && projects.map(project => <Project key={project.id} data={project} />)}

@@ -201,7 +201,7 @@ export const AuthProvider = ({ children }) => {
 
                 const githubToken = response.data.accessToken;
 
-                localStorage.setItem("githubToken", githubToken);
+                localStorage.setItem(`githubToken_${userData.id}`, githubToken);
             } catch (error) {
                 console.error("Errore nel recupero del token GitHub:", error);
             }

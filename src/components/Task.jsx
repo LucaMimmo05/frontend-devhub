@@ -6,13 +6,19 @@ const Task = ({ title, priority }) => {
     switch (priority) {
         case "LOW":
             color = "green";
+
             break;
+
         case "MEDIUM":
             color = "yellow";
+
             break;
+
         case "HIGH":
             color = "red";
+
             break;
+
         default:
             color = "gray";
     }

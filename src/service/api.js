@@ -63,3 +63,18 @@ export const getProjectById = async (id, token) => {
             console.error("Errore nella richiesta: ", error);
         });
 };
+
+export const createProject = async (projectData, token) => {
+    return axios
+        .post(`${API_BASE_URL}/project`, projectData, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Errore nella richiesta: ", error);
+            throw error;
+        });
+};

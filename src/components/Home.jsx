@@ -6,6 +6,7 @@ import RepositoryItem from "./RepositoryItem";
 import Calendar from "./Calendar";
 import { getTasks, getCommand, getRepos } from "../service/api";
 import { getFormattedDate, getFormattedTime } from "../utility/dateformatter";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
     const { user } = useAuth();
     const [date, setDate] = useState("");
@@ -13,6 +14,7 @@ const Home = () => {
     const [tasks, setTasks] = useState([]);
     const [command, setCommand] = useState({});
     const [repos, setRepos] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -121,7 +123,7 @@ const Home = () => {
                             ) : (
                                 <h4>All task completed</h4>
                             )}
-                            <button>
+                            <button onClick={() => navigate("/tasks")}>
                                 See tasks{" "}
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"

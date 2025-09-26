@@ -1,5 +1,5 @@
 import "../styles/addbutton.css";
-const AddButton = ({ type }) => {
+const AddButton = ({ type, onClick }) => {
     const renderButtonContent = () => {
         switch (type) {
             case "add":
@@ -41,7 +41,11 @@ const AddButton = ({ type }) => {
         }
     };
 
-    return <button className="add-button">{renderButtonContent()}</button>;
+    return (
+        <button className="add-button" onClick={onClick}>
+            {renderButtonContent()}
+        </button>
+    );
 };
 
 export default AddButton;

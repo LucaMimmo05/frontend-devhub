@@ -22,13 +22,11 @@ const GitHubCallback = () => {
 
             const payload = { code, userId };
 
-            console.log("Payload: ", payload);
-
             axios
                 .post("http://localhost:8080/github/callback", payload)
                 .then(res => {
                     console.log("Backend response:", res.data);
-                    localStorage.setItem("githubToken", res.data.accessToken);
+                    localStorage.setItem(`githubToken_${payload.userId}`, res.data.accessToken);
                     // eslint-disable-next-line no-undef
                     window.dispatchEvent(new Event("githubLogin"));
                     navigate("/");

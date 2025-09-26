@@ -1,0 +1,19 @@
+.project-input-field {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #2a3366;
+    color: white;
+    padding-block: 10px;
+    width: 100%;
+}
+
+.project-input-field:focus {
+    outline: none;
+    border-bottom: 1px solid #4a90e2;
+}
+
+.project-input-field-range {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}

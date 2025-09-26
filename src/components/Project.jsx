@@ -1,13 +1,13 @@
 import "../styles/project.css";
 import { getDarkerFromLight } from "../utility/darkencolor";
-import { usePage } from "../context/PageContext";
-import { useProject } from "../context/ProjectContext";
 
 import { renderColor } from "../utility/rendercolor";
+import { useNavigate } from "react-router-dom";
+import { useProject } from "../context/ProjectContext";
 
 const Project = ({ data }) => {
+    const navigate = useNavigate();
     const { setCurrentProject } = useProject();
-    const { setCurrentPage } = usePage();
     const renderStatus = () => {
         switch (data.status) {
             case "PENDING":
@@ -22,7 +22,7 @@ const Project = ({ data }) => {
 
     const handleClickButton = () => {
         setCurrentProject(data);
-        setCurrentPage("Project Details");
+        navigate(`/projects/${data.id}`);
     };
 
     return (
