@@ -7,9 +7,9 @@ import Sidebar from "./components/Sidebar"; // Assumendo tu abbia un componente 
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { PageProvider } from "./context/PageContext";
 import { ProjectProvider } from "./context/ProjectContext";
-import Projects from "./components/Projects";
-import Home from "./components/Home";
-import ProjectDetail from "./components/ProjectDetails";
+import Projects from "./pages/Projects";
+import Home from "./pages/Home";
+import ProjectDetail from "./pages/ProjectDetails";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
@@ -35,7 +35,12 @@ const AppLayout = ({ children }) => {
     const noSidebarRoutes = ["/login", "/register"];
 
     return (
-        <div className="app-container" style={{ display: "flex" }}>
+        <div
+            className={`app-container ${
+                isAuthenticated && !noSidebarRoutes.includes(location.pathname) ? "app-padding" : ""
+            }`}
+            style={{ display: "flex" }}
+        >
             {isAuthenticated && !noSidebarRoutes.includes(location.pathname) && <Sidebar />}
             <div className="main-content" style={{ flex: 1 }}>
                 {children}
