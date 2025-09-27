@@ -67,7 +67,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="home">
+        <section className="home">
             <div className="home-top">
                 <h1>Welcome back, {user.name}!</h1>
                 <div className="home-date-time">
@@ -214,7 +214,7 @@ const Home = () => {
                     <Calendar />
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

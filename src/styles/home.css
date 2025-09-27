@@ -1,7 +1,6 @@
 .home {
     display: flex;
     flex-direction: column;
-    padding: 0 30px;
     width: 100%;
 }
 .home-top {

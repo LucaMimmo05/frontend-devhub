@@ -10,6 +10,7 @@ import { ProjectProvider } from "./context/ProjectContext";
 import Projects from "./pages/Projects";
 import Home from "./pages/Home";
 import ProjectDetail from "./pages/ProjectDetails";
+import Tasks from "./pages/Tasks";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
@@ -78,6 +79,14 @@ const App = () => {
                                     element={
                                         <ProtectedRoute>
                                             <ProjectDetail />
+                                        </ProtectedRoute>
+                                    }
+                                />
+                                <Route
+                                    path="/tasks"
+                                    element={
+                                        <ProtectedRoute>
+                                            <Tasks />
                                         </ProtectedRoute>
                                     }
                                 />

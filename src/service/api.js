@@ -78,3 +78,32 @@ export const createProject = async (projectData, token) => {
             throw error;
         });
 };
+
+export const updateProject = async (id, projectData, token) => {
+    return axios
+        .put(`${API_BASE_URL}/project/${id}`, projectData, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Errore nella richiesta: ", error);
+            throw error;
+        });
+};
+
+export const getAllTasks = async token => {
+    return axios
+        .get(`${API_BASE_URL}/task`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Errore nella richiesta:", error);
+            throw error;
+        });
+};
