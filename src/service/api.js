@@ -107,3 +107,32 @@ export const getAllTasks = async token => {
             throw error;
         });
 };
+
+export const getTasksNotCompleted = async token => {
+    return axios
+        .get(`${API_BASE_URL}/task/not-completed`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Errore nella richiesta:", error);
+            throw error;
+        });
+};
+
+export const completeTask = async (id, token) => {
+    return axios
+        .put(`${API_BASE_URL}/task/${id}/complete`, null, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Errore nella richiesta:", error);
+            throw error;
+        });
+};

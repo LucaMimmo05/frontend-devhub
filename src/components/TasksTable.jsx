@@ -1,3 +1,4 @@
+import { completeTask } from "../service/api";
 import "../styles/taskstable.css";
 import { getFormattedDate } from "../utility/dateformatter";
 import { useState } from "react";
@@ -9,6 +10,16 @@ export default function TasksTable({ tasks }) {
     useEffect(() => {
         if (tasks) setData(tasks);
     }, [tasks]);
+
+    const onTaskComplete = async taskId => {
+        const res = await completeTask(taskId, localStorage.getItem("accessToken"));
+
+        if (res && res.id) {
+            const filtered = data.filter(t => t.id !== taskId);
+
+            setData(filtered);
+        }
+    };
 
     return (
         <div className="table-container box">
@@ -29,7 +40,13 @@ export default function TasksTable({ tasks }) {
                             <td className="actions">
                                 <div className="checkbox-cont">
                                     {" "}
-                                    <input type="checkbox" name="" className="task-checkbox" id="" />
+                                    <input
+                                        type="checkbox"
+                                        name=""
+                                        className="task-checkbox"
+                                        id=""
+                                        onClick={onTaskComplete.bind(this, task.id)}
+                                    />
                                 </div>{" "}
                             </td>
                             <td>

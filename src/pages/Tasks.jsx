@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import AddButton from "../components/AddButton";
 import TasksTable from "../components/TasksTable";
 import "../styles/tasks.css";
-import { getAllTasks } from "../service/api";
+import { getTasksNotCompleted } from "../service/api";
 import { useState } from "react";
 
 const Tasks = () => {
@@ -10,7 +10,7 @@ const Tasks = () => {
 
     useEffect(() => {
         const fetchTasks = async () => {
-            const res = await getAllTasks(localStorage.getItem("accessToken"));
+            const res = (await getTasksNotCompleted(localStorage.getItem("token"))) || [];
 
             setData(res);
         };
