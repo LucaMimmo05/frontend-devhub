@@ -1,29 +1,13 @@
 import { useState } from "react";
 import "../styles/projects.css";
 import Project from "../components/Project";
-
-import { useEffect } from "react";
-import { getAllProjects } from "../service/api";
 import AddButton from "../components/AddButton";
 import ProjectsModal from "../components/ProjectsModal";
+import { useProject } from "../context/ProjectContext";
 
 const Projects = () => {
-    const [projects, setProjects] = useState([]);
+    const { projects } = useProject();
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                const res = await getAllProjects(localStorage.getItem("accessToken"));
-
-                setProjects(res);
-            } catch (error) {
-                console.error("Errore nel recupero dei progetti:", error);
-            }
-        };
-
-        fetchProjects();
-    }, []);
 
     const handleClick = () => {
         setIsModalOpen(true);
@@ -34,7 +18,7 @@ const Projects = () => {
     };
 
     return (
-        <div className="projects">
+        <section className="projects">
             <div className="projects-top">
                 <div className="title">
                     <h1>Projects</h1>
@@ -48,7 +32,7 @@ const Projects = () => {
             <div className="projects-content">
                 {projects && projects.map(project => <Project key={project.id} data={project} />)}
             </div>
-        </div>
+        </section>
     );
 };
 

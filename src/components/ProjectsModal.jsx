@@ -1,28 +1,43 @@
-/* global FormData */
-import { createProject } from "../service/api";
+import { createProject, updateProject } from "../service/api";
 import "../styles/projectmodal.css";
-import ProjectInputField from "./ProjectInputField";
+import ModalInputField from "./ModalInputField";
 import TagsInput from "./TagsInput";
 import { useState } from "react";
+import { useProject } from "../context/ProjectContext";
 
-const ProjectsModal = ({ title, onClose }) => {
-    const [tags, setTags] = useState([]);
+const ProjectsModal = ({ title, onClose, data }) => {
+    const { setCurrentProject, setProjects } = useProject();
+    const [inputsValues, setInputsValues] = useState({
+        name: data?.name || "",
+        description: data?.description || "",
+        progress: parseInt(data?.progress, 10) || 0,
+        status: data?.status || "PENDING",
+        technologies: data?.technologies || [],
+        notes: data?.notes || "",
+        folderColor: data?.folderColor || "BLUE",
+    });
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        const projectData = {
-            name: formData.get("name"),
-            description: formData.get("description"),
-            progress: formData.get("progress"),
-            status: formData.get("status"),
-            technologies: tags,
-            notes: formData.get("notes"),
-            folderColor: formData.get("folder-color"),
-        };
+        const token = localStorage.getItem("accessToken");
 
-        await createProject(projectData, localStorage.getItem("accessToken"));
-        onClose();
+        try {
+            let project;
+
+            if (data?.id) {
+                project = await updateProject(data.id, inputsValues, token);
+                setProjects(prev => prev.map(p => (p.id === project.id ? project : p)));
+            } else {
+                project = await createProject(inputsValues, token);
+                setProjects(prev => [...prev, project]);
+            }
+
+            setCurrentProject(project);
+
+            onClose();
+        } catch (err) {
+            console.error("Error saving project:", err);
+        }
     };
 
     return (
@@ -34,19 +49,43 @@ const ProjectsModal = ({ title, onClose }) => {
                         <div className="project-modal-left">
                             <div className="project-modal-input">
                                 <span>Name</span>
-                                <ProjectInputField name={"name"} type={"text"} placeholder={"Es. Rossi"} />
+                                <ModalInputField
+                                    value={inputsValues.name}
+                                    name="name"
+                                    type="text"
+                                    placeholder="Es. Rossi"
+                                    onChange={e => setInputsValues({ ...inputsValues, name: e.target.value })}
+                                />
                             </div>
                             <div className="project-modal-input">
                                 <span>Description</span>
-                                <textarea name={"description"} className="desc-input" type="text" />
+                                <textarea
+                                    value={inputsValues.description}
+                                    name="description"
+                                    className="desc-input"
+                                    onChange={e => setInputsValues({ ...inputsValues, description: e.target.value })}
+                                />
                             </div>
                             <div className="project-modal-input">
                                 <span>Progress</span>
-                                <ProjectInputField name={"progress"} type={"range"} placeholder={"Es. 50"} />
+                                <ModalInputField
+                                    value={inputsValues.progress}
+                                    name="progress"
+                                    type="range"
+                                    placeholder="Es. 50"
+                                    onChange={e =>
+                                        setInputsValues({ ...inputsValues, progress: parseInt(e.target.value, 10) })
+                                    }
+                                />
                             </div>
                             <div className="project-modal-status">
                                 <span>Status</span>
-                                <select name={"status"} className="project-modal-select" id="">
+                                <select
+                                    value={inputsValues.status}
+                                    name="status"
+                                    className="project-modal-select"
+                                    onChange={e => setInputsValues({ ...inputsValues, status: e.target.value })}
+                                >
                                     <option value="PENDING">Pending</option>
                                     <option value="IN_PROGRESS">In Progress</option>
                                     <option value="DONE">Done</option>
@@ -56,15 +95,29 @@ const ProjectsModal = ({ title, onClose }) => {
                         <div className="project-modal-right">
                             <div className="project-modal-input">
                                 <span>Technologies</span>
-                                <TagsInput name={"technologies"} onChange={setTags} />
+                                <TagsInput
+                                    value={inputsValues.technologies}
+                                    name="technologies"
+                                    onChange={newTags => setInputsValues({ ...inputsValues, technologies: newTags })}
+                                />
                             </div>
                             <div className="project-modal-input project-notes">
                                 <span>Notes</span>
-                                <textarea name={"notes"} className="notes-input" type="text" />
+                                <textarea
+                                    value={inputsValues.notes}
+                                    name="notes"
+                                    className="notes-input"
+                                    onChange={e => setInputsValues({ ...inputsValues, notes: e.target.value })}
+                                />
                             </div>
                             <div className="project-modal-status">
                                 <span>Folder color</span>
-                                <select className="project-modal-select" name="folder-color" id="folder-color">
+                                <select
+                                    value={inputsValues.folderColor}
+                                    className="project-modal-select"
+                                    name="folder-color"
+                                    onChange={e => setInputsValues({ ...inputsValues, folderColor: e.target.value })}
+                                >
                                     <option value="RED">RED</option>
                                     <option value="GREEN">GREEN</option>
                                     <option value="BLUE">BLUE</option>
@@ -80,7 +133,7 @@ const ProjectsModal = ({ title, onClose }) => {
                         </div>
                     </div>
                     <div className="project-modal-buttons">
-                        <button className="button-cancel" onClick={onClose}>
+                        <button className="button-cancel" type="button" onClick={onClose}>
                             Cancel
                         </button>
                         <button className="button-save" type="submit">

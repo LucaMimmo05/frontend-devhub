@@ -1,18 +1,35 @@
 import "../styles/projectdetails.css";
-import { useProject } from "../context/ProjectContext";
 import { renderColor } from "../utility/rendercolor";
 import { getDarkerFromLight } from "../utility/darkencolor";
 import AddButton from "../components/AddButton";
 import { getFormattedDate, getFormattedTime } from "../utility/dateformatter";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
+import ProjectsModal from "../components/ProjectsModal";
+import { useEffect } from "react";
+import { getAllProjects } from "../service/api";
+import { useProject } from "../context/ProjectContext";
 
 const ProjectDetail = () => {
-    const { currentProject } = useProject();
+    const { currentProject, setCurrentProject } = useProject();
     const { id } = useParams();
+    const [openModal, setOpenModal] = useState(false);
 
     const idParam = Number(id);
 
-    console.log(currentProject);
+    useEffect(() => {
+        const fetchCurrentProject = async () => {
+            try {
+                const projects = await getAllProjects(localStorage.getItem("accessToken"));
+
+                setCurrentProject(projects.find(p => p.id === idParam));
+            } catch (error) {
+                console.error("Errore nel recupero dei progetti:", error);
+            }
+        };
+
+        fetchCurrentProject();
+    }, [idParam]);
 
     // Skeleton loader
     if (!currentProject) return <div className="loading">Loading project...</div>;
@@ -21,8 +38,12 @@ const ProjectDetail = () => {
 
     const progress = Math.min(100, Math.max(0, currentProject.progress || 0));
 
+    const handleEdit = () => {
+        setOpenModal(true);
+    };
+
     return (
-        <div className="project-details">
+        <section className="project-details">
             <div className="project-details-top">
                 <div className="title">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
@@ -53,7 +74,7 @@ const ProjectDetail = () => {
                     </svg>
                     <h1>{currentProject.name || "Unnamed Project"}</h1>
                 </div>
-                <AddButton type={"edit"} />
+                <AddButton type={"edit"} onClick={handleEdit} />
             </div>
 
             <div className="project-details-content">
@@ -94,6 +115,9 @@ const ProjectDetail = () => {
                         </p>
                     </div>
                 </div>
+                {openModal && (
+                    <ProjectsModal data={currentProject} title={"Edit Project"} onClose={() => setOpenModal(false)} />
+                )}
 
                 <div className="project-details-container">
                     <div className="project-details-two progress box">
@@ -112,7 +136,7 @@ const ProjectDetail = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

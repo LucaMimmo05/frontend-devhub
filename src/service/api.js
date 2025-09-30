@@ -136,3 +136,20 @@ export const completeTask = async (id, token) => {
             throw error;
         });
 };
+
+export const createTask = async (taskData, token) => {
+    console.log("Sending task:", JSON.stringify(taskData));
+
+    return axios
+        .post(`${API_BASE_URL}/task`, taskData, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Errore nella richiesta:", error);
+            throw error;
+        });
+};

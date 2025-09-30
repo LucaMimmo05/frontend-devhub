@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../styles/tagsinput.css";
 
-const TagsInput = ({ onChange, name }) => {
-    const [tags, setTags] = useState([]);
+const TagsInput = ({ onChange, name, value }) => {
+    const [tags, setTags] = useState(Array.isArray(value) ? value : value ? [value] : []);
     const [inputValue, setInputValue] = useState("");
 
     const handleKeyDown = e => {
