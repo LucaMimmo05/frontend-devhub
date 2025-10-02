@@ -1,0 +1,28 @@
+.tasks-archive {
+    padding: 0 30px;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.tasks-archive .title {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tasks-archive .title h1 {
+    font-size: 35px;
+}
+
+.tasks-archive .title p {
+    color: #aaacb3;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

@@ -14,6 +14,12 @@
     width: 100%;
 }
 
+.tasks-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .tasks-top .title {
     display: flex;
     flex-direction: column;

@@ -11,6 +11,11 @@
     cursor: pointer;
 }
 
+.add-button.text {
+    font-size: 16px;
+    font-weight: 500;
+}
+
 .add-button:hover {
     background-color: var(--secondary);
 }

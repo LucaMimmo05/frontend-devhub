@@ -9,7 +9,6 @@
     min-width: 800px;
     border-radius: 8px;
     overflow: hidden;
-    
 }
 
 .tasks-table th {
@@ -92,14 +91,13 @@
 }
 
 .priority.low {
-    background: #2F97214D;
-    color: #2F9721;
+    background: #2f97214d;
+    color: #2f9721;
 }
 
 /* Actions */
 .checkbox-cont {
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 100%;
 }
@@ -164,4 +162,18 @@
 
 .table-container::-webkit-scrollbar-thumb:hover {
     background: #2684d4;
+}
+
+.delete-button {
+    background: transparent;
+    padding: 5px 7px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background: #dc2626;
 }

@@ -37,12 +37,12 @@ const AddButton = ({ type, onClick }) => {
                 );
 
             default:
-                break;
+                return type;
         }
     };
 
     return (
-        <button className="add-button" onClick={onClick}>
+        <button className={`add-button ${type !== "add" && type !== "edit" ? "text" : ""}`} onClick={onClick}>
             {renderButtonContent()}
         </button>
     );

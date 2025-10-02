@@ -151,3 +151,32 @@ export const createTask = async (taskData, token) => {
             throw error;
         });
 };
+
+export const getAllCompletedTasks = async token => {
+    return axios
+        .get(`${API_BASE_URL}/task/completed`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Errore nella richiesta:", error);
+            throw error;
+        });
+};
+
+export const deleteTask = async (id, token) => {
+    return axios
+        .delete(`${API_BASE_URL}/task/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Errore nella richiesta:", error);
+            throw error;
+        });
+};
