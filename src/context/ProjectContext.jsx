@@ -23,7 +23,7 @@ const ProjectProvider = ({ children }) => {
         };
 
         fetchProjects();
-    }, []); // 👈 si esegue una volta al mount
+    }, []);
 
     return (
         <ProjectContext.Provider value={{ projects, setProjects, currentProject, setCurrentProject }}>

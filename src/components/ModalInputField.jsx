@@ -1,8 +1,8 @@
 import "../styles/modalinputfield.css";
 import { useState } from "react";
 
-const ModalInputField = ({ type, placeholder, name, value: propValue, onChange, required = false }) => {
-    const [internalValue, setInternalValue] = useState(propValue || "");
+const ModalInputField = ({ type, placeholder, name, value, onChange, required = false }) => {
+    const [internalValue, setInternalValue] = useState(value);
 
     const handleChange = e => {
         setInternalValue(e.target.value);

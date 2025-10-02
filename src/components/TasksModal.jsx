@@ -3,8 +3,10 @@ import "../styles/tasksmodal.css";
 import ModalInputDateField from "./ModalInputDateField";
 import ModalInputField from "./ModalInputField";
 import { useState } from "react";
+import { useTask } from "../context/TaskContext";
 
 const TasksModal = ({ onClose, title, data }) => {
+    const { setTasks } = useTask();
     const [inputsValues, setInputsValues] = useState({
         title: data?.title || "",
         description: data?.description || "",
@@ -22,6 +24,7 @@ const TasksModal = ({ onClose, title, data }) => {
                 // Update task
             } else {
                 await createTask(inputsValues, localStorage.getItem("accessToken"));
+                setTasks(prev => [...prev, inputsValues]);
             }
             onClose();
         } catch (error) {

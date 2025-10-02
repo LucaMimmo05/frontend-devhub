@@ -11,6 +11,7 @@ import Projects from "./pages/Projects";
 import Home from "./pages/Home";
 import ProjectDetail from "./pages/ProjectDetails";
 import Tasks from "./pages/Tasks";
+import { TaskProvider } from "./context/TaskContext";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
@@ -56,47 +57,49 @@ const App = () => {
             <Router>
                 <PageProvider>
                     <ProjectProvider>
-                        <AppLayout>
-                            <Routes>
-                                <Route
-                                    path="/"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Home />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/projects"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Projects />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/projects/:id"
-                                    element={
-                                        <ProtectedRoute>
-                                            <ProjectDetail />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/tasks"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Tasks />
-                                        </ProtectedRoute>
-                                    }
-                                />
+                        <TaskProvider>
+                            <AppLayout>
+                                <Routes>
+                                    <Route
+                                        path="/"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Home />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/projects"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Projects />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/projects/:id"
+                                        element={
+                                            <ProtectedRoute>
+                                                <ProjectDetail />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/tasks"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Tasks />
+                                            </ProtectedRoute>
+                                        }
+                                    />
 
-                                <Route path="/github/callback" element={<GitHubCallback />} />
-                                <Route path="/login" element={<AuthRedirect />} />
-                                <Route path="/register" element={<AuthRedirect />} />
-                                <Route path="*" element={<NotFound />} />
-                            </Routes>
-                        </AppLayout>
+                                    <Route path="/github/callback" element={<GitHubCallback />} />
+                                    <Route path="/login" element={<AuthRedirect />} />
+                                    <Route path="/register" element={<AuthRedirect />} />
+                                    <Route path="*" element={<NotFound />} />
+                                </Routes>
+                            </AppLayout>
+                        </TaskProvider>
                     </ProjectProvider>
                 </PageProvider>
             </Router>

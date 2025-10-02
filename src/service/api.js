@@ -138,8 +138,6 @@ export const completeTask = async (id, token) => {
 };
 
 export const createTask = async (taskData, token) => {
-    console.log("Sending task:", JSON.stringify(taskData));
-
     return axios
         .post(`${API_BASE_URL}/task`, taskData, {
             headers: {

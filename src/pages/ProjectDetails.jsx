@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import ProjectsModal from "../components/ProjectsModal";
 import { useEffect } from "react";
-import { getAllProjects } from "../service/api";
+import { getProjectById } from "../service/api";
 import { useProject } from "../context/ProjectContext";
 
 const ProjectDetail = () => {
@@ -20,9 +20,9 @@ const ProjectDetail = () => {
     useEffect(() => {
         const fetchCurrentProject = async () => {
             try {
-                const projects = await getAllProjects(localStorage.getItem("accessToken"));
+                const project = await getProjectById(idParam, localStorage.getItem("accessToken"));
 
-                setCurrentProject(projects.find(p => p.id === idParam));
+                setCurrentProject(project);
             } catch (error) {
                 console.error("Errore nel recupero dei progetti:", error);
             }

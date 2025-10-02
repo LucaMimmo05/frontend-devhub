@@ -5,9 +5,10 @@ import "../styles/tasks.css";
 import { getTasksNotCompleted } from "../service/api";
 import { useState } from "react";
 import TasksModal from "../components/TasksModal";
+import { useTask } from "../context/TaskContext";
 
 const Tasks = () => {
-    const [data, setData] = useState([]);
+    const { tasks, setTasks } = useTask();
 
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -15,11 +16,11 @@ const Tasks = () => {
         const fetchTasks = async () => {
             const res = (await getTasksNotCompleted(localStorage.getItem("token"))) || [];
 
-            setData(res);
+            setTasks(res);
         };
 
         fetchTasks();
-    }, []);
+    }, [setTasks]);
 
     const handleClick = () => {
         setModalOpen(true);
@@ -39,7 +40,7 @@ const Tasks = () => {
                 <AddButton type={"add"} onClick={handleClick} />
             </div>
             {modalOpen && <TasksModal onClose={handleClose} title={"Create new Task"} />}
-            <TasksTable tasks={data} />
+            <TasksTable tasks={tasks} />
         </section>
     );
 };
