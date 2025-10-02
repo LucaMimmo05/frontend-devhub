@@ -4,9 +4,12 @@ import TasksTable from "../components/TasksTable";
 import "../styles/tasks.css";
 import { getTasksNotCompleted } from "../service/api";
 import { useState } from "react";
+import TasksModal from "../components/TasksModal";
 
 const Tasks = () => {
     const [data, setData] = useState([]);
+
+    const [modalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -18,6 +21,14 @@ const Tasks = () => {
         fetchTasks();
     }, []);
 
+    const handleClick = () => {
+        setModalOpen(true);
+    };
+
+    const handleClose = () => {
+        setModalOpen(false);
+    };
+
     return (
         <section className="tasks">
             <div className="tasks-top">
@@ -25,8 +36,9 @@ const Tasks = () => {
                     <h1>Tasks</h1>
                     <p>Organize your tasks here.</p>
                 </div>
-                <AddButton type={"add"} onClick={() => {}} />
+                <AddButton type={"add"} onClick={handleClick} />
             </div>
+            {modalOpen && <TasksModal onClose={handleClose} title={"Create new Task"} />}
             <TasksTable tasks={data} />
         </section>
     );

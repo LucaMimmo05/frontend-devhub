@@ -1,5 +1,6 @@
 .table-container {
     overflow-x: auto;
+    padding-right: 30px;
 }
 
 .tasks-table {
@@ -8,6 +9,7 @@
     min-width: 800px;
     border-radius: 8px;
     overflow: hidden;
+    
 }
 
 .tasks-table th {
@@ -144,4 +146,22 @@
     padding: 20px;
     color: #ffffff;
     font-size: 14px;
+}
+
+.table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tatable-containersks::-webkit-scrollbar-track {
+    background: #121733;
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #329afe;
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #2684d4;
 }
