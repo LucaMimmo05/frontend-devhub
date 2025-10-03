@@ -13,6 +13,7 @@ import ProjectDetail from "./pages/ProjectDetails";
 import Tasks from "./pages/Tasks";
 import { TaskProvider } from "./context/TaskContext";
 import TasksArchive from "./pages/TasksArchive";
+import Github from "./pages/Github";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
@@ -98,6 +99,14 @@ const App = () => {
                                         element={
                                             <ProtectedRoute>
                                                 <TasksArchive />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/github"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Github />
                                             </ProtectedRoute>
                                         }
                                     />

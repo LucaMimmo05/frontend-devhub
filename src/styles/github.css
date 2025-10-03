@@ -1,0 +1,101 @@
+.github {
+    display: flex;
+    padding: 0 30px;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.github .title {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.github .title h1 {
+    font-size: 35px;
+    color: white;
+    font-weight: 600;
+}
+
+.github .title p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #aaacb3;
+}
+
+.github-left {
+    width: 70%;
+    height: 100%;
+}
+.github-right {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+}
+
+.github-profile {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.github-profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.github-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.github-name h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.github-name h3 {
+    color: var(--secondary);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.github-stats {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.github-stats hr {
+    border: 1px solid #121733;
+    height: 100%;
+}
+
+.github-stat {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+
+
+.github-stat h4 {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.github-stat p {
+    color: #bab5ba;
+    font-size: 16px;
+    font-weight: 400;
+}
