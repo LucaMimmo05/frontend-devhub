@@ -3,7 +3,7 @@ import { getAllProjects } from "../service/api";
 
 const ProjectContext = createContext();
 
-const ProjectProvider = ({ children }) => {
+export const ProjectProvider = ({ children }) => {
     const [projects, setProjects] = useState([]);
     const [currentProject, setCurrentProject] = useState();
 
@@ -32,6 +32,6 @@ const ProjectProvider = ({ children }) => {
     );
 };
 
-const useProject = () => useContext(ProjectContext);
-
-export { ProjectProvider, useProject };
+export const useProject = () => {
+    return useContext(ProjectContext);
+};
