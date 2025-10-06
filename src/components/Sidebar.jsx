@@ -1,10 +1,10 @@
 import "../styles/sidebar.css";
 import SidebarItem from "./SidebarItem";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../context/AuthContext";
 import ConnectGitHub from "./ConnectGitHub";
-import { getRepos } from "../service/api";
+import { getGithubUserInfo } from "../service/api";
 import Logo from "../assets/devhub-logo-white.svg";
 import HomeIcon from "../assets/sidebar/home.svg";
 import FolderIcon from "../assets/sidebar/folder.svg";
@@ -18,13 +18,17 @@ const Sidebar = () => {
     const [avatarUrl, setAvatarUrl] = useState("");
     const { user } = useAuth();
 
-    const checkToken = () => {
+    const checkToken = useCallback(() => {
         if (!user?.id) return;
 
         const token = localStorage.getItem(`githubToken_${user.id}`);
 
-        setIsConnected(token.includes("gho_"));
-    };
+        if (token) {
+            setIsConnected(token.includes("gho_"));
+        } else {
+            setIsConnected(false);
+        }
+    }, [user]);
 
     useEffect(() => {
         checkToken();
@@ -34,16 +38,16 @@ const Sidebar = () => {
         return () => {
             window.removeEventListener("githubLogin", checkToken);
         };
-    }, [user]);
+    }, [user, checkToken]);
 
     useEffect(() => {
         const fetchAvatar = async () => {
             if (isConnected && user?.id) {
                 try {
-                    const data = await getRepos(user.id);
+                    const data = await getGithubUserInfo(user.id);
 
-                    if (data?.length > 0) {
-                        setAvatarUrl(data[0].owner.avatar_url);
+                    if (data) {
+                        setAvatarUrl(data.avatarUrl);
                     }
                 } catch (err) {
                     console.error("Errore nel recupero avatar:", err);
@@ -86,9 +90,11 @@ const Sidebar = () => {
                 <hr />
                 <div className="profile">
                     {isConnected && avatarUrl && <img className="profile-image" src={avatarUrl} alt="Profile" />}
-                    <h4>
-                        {user?.surname} {user?.name}
-                    </h4>
+                    {user && (
+                        <h4>
+                            {user.surname} {user.name}
+                        </h4>
+                    )}
                 </div>
             </div>
         </div>

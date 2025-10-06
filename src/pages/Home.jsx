@@ -7,6 +7,8 @@ import Calendar from "../components/Calendar";
 import { getTasks, getCommand, getRepos } from "../service/api";
 import { getFormattedDate, getFormattedTime } from "../utility/dateformatter";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
+import ConnectGitHub from "../components/ConnectGitHub";
 const Home = () => {
     const { user } = useAuth();
     const [date, setDate] = useState("");
@@ -14,6 +16,7 @@ const Home = () => {
     const [tasks, setTasks] = useState([]);
     const [command, setCommand] = useState({});
     const [repos, setRepos] = useState([]);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -43,11 +46,13 @@ const Home = () => {
 
         const fetchRepos = async () => {
             try {
-                const res = await getRepos(user.id);
+                const res = await getRepos(user.id, "updated", 7);
 
                 setRepos(res);
             } catch (error) {
                 console.error("Error fetching repositories:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -115,7 +120,7 @@ const Home = () => {
                             {tasks && tasks.length > 0 ? (
                                 <>
                                     <div className="task-cont">
-                                        {tasks.slice(0, 6).map(task => (
+                                        {tasks.map(task => (
                                             <Task key={task.id} title={task.title} priority={task.priority} />
                                         ))}
                                     </div>
@@ -193,9 +198,22 @@ const Home = () => {
                         </svg>
                         <h2>Top Repositories</h2>
                     </div>
-                    <div className="repository-cont">
-                        {repos && repos.slice(0, 7).map(repo => <RepositoryItem key={repo.id} data={repo} />)}
-                    </div>
+
+                    {loading ? (
+                        <div className="centered">
+                            <ClipLoader color="#4A90E2" size={60} />
+                        </div>
+                    ) : (
+                        <div className="repository-cont">
+                            {repos && repos.length > 0 ? (
+                                repos.slice(0, 7).map(repo => <RepositoryItem key={repo.id} data={repo} />)
+                            ) : (
+                                <div className="centered">
+                                    <ConnectGitHub />
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
                 <div className="box left-bottom-box">
                     {command && Object.keys(command).length > 0 > 0 ? (
