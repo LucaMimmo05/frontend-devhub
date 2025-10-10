@@ -118,6 +118,7 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    position: relative;
 }
 
 .left-bottom-box {
@@ -179,4 +180,5 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    position: relative;
 }

@@ -150,19 +150,7 @@
     align-items: center;
 }
 
-.auth-form input {
-    border-radius: 10px;
-    border: 1px solid #898989;
-    display: flex;
-    width: 350px;
-    height: 40px;
-    flex-shrink: 0;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    color: black;
-}
+
 
 .auth-form button {
     display: flex;

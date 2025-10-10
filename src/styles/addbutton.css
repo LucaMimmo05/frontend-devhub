@@ -19,3 +19,7 @@
 .add-button:hover {
     background-color: var(--secondary);
 }
+
+.add-button.delete {
+    background-color: #dc2626;
+}

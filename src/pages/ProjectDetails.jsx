@@ -74,7 +74,11 @@ const ProjectDetail = () => {
                     </svg>
                     <h1>{currentProject.name || "Unnamed Project"}</h1>
                 </div>
-                <AddButton type={"edit"} onClick={handleEdit} />
+                .
+                <div className="project-details-buttons">
+                    <AddButton type={"delete"} onClick={() => {}} />
+                    <AddButton type={"edit"} onClick={handleEdit} />
+                </div>
             </div>
 
             <div className="project-details-content">

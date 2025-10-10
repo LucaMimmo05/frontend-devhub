@@ -3,6 +3,17 @@
     padding: 0 30px;
     height: 100%;
     justify-content: space-between;
+    gap: 32px;
+    position: relative;
+}
+
+.github-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
 }
 
 .github .title {
@@ -26,12 +37,15 @@
 .github-left {
     width: 70%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 .github-right {
     width: 30%;
     display: flex;
     flex-direction: column;
-
+    gap: 15px;
     height: 100%;
 }
 
@@ -42,6 +56,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .github-profile img {
@@ -86,8 +101,6 @@
     gap: 1px;
 }
 
-
-
 .github-stat h4 {
     color: white;
     font-size: 18px;
@@ -98,4 +111,67 @@
     color: #bab5ba;
     font-size: 16px;
     font-weight: 400;
+}
+
+.top-repositories {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.top-repositories h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+}
+.repository {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.repo-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.repo-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.repository h3 {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+.top-repositories p {
+    color: #aaacb3;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.repository-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    height: 360px;
+}
+
+.github-recent-activities {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    height: fit-content;
+    flex: 1;
+}
+
+.github-recent-activities-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+    justify-content: space-between;
 }

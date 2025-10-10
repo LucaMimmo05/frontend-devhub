@@ -6,9 +6,9 @@ import { GITHUB_BASE_URL } from "./config";
  * @param {number} id - ID dell'utente
  * @returns {Promise} Lista dei repository
  */
-export const getRepos = async id => {
+export const getRepos = async (id, sort, perPage) => {
     return axios
-        .get(`${GITHUB_BASE_URL}/repos/${id}?sort=updated&per_page=10`)
+        .get(`${GITHUB_BASE_URL}/repos/${id}?sort=${sort}&per_page=${perPage}`)
         .then(response => response.data)
         .catch(error => {
             console.error("Errore nella richiesta:", error);
@@ -36,38 +36,16 @@ export const getGithubUserInfo = async (id, token) => {
         });
 };
 
-/**
- * Ottiene un repository specifico
- * @param {number} id - ID dell'utente
- * @param {string} repoName - Nome del repository
- * @returns {Promise} Dati del repository
- */
-export const getRepoByName = async (id, repoName) => {
+export const getRecentActivities = async (id, token, per_page) => {
     return axios
-        .get(`${GITHUB_BASE_URL}/repos/${id}/${repoName}`)
+        .get(`${GITHUB_BASE_URL}/activities/${id}?per_page=${per_page}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
         .then(response => response.data)
         .catch(error => {
             console.error("Errore nella richiesta:", error);
             throw error;
         });
 };
-
-/**
- * Ottiene i commit di un repository
- * @param {number} id - ID dell'utente
- * @param {string} repoName - Nome del repository
- * @param {number} perPage - Numero di commit per pagina
- * @returns {Promise} Lista dei commit
- */
-export const getRepoCommits = async (id, repoName, perPage = 10) => {
-    return axios
-        .get(`${GITHUB_BASE_URL}/repos/${id}/${repoName}/commits?per_page=${perPage}`)
-        .then(response => response.data)
-        .catch(error => {
-            console.error("Errore nella richiesta:", error);
-            throw error;
-        });
-};
-
-// Alias per compatibilità con il codice esistente
-export const getGithubUsrInfo = getGithubUserInfo;

@@ -1,0 +1,23 @@
+.recent-activity {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+}
+
+.recent-activity-left {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+}
+
+.recent-activity-left h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.recent-activity-left p {
+    color: #aaacb3;
+    font-size: 14px;
+    font-weight: 500;
+}
