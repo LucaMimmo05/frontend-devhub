@@ -1,15 +1,9 @@
 import axios from "axios";
 import { API_BASE_URL } from "./config";
 
-/**
- * Ottiene un comando casuale
- * @param {number} id - ID dell'utente o del comando
- * @param {string} token - Token di autenticazione
- * @returns {Promise} Comando casuale
- */
 export const getCommand = async (id, token) => {
     return axios
-        .get(`${API_BASE_URL}/command/random/${id}`, {
+        .get(`${API_BASE_URL}/command/${id}/random`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -21,11 +15,6 @@ export const getCommand = async (id, token) => {
         });
 };
 
-/**
- * Ottiene tutti i comandi
- * @param {string} token - Token di autenticazione
- * @returns {Promise} Lista di tutti i comandi
- */
 export const getAllCommands = async token => {
     return axios
         .get(`${API_BASE_URL}/command`, {
@@ -40,12 +29,6 @@ export const getAllCommands = async token => {
         });
 };
 
-/**
- * Ottiene un comando per ID
- * @param {number} id - ID del comando
- * @param {string} token - Token di autenticazione
- * @returns {Promise} Dati del comando
- */
 export const getCommandById = async (id, token) => {
     return axios
         .get(`${API_BASE_URL}/command/${id}`, {
@@ -60,12 +43,6 @@ export const getCommandById = async (id, token) => {
         });
 };
 
-/**
- * Crea un nuovo comando
- * @param {Object} commandData - Dati del comando da creare
- * @param {string} token - Token di autenticazione
- * @returns {Promise} Comando creato
- */
 export const createCommand = async (commandData, token) => {
     return axios
         .post(`${API_BASE_URL}/command`, commandData, {
@@ -81,13 +58,6 @@ export const createCommand = async (commandData, token) => {
         });
 };
 
-/**
- * Aggiorna un comando esistente
- * @param {number} id - ID del comando da aggiornare
- * @param {Object} commandData - Dati aggiornati del comando
- * @param {string} token - Token di autenticazione
- * @returns {Promise} Comando aggiornato
- */
 export const updateCommand = async (id, commandData, token) => {
     return axios
         .put(`${API_BASE_URL}/command/${id}`, commandData, {
@@ -103,12 +73,6 @@ export const updateCommand = async (id, commandData, token) => {
         });
 };
 
-/**
- * Elimina un comando
- * @param {number} id - ID del comando da eliminare
- * @param {string} token - Token di autenticazione
- * @returns {Promise} Risposta della richiesta
- */
 export const deleteCommand = async (id, token) => {
     return axios
         .delete(`${API_BASE_URL}/command/${id}`, {
