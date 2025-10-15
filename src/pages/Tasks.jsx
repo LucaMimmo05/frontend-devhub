@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import AddButton from "../components/AddButton";
+import Button from "../components/Button";
 import TasksTable from "../components/TasksTable";
 import "../styles/tasks.css";
 import { getTasksNotCompleted } from "../service/api";
@@ -40,13 +40,13 @@ const Tasks = () => {
                     <p>Organize your tasks here.</p>
                 </div>
                 <div className="tasks-buttons">
-                    <AddButton
+                    <Button
                         type={"Archive"}
                         onClick={() => {
                             navigate("/tasks/archive");
                         }}
                     />
-                    <AddButton type={"add"} onClick={handleClick} />
+                    <Button type={"add"} onClick={handleClick} />
                 </div>
             </div>
             {modalOpen && <TasksModal onClose={handleClose} title={"Create new Task"} />}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/projects.css";
 import Project from "../components/Project";
-import AddButton from "../components/AddButton";
+import Button from "../components/Button";
 import ProjectsModal from "../components/ProjectsModal";
 import { useProject } from "../context/ProjectContext";
 
@@ -24,7 +24,7 @@ const Projects = () => {
                     <h1>Projects</h1>
                     <p>Your active and archived projects in one place.</p>
                 </div>
-                <AddButton type={"add"} onClick={handleClick} />
+                <Button type={"add"} onClick={handleClick} />
             </div>
 
             {isModalOpen && <ProjectsModal onClose={handleclose} title={"Create Project"} />}

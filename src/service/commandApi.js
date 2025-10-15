@@ -1,9 +1,9 @@
 import axios from "axios";
 import { API_BASE_URL } from "./config";
 
-export const getCommand = async (id, token) => {
+export const getCommand = async token => {
     return axios
-        .get(`${API_BASE_URL}/command/${id}/random`, {
+        .get(`${API_BASE_URL}/command/random`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

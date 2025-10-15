@@ -1,0 +1,50 @@
+.delete-modal {
+    width: 40vw;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.delete-modal h3 {
+    font-weight: 400;
+    color: #aaacb3;
+}
+
+.delete-modal h2 {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-modal-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.delete-modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.delete-modal-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.delete-modal-buttons button[type="confirm"] {
+    background-color: #dc2626;
+    color: white;
+}
+
+.delete-modal-buttons button[type="cancel"] {
+    background-color: #121733;
+    color: white;
+}

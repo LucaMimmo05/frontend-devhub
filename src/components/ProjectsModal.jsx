@@ -42,7 +42,7 @@ const ProjectsModal = ({ title, onClose, data }) => {
 
     return (
         <div className="blur-bg">
-            <div className="box project-modal">
+            <div className="box project-modal centered">
                 <h2>{title}</h2>
                 <form className="project-modal-content" onSubmit={handleSubmit}>
                     <div className="project-modal-inputs">

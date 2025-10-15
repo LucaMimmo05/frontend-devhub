@@ -1,21 +1,6 @@
-.blur-bg {
-    z-index: 999;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(5px);
-}
-
 .project-modal {
     z-index: 1000;
-    position: absolute;
     background-color: #0a1029;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     color: white;
     width: 60vw;
     height: 70vh;

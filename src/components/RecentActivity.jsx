@@ -1,5 +1,5 @@
 import "../styles/recentactivity.css";
-import AddButton from "./AddButton";
+import Button from "./Button";
 import { timeSince } from "../utility/dateformatter";
 
 const RecentActivity = ({ activity }) => {
@@ -36,10 +36,11 @@ const RecentActivity = ({ activity }) => {
         <div className="recent-activity box">
             <div className="recent-activity-left">
                 <h2>{renderType(activity.type)}</h2>
-                <p>{renderRepo(activity.repo.name)}</p>
-                <p>{timeSince(activity.created_at)}</p>
+                <p>
+                    {renderRepo(activity.repo.name)} | {timeSince(activity.created_at)}
+                </p>
             </div>
-            <AddButton type={"View"} onClick={() => window.open(commitLinks[0], "_blank")} />
+            <Button type={"View"} onClick={() => window.open(commitLinks[0], "_blank")} />
         </div>
     );
 };

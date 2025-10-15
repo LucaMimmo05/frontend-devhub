@@ -1,7 +1,7 @@
 import "../styles/projectdetails.css";
 import { renderColor } from "../utility/rendercolor";
 import { getDarkerFromLight } from "../utility/darkencolor";
-import AddButton from "../components/AddButton";
+import Button from "../components/Button";
 import { getFormattedDate, getFormattedTime } from "../utility/dateformatter";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
@@ -9,11 +9,13 @@ import ProjectsModal from "../components/ProjectsModal";
 import { useEffect } from "react";
 import { getProjectById } from "../service/api";
 import { useProject } from "../context/ProjectContext";
+import DeleteModal from "../components/DeleteModal";
 
 const ProjectDetail = () => {
     const { currentProject, setCurrentProject } = useProject();
     const { id } = useParams();
     const [openModal, setOpenModal] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
 
     const idParam = Number(id);
 
@@ -40,6 +42,10 @@ const ProjectDetail = () => {
 
     const handleEdit = () => {
         setOpenModal(true);
+    };
+
+    const handleDelete = () => {
+        setDeleteModal(true);
     };
 
     return (
@@ -74,10 +80,15 @@ const ProjectDetail = () => {
                     </svg>
                     <h1>{currentProject.name || "Unnamed Project"}</h1>
                 </div>
-                .
+
                 <div className="project-details-buttons">
-                    <AddButton type={"delete"} onClick={() => {}} />
-                    <AddButton type={"edit"} onClick={handleEdit} />
+                    <Button
+                        type={"delete"}
+                        onClick={() => {
+                            handleDelete();
+                        }}
+                    />
+                    <Button type={"edit"} onClick={handleEdit} />
                 </div>
             </div>
 
@@ -121,6 +132,14 @@ const ProjectDetail = () => {
                 </div>
                 {openModal && (
                     <ProjectsModal data={currentProject} title={"Edit Project"} onClose={() => setOpenModal(false)} />
+                )}
+
+                {deleteModal && (
+                    <DeleteModal
+                        title={currentProject.name}
+                        onClose={() => setDeleteModal(false)}
+                        id={currentProject.id}
+                    />
                 )}
 
                 <div className="project-details-container">
