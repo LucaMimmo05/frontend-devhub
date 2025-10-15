@@ -1,5 +1,5 @@
-import "../styles/addbutton.css";
-const AddButton = ({ type, onClick }) => {
+import "../styles/button.css";
+const Button = ({ type, onClick }) => {
     const renderButtonContent = () => {
         switch (type) {
             case "add":
@@ -88,4 +88,4 @@ const AddButton = ({ type, onClick }) => {
     );
 };
 
-export default AddButton;
+export default Button;
