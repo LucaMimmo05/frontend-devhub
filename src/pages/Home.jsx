@@ -87,7 +87,7 @@ const Home = () => {
                         <h2>Tasks</h2>
                     </div>
                     <div className="tasks">
-                        <div className="task-left">
+                        <div className="task-top">
                             {tasks && tasks.length > 0 ? (
                                 <div className="task-cont">
                                     {tasks.map(task => (
@@ -97,6 +97,8 @@ const Home = () => {
                             ) : (
                                 <p className="no-tasks-message">All task completed</p>
                             )}
+                        </div>
+                        <div className="task-bottom">
                             <button onClick={() => navigate("/tasks")}>
                                 See tasks{" "}
                                 <svg
@@ -116,7 +118,6 @@ const Home = () => {
                                 </svg>
                             </button>
                         </div>
-                        <div className="task-right"></div>
                     </div>
                 </div>
                 <div className="box right-box">

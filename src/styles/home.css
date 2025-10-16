@@ -50,7 +50,7 @@
     height: 100%;
 }
 
-.task-left {
+.task-top {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -58,7 +58,16 @@
     position: relative;
 }
 
-.task-left button {
+.task-bottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 0;
+    position: relative;
+    height: 60px;
+}
+
+.task-bottom button {
     display: flex;
     padding: 10px;
     justify-content: center;
@@ -81,7 +90,7 @@
     right: 0;
 }
 
-.task-left button:hover {
+.task-bottom button:hover {
     background-color: var(--secondary);
 }
 
