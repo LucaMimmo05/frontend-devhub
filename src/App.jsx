@@ -14,6 +14,7 @@ import Tasks from "./pages/Tasks";
 import { TaskProvider } from "./context/TaskContext";
 import TasksArchive from "./pages/TasksArchive";
 import Github from "./pages/Github";
+import Notes from "./pages/Notes";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
@@ -35,7 +36,6 @@ const AppLayout = ({ children }) => {
     const location = useLocation();
     const { isAuthenticated } = useAuth();
 
-    // Pagine in cui non vogliamo la Sidebar
     const noSidebarRoutes = ["/login", "/register"];
 
     return (
@@ -107,6 +107,14 @@ const App = () => {
                                         element={
                                             <ProtectedRoute>
                                                 <Github />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/notes"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Notes />
                                             </ProtectedRoute>
                                         }
                                     />

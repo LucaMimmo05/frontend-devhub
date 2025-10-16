@@ -1,0 +1,22 @@
+.note {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.note-title {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.note-title h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.note-content p {
+    font-size: 16px;
+    font-weight: 400;
+    overflow: hidden;
+}

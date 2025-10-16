@@ -9,6 +9,21 @@
     gap: 50px;
 }
 
+/* small variant for compact modals (used by NotesModal) */
+.small-modal {
+    width: 520px;
+    max-width: calc(100vw - 40px);
+    height: auto;
+    max-height: 85vh;
+    gap: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow: hidden;
+}
+
 .project-modal span {
     font-size: 16px;
     font-style: normal;
@@ -18,6 +33,17 @@
 
 .project-modal h2 {
     font-size: 35px;
+}
+
+/* small-modal specific overrides */
+.small-modal h2 {
+    font-size: 24px;
+}
+
+.small-modal .project-modal-content {
+    /* leave room for header/footer and make content scrollable if needed */
+    max-height: calc(80vh - 120px);
+    overflow: auto;
 }
 .project-modal-inputs {
     display: flex;
@@ -115,7 +141,7 @@
 
 .button-cancel {
     border-radius: 10px;
-    background:  #121733;
+    background: #121733;
 }
 
 .button-save {

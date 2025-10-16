@@ -19,6 +19,7 @@
     display: flex;
     gap: 15px;
     align-items: center;
+    flex-direction: row;
 }
 
 .project-details-top .title h1 {

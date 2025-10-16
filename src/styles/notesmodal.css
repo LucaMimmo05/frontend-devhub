@@ -1,0 +1,25 @@
+/* Notes Modal uses the small-modal variant from projectmodal.css */
+/* Custom overrides to make modal taller */
+
+.small-modal {
+    max-height: 90vh;
+    height: auto;
+}
+
+.small-modal .notes-input {
+    height: 200px;
+    min-height: 200px;
+    flex: 1;
+}
+
+.small-modal .project-notes {
+    flex: 1;
+}
+
+.small-modal .project-modal-content {
+    height: auto;
+}
+
+.small-modal .project-modal-buttons {
+    margin-top: 24px;
+}

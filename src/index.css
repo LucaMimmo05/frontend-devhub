@@ -46,3 +46,22 @@ section {
     background: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(5px);
 }
+
+.title {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.title h1 {
+    font-size: 35px;
+    color: white;
+    font-weight: 600;
+}
+
+.title p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #aaacb3;
+}
+
