@@ -4,7 +4,7 @@ import "../styles/home.css";
 import Task from "../components/Task";
 import RepositoryItem from "../components/RepositoryItem";
 import Calendar from "../components/Calendar";
-import { getTasks, getCommand, getRepos } from "../service/api";
+import { getCommand, getRepos, getTasksNotCompleted } from "../service/api";
 import { getFormattedDate, getFormattedTime } from "../utility/dateformatter";
 import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
@@ -22,7 +22,7 @@ const Home = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const res = await getTasks(localStorage.getItem("accessToken"));
+                const res = await getTasksNotCompleted(localStorage.getItem("accessToken"));
 
                 setTasks(res);
             } catch (error) {
@@ -84,20 +84,18 @@ const Home = () => {
             <div className="home-content">
                 <div className="box home-main-box">
                     <div className="title">
-                        <h2>Today&apos;s Overview</h2>
+                        <h2>Tasks</h2>
                     </div>
                     <div className="tasks">
                         <div className="task-left">
                             {tasks && tasks.length > 0 ? (
-                                <>
-                                    <div className="task-cont">
-                                        {tasks.map(task => (
-                                            <Task key={task.id} title={task.title} priority={task.priority} />
-                                        ))}
-                                    </div>
-                                </>
+                                <div className="task-cont">
+                                    {tasks.map(task => (
+                                        <Task key={task.id} title={task.title} priority={task.priority} />
+                                    ))}
+                                </div>
                             ) : (
-                                <h4>All task completed</h4>
+                                <p className="no-tasks-message">All task completed</p>
                             )}
                             <button onClick={() => navigate("/tasks")}>
                                 See tasks{" "}
@@ -152,7 +150,7 @@ const Home = () => {
                             <p>{command.description}</p>
                         </>
                     ) : (
-                        <h4>Nothing to see</h4>
+                        <p className="no-tasks-message">Nothing to see</p>
                     )}
                 </div>
                 <div className="box center-bottom-box">

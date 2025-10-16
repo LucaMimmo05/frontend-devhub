@@ -35,17 +35,24 @@
 }
 
 .github-left {
-    width: 70%;
+    width: 65%;
     height: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 .github-right {
-    width: 30%;
+    width: 35%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    height: 100%;
+}
+
+.github-left-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100%;
 }
 
@@ -117,6 +124,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 100%;
 }
 
 .top-repositories h2 {
@@ -129,6 +137,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    flex: 1;
 }
 .repo-left {
     display: flex;
@@ -139,6 +148,7 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
+    width: 450px;
 }
 .repository h3 {
     color: white;
@@ -156,13 +166,13 @@
     flex-direction: column;
     gap: 15px;
     position: relative;
-    height: 360px;
+    height: 100%;
 }
 
 .github-recent-activities {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     position: relative;
     height: fit-content;
     flex: 1;
@@ -174,4 +184,122 @@
     gap: 15px;
     height: 100%;
     justify-content: space-between;
+}
+
+.contribution-section {
+    width: 100%;
+}
+
+.repository-insights {
+    padding: 20px;
+}
+.repository-insights-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.repository-insights-content h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    
+}
+
+.repository-insights h3 {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.insight-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #0a1029;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.insight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.insight-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--secondary);
+    flex-shrink: 0;
+}
+
+.insight-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.insight-data {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.insight-data h4 {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.insight-data p {
+    color: #aaacb3;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 1400px) {
+    .insights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .insight-card {
+        padding: 12px 14px;
+    }
+
+    .insight-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .insight-icon svg {
+        width: 18px;
+        height: 18px;
+    }
 }

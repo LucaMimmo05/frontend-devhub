@@ -7,16 +7,14 @@ export const AuthProvider = ({ children }) => {
     const [accessToken, setAccessToken] = useState(null);
     const [refreshToken, setRefreshToken] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState(null); // Aggiungiamo lo stato per i dati utente
+    const [user, setUser] = useState(null);
 
-    // Funzione per capitalizzare la prima lettera di una stringa
     const capitalizeFirstLetter = useCallback(str => {
         if (!str) return "";
 
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
     }, []);
 
-    // Funzione per estrarre i dati utente dal token
     const getUserDataFromToken = useCallback(
         token => {
             if (!token) return null;
@@ -75,7 +73,7 @@ export const AuthProvider = ({ children }) => {
     const verifyTokenWithServer = async token => {
         try {
             await axios.post("http://localhost:8080/api/auth/verify", {
-                token: token, // access token
+                token: token,
             });
 
             return true;
@@ -86,11 +84,10 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    // Refresh access token con body JSON
     const refreshAccessTokenInternal = async refreshTokenValue => {
         try {
             const response = await axios.post("http://localhost:8080/api/auth/refresh", {
-                refreshToken: refreshTokenValue, // 👈 anche qui
+                refreshToken: refreshTokenValue,
             });
 
             const newAccessToken = response.data.accessToken;
@@ -113,7 +110,6 @@ export const AuthProvider = ({ children }) => {
             const storedUserData = localStorage.getItem("userData");
 
             if (access && refresh) {
-                // Carica i dati utente dal localStorage se disponibili
                 if (storedUserData) {
                     try {
                         const userData = JSON.parse(storedUserData);
@@ -179,14 +175,13 @@ export const AuthProvider = ({ children }) => {
         };
 
         initializeAuth();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [getUserDataFromToken]);
 
     const login = async (access, refresh) => {
-        // Salva i token
         localStorage.setItem("accessToken", access);
         localStorage.setItem("refreshToken", refresh);
 
-        // Estrae e salva i dati utente dal token
         const userData = getUserDataFromToken(access);
 
         if (userData) {
@@ -194,8 +189,11 @@ export const AuthProvider = ({ children }) => {
             setUser(userData);
 
             try {
-                // Chiamata API GitHub usando l'id dell'utente
-                const response = await axios.get(`http://localhost:8080/github/${userData.id}`);
+                const response = await axios.get("http://localhost:8080/github", {
+                    headers: {
+                        Authorization: `Bearer ${access}`,
+                    },
+                });
 
                 console.log("git token:", response.data);
 
@@ -244,6 +242,7 @@ export const AuthProvider = ({ children }) => {
 
             return null;
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [refreshToken, getUserDataFromToken]);
 
     useEffect(() => {
