@@ -16,23 +16,9 @@
     min-height: 400px;
 }
 
-.github .title {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
 
-.github .title h1 {
-    font-size: 35px;
-    color: white;
-    font-weight: 600;
-}
 
-.github .title p {
-    font-size: 16px;
-    font-weight: 500;
-    color: #aaacb3;
-}
+
 
 .github-left {
     width: 65%;

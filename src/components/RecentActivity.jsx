@@ -15,6 +15,8 @@ const RecentActivity = ({ activity }) => {
                 return "Forked";
             case "WatchEvent":
                 return "Starred";
+            case "CreateEvent":
+                return "Created a repository";
             default:
                 return type;
         }
