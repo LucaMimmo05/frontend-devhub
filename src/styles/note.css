@@ -15,8 +15,33 @@
     font-weight: 600;
 }
 
-.note-content p {
-    font-size: 16px;
-    font-weight: 400;
+.note-content {
     overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+}
+
+.note-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-see-details {
+    border-radius: 10px;
+    background: var(--secondary);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.note-see-details:hover {
+    background-color: #007bff;
+    color: white;
 }

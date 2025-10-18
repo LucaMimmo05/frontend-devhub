@@ -1,11 +1,11 @@
 import { useState } from "react";
 import ModalInputField from "./ModalInputField";
 import "../styles/projectmodal.css";
-import "../styles/notesmodal.css";
+import "../styles/addnotemodal.css";
 
-const NotesModal = ({ onClose, onSave }) => {
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+const AddNoteModal = ({ onClose, onSave, edit, initialData }) => {
+    const [title, setTitle] = useState(edit ? initialData.title : "");
+    const [content, setContent] = useState(edit ? initialData.content : "");
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -14,12 +14,15 @@ const NotesModal = ({ onClose, onSave }) => {
         onSave({ title: title.trim(), content: content.trim() });
         setTitle("");
         setContent("");
+        if (edit) {
+            onClose();
+        }
     };
 
     return (
         <div className="blur-bg">
             <div className="box project-modal centered small-modal">
-                <h2>New Note</h2>
+                <h2>{edit ? "Edit Note" : "New Note"}</h2>
                 <form className="project-modal-content" onSubmit={handleSubmit}>
                     <div className="project-modal-inputs">
                         <div className="project-modal-left">
@@ -61,4 +64,4 @@ const NotesModal = ({ onClose, onSave }) => {
     );
 };
 
-export default NotesModal;
+export default AddNoteModal;
