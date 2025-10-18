@@ -3,21 +3,36 @@ import { renderColor } from "../utility/rendercolor";
 import { getDarkerFromLight } from "../utility/darkencolor";
 import Button from "../components/Button";
 import { getFormattedDate, getFormattedTime } from "../utility/dateformatter";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ProjectsModal from "../components/ProjectsModal";
 import { useEffect } from "react";
-import { getProjectById } from "../service/api";
+import { getProjectById, deleteProject } from "../service/api";
 import { useProject } from "../context/ProjectContext";
 import DeleteModal from "../components/DeleteModal";
 
 const ProjectDetail = () => {
-    const { currentProject, setCurrentProject } = useProject();
+    const { currentProject, setCurrentProject, setProjects } = useProject();
     const { id } = useParams();
+    const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
 
     const idParam = Number(id);
+
+    const handleConfirmDelete = async () => {
+        try {
+            const token = localStorage.getItem("accessToken");
+
+            await deleteProject(currentProject.id, token);
+            setProjects(prev => prev.filter(p => p.id !== currentProject.id));
+            setCurrentProject(null);
+            setDeleteModal(false);
+            navigate("/projects");
+        } catch (error) {
+            console.error("Error deleting project:", error);
+        }
+    };
 
     useEffect(() => {
         const fetchCurrentProject = async () => {
@@ -31,7 +46,7 @@ const ProjectDetail = () => {
         };
 
         fetchCurrentProject();
-    }, [idParam]);
+    }, [idParam, setCurrentProject]);
 
     // Skeleton loader
     if (!currentProject) return <div className="loading">Loading project...</div>;
@@ -138,7 +153,8 @@ const ProjectDetail = () => {
                     <DeleteModal
                         title={currentProject.name}
                         onClose={() => setDeleteModal(false)}
-                        id={currentProject.id}
+                        onDelete={handleConfirmDelete}
+                        itemType="project"
                     />
                 )}
 

@@ -45,15 +45,13 @@
 
 .project-bottom button {
     border-radius: 10px;
-    background:  var(--secondary);
+    background: var(--secondary);
     border: none;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
 }
-
-
 
 .project-status {
     display: flex;
@@ -69,17 +67,18 @@
 }
 
 .project-status .PENDING {
-  background-color: orange;
+    background-color: orange;
 }
 
 .project-status .IN_PROGRESS {
-  background-color: yellow;
+    background-color: yellow;
 }
 
 .project-status .DONE {
-  background-color: green;
+    background-color: green;
 }
 
-/* .project-bottom button:hover {
-    /* background-color: #050713; */ /*DA SCEGLIERE
-} */
+.project-bottom button:hover {
+    background-color: #007bff;
+    color: white;
+}

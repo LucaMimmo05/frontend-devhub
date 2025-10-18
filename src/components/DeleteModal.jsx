@@ -1,32 +1,11 @@
 import "../styles/deletemodal.css";
-import { deleteProject } from "../service/api";
-import { useProject } from "../context/ProjectContext";
-import { useNavigate } from "react-router-dom";
 
-const DeleteModal = ({ title, onClose, id }) => {
-    const { setProjects, setCurrentProject } = useProject();
-    const navigate = useNavigate();
-
-    const handleDelete = async () => {
-        if (!id) {
-            console.error("DeleteModal: missing project id");
-
-            return;
+const DeleteModal = ({ title, onClose, onDelete, itemType = "item" }) => {
+    const handleDelete = () => {
+        if (onDelete) {
+            onDelete();
         }
-
-        const token = localStorage.getItem("accessToken");
-
-        try {
-            await deleteProject(id, token);
-
-            setProjects(prev => (Array.isArray(prev) ? prev.filter(p => p.id !== id) : []));
-            setCurrentProject(undefined);
-
-            onClose();
-            navigate("/projects");
-        } catch (error) {
-            console.error("Error deleting project:", error);
-        }
+        onClose();
     };
 
     return (
@@ -73,10 +52,10 @@ const DeleteModal = ({ title, onClose, id }) => {
                                 strokeLinecap="round"
                             ></path>
                         </svg>
-                        Delete Project
+                        Delete {itemType.charAt(0).toUpperCase() + itemType.slice(1)}
                     </h2>
                     <h3>
-                        Are you sure you want to delete <strong>{title}</strong> project?
+                        Are you sure you want to delete <strong>{title}</strong> {itemType}?
                     </h3>
                 </div>
                 <div className="delete-modal-buttons">
