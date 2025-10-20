@@ -1,0 +1,36 @@
+.command {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.command-content {
+    display: flex;
+    padding: 20px;
+    background-color: #000414;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.command-content button {
+    border-radius: 10px;
+    background: #0a1029;
+    padding: 10px 20px;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.command-content button:hover {
+    background-color: var(--secondary);
+}
+
+.command-description p {
+    color: #aaacb3;
+    font-size: 16px;
+    font-weight: 400;
+}

@@ -195,7 +195,6 @@
 
 .right-box .title {
     display: flex;
-    align-items: center;
     color: white;
     font-size: 16px;
     gap: 10px;

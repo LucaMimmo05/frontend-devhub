@@ -2,20 +2,26 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
+    overflow: hidden;
 }
 
 .note-title {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 0;
 }
 
 .note-title h2 {
     font-size: 20px;
     font-weight: 600;
+    margin: 0 0 8px 0;
 }
 
 .note-content {
+    flex: 1;
+    max-height: 120px;
+    overflow-wrap: break-word;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 6;
@@ -23,6 +29,11 @@
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     white-space: pre-wrap;
+    max-width: 100%;
+}
+
+.note-content p {
+    margin: 0;
 }
 
 .note-date {

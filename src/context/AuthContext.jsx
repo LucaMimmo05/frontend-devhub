@@ -210,9 +210,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-        localStorage.removeItem("userData");
+        localStorage.clear();
         setAccessToken(null);
         setRefreshToken(null);
         setUser(null);

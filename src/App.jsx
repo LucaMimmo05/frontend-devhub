@@ -15,6 +15,7 @@ import { TaskProvider } from "./context/TaskContext";
 import TasksArchive from "./pages/TasksArchive";
 import Github from "./pages/Github";
 import Notes from "./pages/Notes";
+import Commands from "./pages/Commands";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
@@ -115,6 +116,14 @@ const App = () => {
                                         element={
                                             <ProtectedRoute>
                                                 <Notes />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                    <Route
+                                        path="/commands"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Commands />
                                             </ProtectedRoute>
                                         }
                                     />

@@ -81,7 +81,7 @@ const ShowNoteModal = ({ onClose, data, onSubmit, onDelete }) => {
                             </svg>
                         </button>
                     </div>
-                    <div className="show-note-viewing">
+                    <div className="note-content">
                         <p>{data.content}</p>
                     </div>
                 </div>
