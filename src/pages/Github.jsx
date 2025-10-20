@@ -88,7 +88,12 @@ const Github = () => {
                                             <div className="repository box" key={repo.id}>
                                                 <div className="repo-left">
                                                     <div className="repository-language">
-                                                        <img src={getImageFromLanguage(repo.language)} alt="" />
+                                                        <img
+                                                            src={getImageFromLanguage(repo.language)}
+                                                            alt=""
+                                                            width={30}
+                                                            height={30}
+                                                        />
                                                     </div>
                                                     <div className="repo-info">
                                                         <h3>{repo.name}</h3>

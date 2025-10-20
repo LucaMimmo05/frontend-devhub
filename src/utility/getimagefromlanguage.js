@@ -1,20 +1,12 @@
-import python from "../assets/language/python.svg";
-import javascript from "../assets/language/javascript.svg";
-import java from "../assets/language/java.svg";
-import typescript from "../assets/language/typescript.svg";
-
 export const getImageFromLanguage = language => {
-    switch (language) {
-        case "JavaScript":
-            return javascript;
-        case "Python":
-            return python;
-        case "Java":
-            return java;
-        case "TypeScript":
-            return typescript;
+    let normalized = language.toLowerCase();
 
-        default:
-            return null;
+    if (normalized === "css") {
+        normalized = "css3";
     }
+    const url = `https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/${normalized}/${normalized}-original.svg`;
+
+    console.log("url:", url);
+
+    return url;
 };

@@ -22,10 +22,7 @@ const RecentActivity = ({ activity }) => {
         }
     };
 
-    const commitLinks =
-        activity?.payload?.commits?.map(commit =>
-            commit.url.replace("https://api.github.com/repos/", "https://github.com/").replace("/commits/", "/commit/")
-        ) || [];
+    const commitLinks = `http://github.com/${activity.repo.name}/commit/${activity.payload.head}`;
 
     const renderRepo = repo => {
         if (!repo) return null;
@@ -42,7 +39,7 @@ const RecentActivity = ({ activity }) => {
                     {renderRepo(activity.repo.name)} | {timeSince(activity.created_at)}
                 </p>
             </div>
-            <Button type={"View"} onClick={() => window.open(commitLinks[0], "_blank")} />
+            <Button type={"View"} onClick={() => window.open(commitLinks, "_blank")} />
         </div>
     );
 };
