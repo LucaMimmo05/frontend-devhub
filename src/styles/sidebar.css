@@ -50,6 +50,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    position: relative;
 }
 
 .sidebar-bottom hr {
@@ -63,14 +64,31 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 5px;
+    padding: 10px;
+}
+
+.profile:hover {
+    background-color: #0a1029;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    cursor: pointer;
+}
+
+.profile.active {
+    background-color: #0a1029;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .profile-image {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #f1f1f1; /* Placeholder color */
+    background-color: #f1f1f1;
 }
 
 .profile h4 {

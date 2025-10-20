@@ -1,0 +1,84 @@
+.profile-hover-menu {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: -20px;
+    z-index: 10;
+    animation: slideUp 0.3s ease-out forwards;
+    background: #0a1029;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    min-width: 180px;
+    transition: all 0.3s ease;
+}
+
+.profile-hover-menu.exit {
+    animation: slideDown 0.2s ease-in forwards;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+}
+
+.menu-divider {
+    border: none;
+}
+
+.menu-setting {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #e0e0e0;
+}
+
+.menu-setting:hover {
+    background-color: rgba(50, 154, 254, 0.1);
+    transform: translateX(2px);
+}
+
+.menu-setting h4 {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+.menu-setting svg {
+    transition: all 0.2s ease;
+}
+
+.menu-setting:hover svg {
+    transform: scale(1.1);
+}
+
+.menu-logout:hover {
+    background-color: rgba(255, 107, 107, 0.15);
+}
+
+.menu-logout:hover h4 {
+    color: #ff6b6b;
+}

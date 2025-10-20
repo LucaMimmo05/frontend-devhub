@@ -12,10 +12,12 @@ import TodoIcon from "../assets/sidebar/todo.svg";
 import GithubIcon from "../assets/sidebar/github.svg";
 import NotesIcon from "../assets/sidebar/notes.svg";
 import CommandIcon from "../assets/sidebar/command.svg";
+import ProfileHoverMenu from "./ProfileHoverMenu";
 
 const Sidebar = () => {
     const [isConnected, setIsConnected] = useState(false);
     const [avatarUrl, setAvatarUrl] = useState("");
+    const [showProfileMenu, setShowProfileMenu] = useState(false);
     const { user } = useAuth();
 
     const checkToken = useCallback(() => {
@@ -59,7 +61,7 @@ const Sidebar = () => {
     }, [isConnected, user]);
 
     return (
-        <div className="sidebar">
+        <div className="sidebar" onMouseLeave={() => setShowProfileMenu(false)}>
             <div className="sidebar-top">
                 <img src={Logo} alt="DevHub logo" />
 
@@ -86,9 +88,14 @@ const Sidebar = () => {
 
             {!isConnected && <ConnectGitHub />}
 
-            <div className="sidebar-bottom">
+            <div
+                className="sidebar-bottom"
+                onMouseEnter={() => setShowProfileMenu(true)}
+                onMouseLeave={() => setShowProfileMenu(false)}
+            >
+                {showProfileMenu && <ProfileHoverMenu onClose={() => setShowProfileMenu(false)} />}
                 <hr />
-                <div className="profile">
+                <div className={`profile ${showProfileMenu ? "active" : ""}`}>
                     {isConnected && avatarUrl && <img className="profile-image" src={avatarUrl} alt="Profile" />}
                     {user && (
                         <h4>
