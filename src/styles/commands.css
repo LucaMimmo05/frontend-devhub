@@ -11,3 +11,14 @@
     align-items: center;
     width: 100%;
 }
+
+
+.commands-content {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(2,1fr);
+    padding-right: 30px;
+    overflow-y: auto;
+    position: relative;
+    height: 660px;
+}

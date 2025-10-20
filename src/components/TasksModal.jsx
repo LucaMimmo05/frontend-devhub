@@ -54,7 +54,7 @@ const TasksModal = ({ onClose, title, data }) => {
                                 <span>Description</span>
                                 <textarea
                                     name="description"
-                                    className="desc-input"
+                                    className="notes-input"
                                     type="text"
                                     onChange={e => setInputsValues({ ...inputsValues, description: e.target.value })}
                                 />

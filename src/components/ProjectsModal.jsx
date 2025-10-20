@@ -62,7 +62,7 @@ const ProjectsModal = ({ title, onClose, data }) => {
                                 <textarea
                                     value={inputsValues.description}
                                     name="description"
-                                    className="desc-input"
+                                    className="notes-input"
                                     onChange={e => setInputsValues({ ...inputsValues, description: e.target.value })}
                                 />
                             </div>
