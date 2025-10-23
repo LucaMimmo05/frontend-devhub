@@ -63,3 +63,37 @@
     line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
+.update-command {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+}
+
+.update-command:focus {
+    outline: none;
+}
+
+.command-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.command-delete-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.command-delete-btn:hover {
+    background-color: red;
+}

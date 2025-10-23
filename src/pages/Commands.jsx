@@ -1,15 +1,18 @@
 import { useEffect } from "react";
 import Button from "../components/Button";
 import "../styles/commands.css";
-import { getAllCommands, createCommand, updateCommand } from "../service";
+import { getAllCommands, createCommand, updateCommand, deleteCommand } from "../service";
 import { useState } from "react";
 import Command from "../components/Command";
 import AddCommandModal from "../components/AddCommandModal";
+import DeleteModal from "../components/DeleteModal";
 
 const Commands = () => {
     const [commands, setCommands] = useState([]);
     const [showAddCommandModal, setShowAddCommandModal] = useState(false);
     const [editingCommand, setEditingCommand] = useState(null);
+    const [commandToDelete, setCommandToDelete] = useState(null);
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
     useEffect(() => {
         const fetchCommands = async () => {
@@ -32,13 +35,13 @@ const Commands = () => {
 
         try {
             if (editingCommand) {
-                // Update existing command
+                console.log(editingCommand);
+
                 const updatedCommand = await updateCommand(editingCommand.id, commandData, token);
 
                 setCommands(commands.map(cmd => (cmd.id === editingCommand.id ? updatedCommand : cmd)));
                 setEditingCommand(null);
             } else {
-                // Create new command
                 const newCommand = await createCommand(commandData, token);
 
                 setCommands([...commands, newCommand]);
@@ -46,6 +49,18 @@ const Commands = () => {
             setShowAddCommandModal(false);
         } catch (error) {
             console.error("Error saving command:", error);
+        }
+    };
+
+    const handleDeleteCommand = async commandId => {
+        setCommands(commands.filter(cmd => cmd.id !== commandId));
+
+        try {
+            const token = localStorage.getItem("accessToken");
+
+            await deleteCommand(commandId, token);
+        } catch (error) {
+            console.error("Error deleting command:", error);
         }
     };
 
@@ -75,11 +90,29 @@ const Commands = () => {
                 />
             )}
 
+            {showDeleteConfirm && (
+                <DeleteModal
+                    onClose={() => setShowDeleteConfirm(false)}
+                    onDelete={() => handleDeleteCommand(commandToDelete.id)}
+                    title={commandToDelete.title}
+                    itemType="Command"
+                />
+            )}
+
             <div className="commands-content">
                 {commands.length === 0 ? (
                     <p>No commands available. Add a new command to get started!</p>
                 ) : (
-                    commands.map(command => <Command key={command.id} data={command} />)
+                    commands.map(command => (
+                        <Command
+                            key={command.id}
+                            data={command}
+                            onSave={handleSaveCommand}
+                            setEditingCommand={setEditingCommand}
+                            setCommandToDelete={setCommandToDelete}
+                            setShowDeleteConfirm={setShowDeleteConfirm}
+                        />
+                    ))
                 )}
             </div>
         </section>

@@ -3,11 +3,11 @@ import ModalInputField from "./ModalInputField";
 import "../styles/projectmodal.css";
 import "../styles/addcommandmodal.css";
 
-const AddCommandModal = ({ onClose, onSave, edit, initialData }) => {
-    const [title, setTitle] = useState(edit ? initialData.title : "");
-    const [commandText, setCommandText] = useState(edit ? initialData.commandText : "");
-    const [example, setExample] = useState(edit ? initialData.example : "");
-    const [description, setDescription] = useState(edit ? initialData.description : "");
+const AddCommandModal = ({ onClose, onSave }) => {
+    const [title, setTitle] = useState("");
+    const [commandText, setCommandText] = useState("");
+    const [example, setExample] = useState("");
+    const [description, setDescription] = useState("");
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -23,15 +23,12 @@ const AddCommandModal = ({ onClose, onSave, edit, initialData }) => {
         setCommandText("");
         setExample("");
         setDescription("");
-        if (edit) {
-            onClose();
-        }
     };
 
     return (
         <div className="blur-bg">
             <div className="box add-command-modal centered small-modal">
-                <h2>{edit ? "Edit Command" : "New Command"}</h2>
+                <h2>New Command</h2>
                 <form className="command-modal-content" onSubmit={handleSubmit}>
                     <div className="project-modal-inputs">
                         <div className="project-modal-left">
