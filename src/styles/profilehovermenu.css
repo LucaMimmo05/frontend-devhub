@@ -12,6 +12,7 @@
     border-top-right-radius: 10px;
     min-width: 180px;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
 .profile-hover-menu.exit {
@@ -53,6 +54,7 @@
     cursor: pointer;
     transition: all 0.2s ease;
     color: #e0e0e0;
+    width: 100%;
 }
 
 .menu-setting:hover {

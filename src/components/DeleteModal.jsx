@@ -1,6 +1,6 @@
 import "../styles/deletemodal.css";
 
-const DeleteModal = ({ title, onClose, onDelete, itemType = "item" }) => {
+const DeleteModal = ({ title, onClose, onCancel, onDelete, itemType = "item" }) => {
     const handleDelete = () => {
         if (onDelete) {
             onDelete();
@@ -59,7 +59,7 @@ const DeleteModal = ({ title, onClose, onDelete, itemType = "item" }) => {
                     </h3>
                 </div>
                 <div className="delete-modal-buttons">
-                    <button onClick={onClose} type="cancel">
+                    <button onClick={itemType === "account" ? onCancel : onClose} type="cancel">
                         Cancel
                     </button>
                     <button onClick={handleDelete} type="confirm">

@@ -12,6 +12,7 @@ import TodoIcon from "../assets/sidebar/todo.svg";
 import GithubIcon from "../assets/sidebar/github.svg";
 import NotesIcon from "../assets/sidebar/notes.svg";
 import CommandIcon from "../assets/sidebar/command.svg";
+import SettingsIcon from "../assets/sidebar/settings.svg";
 import ProfileHoverMenu from "./ProfileHoverMenu";
 
 const Sidebar = () => {
@@ -72,6 +73,8 @@ const Sidebar = () => {
                             <SidebarItem icon={HomeIcon} text="Home" page={"/"} />
                             <SidebarItem icon={FolderIcon} text="Projects" page={"/projects"} />
                             <SidebarItem icon={TodoIcon} text="Tasks" page={"/tasks"} />
+                            <SidebarItem icon={NotesIcon} text="Notes" page={"/notes"} />
+                            <SidebarItem icon={CommandIcon} text="Commands" page={"/commands"} />
                         </div>
                     </div>
 
@@ -79,8 +82,7 @@ const Sidebar = () => {
                         <h3>UTILITY</h3>
                         <div className="sidebar-items">
                             <SidebarItem icon={GithubIcon} text="Github Profile" page={"/github"} />
-                            <SidebarItem icon={NotesIcon} text="Notes" page={"/notes"} />
-                            <SidebarItem icon={CommandIcon} text="Commands" page={"/commands"} />
+                            <SidebarItem icon={SettingsIcon} text="Settings" page={"/settings"} />
                         </div>
                     </div>
                 </div>

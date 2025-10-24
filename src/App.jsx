@@ -16,11 +16,13 @@ import TasksArchive from "./pages/TasksArchive";
 import Github from "./pages/Github";
 import Notes from "./pages/Notes";
 import Commands from "./pages/Commands";
+import { GridLoader } from "react-spinners";
+import Settings from "./pages/Settings";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <GridLoader color="#4A90E2" size={60} />;
 
     return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
@@ -37,7 +39,7 @@ const AppLayout = ({ children }) => {
     const location = useLocation();
     const { isAuthenticated } = useAuth();
 
-    const noSidebarRoutes = ["/login", "/register"];
+    const noSidebarRoutes = ["/login", "/register", "/github/callback"];
 
     return (
         <div
@@ -128,6 +130,14 @@ const App = () => {
                                         }
                                     />
 
+                                    <Route
+                                        path="/settings"
+                                        element={
+                                            <ProtectedRoute>
+                                                <Settings />
+                                            </ProtectedRoute>
+                                        }
+                                    />
                                     <Route path="/github/callback" element={<GitHubCallback />} />
                                     <Route path="/login" element={<AuthRedirect />} />
                                     <Route path="/register" element={<AuthRedirect />} />

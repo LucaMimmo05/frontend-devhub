@@ -299,6 +299,7 @@ export const AuthProvider = ({ children }) => {
                 loading,
                 refreshAccessToken,
                 user,
+                setUser,
             }}
         >
             {children}

@@ -152,15 +152,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-.left-bottom-box p {
-    color: rgb(218, 218, 218);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    font-family: inherit;
+    position: relative;
 }
 
 .left-bottom-box h4 {
@@ -176,8 +168,6 @@
 
 .left-bottom-box h2 {
     color: #fff;
-
-    /* heading-box */
     font-family: inherit;
     font-style: normal;
     font-weight: 700;

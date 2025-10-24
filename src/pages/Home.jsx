@@ -151,7 +151,7 @@ const Home = () => {
                             <p>{command.description}</p>
                         </>
                     ) : (
-                        <p className="no-tasks-message">Nothing to see</p>
+                        <p className="no-tasks-message">No command available</p>
                     )}
                 </div>
                 <div className="box center-bottom-box">
