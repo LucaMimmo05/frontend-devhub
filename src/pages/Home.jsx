@@ -7,8 +7,7 @@ import Calendar from "../components/Calendar";
 import { getCommand, getRepos, getTasksNotCompleted } from "../service/api";
 import { getFormattedDate, getFormattedTime } from "../utility/dateformatter";
 import { useNavigate } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
-import ConnectGitHub from "../components/ConnectGitHub";
+import Loader from "../components/Loader";
 const Home = () => {
     const { user } = useAuth();
     const [date, setDate] = useState("");
@@ -51,6 +50,7 @@ const Home = () => {
                 setRepos(res);
             } catch (error) {
                 console.error("Error fetching repositories:", error);
+                setRepos([]);
             } finally {
                 setLoading(false);
             }
@@ -127,17 +127,33 @@ const Home = () => {
 
                     {loading ? (
                         <div className="centered">
-                            <ClipLoader color="#4A90E2" size={60} />
+                            <Loader color="#4A90E2" size={60} />
+                        </div>
+                    ) : repos && repos.length > 0 ? (
+                        <div className="repository-cont">
+                            {repos.slice(0, 7).map(repo => (
+                                <RepositoryItem key={repo.id} data={repo} />
+                            ))}
                         </div>
                     ) : (
-                        <div className="repository-cont">
-                            {repos && repos.length > 0 ? (
-                                repos.slice(0, 7).map(repo => <RepositoryItem key={repo.id} data={repo} />)
-                            ) : (
-                                <div className="centered">
-                                    <ConnectGitHub />
-                                </div>
-                            )}
+                        <div className="home-get-started">
+                            <div className="get-started-content">
+                                <p>Connect your GitHub account to see your repositories</p>
+                                <button className="get-started-button" onClick={() => navigate("/github")}>
+                                    Go to GitHub
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                    >
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>

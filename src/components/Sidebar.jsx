@@ -3,7 +3,6 @@ import SidebarItem from "./SidebarItem";
 
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../context/AuthContext";
-import ConnectGitHub from "./ConnectGitHub";
 import { getGithubUserInfo } from "../service/api";
 import Logo from "../assets/devhub-logo-white.svg";
 import HomeIcon from "../assets/sidebar/home.svg";
@@ -87,8 +86,6 @@ const Sidebar = () => {
                     </div>
                 </div>
             </div>
-
-            {!isConnected && <ConnectGitHub />}
 
             <div
                 className="sidebar-bottom"

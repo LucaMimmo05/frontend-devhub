@@ -101,7 +101,7 @@ const Commands = () => {
 
             <div className="commands-content">
                 {commands.length === 0 ? (
-                    <p>No commands available. Add a new command to get started!</p>
+                    <p className="no-tasks-message">No commands available. Create one to get started!</p>
                 ) : (
                     commands.map(command => (
                         <Command

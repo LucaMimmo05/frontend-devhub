@@ -113,8 +113,10 @@ const Notes = () => {
                     <div className="centered">
                         <ClipLoader color="#4A90E2" size={60} />
                     </div>
-                ) : (
+                ) : notes && notes.length > 0 ? (
                     notes.map(note => <Note key={note.id} data={note} onClick={() => handleShowModalOpen(note)} />)
+                ) : (
+                    <p className="no-tasks-message">No notes yet. Create one to get started!</p>
                 )}
             </div>
             {showModal && (

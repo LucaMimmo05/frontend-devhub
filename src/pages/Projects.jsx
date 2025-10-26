@@ -30,7 +30,11 @@ const Projects = () => {
             {isModalOpen && <ProjectsModal onClose={handleclose} title={"Create Project"} />}
 
             <div className="projects-content">
-                {projects && projects.map(project => <Project key={project.id} data={project} />)}
+                {projects && projects.length > 0 ? (
+                    projects.map(project => <Project key={project.id} data={project} />)
+                ) : (
+                    <p className="no-tasks-message">No projects yet. Create one to get started!</p>
+                )}
             </div>
         </section>
     );

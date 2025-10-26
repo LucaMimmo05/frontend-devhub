@@ -41,3 +41,17 @@
 .notes-content::-webkit-scrollbar-thumb:hover {
     background: #2684d4;
 }
+
+.notes-content .no-tasks-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #aaacb3;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+}

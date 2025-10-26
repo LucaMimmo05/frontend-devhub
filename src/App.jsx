@@ -16,13 +16,13 @@ import TasksArchive from "./pages/TasksArchive";
 import Github from "./pages/Github";
 import Notes from "./pages/Notes";
 import Commands from "./pages/Commands";
-import { GridLoader } from "react-spinners";
 import Settings from "./pages/Settings";
+import Loader from "./components/Loader";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
 
-    if (loading) return <GridLoader color="#4A90E2" size={60} />;
+    if (loading) return <Loader color="#4A90E2" size={110} />;
 
     return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
@@ -30,7 +30,7 @@ const ProtectedRoute = ({ children }) => {
 const AuthRedirect = () => {
     const { isAuthenticated, loading } = useAuth();
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <Loader color="#4A90E2" size={110} />;
 
     return isAuthenticated ? <Navigate to="/" replace /> : <AuthPage />;
 };

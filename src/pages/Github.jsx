@@ -4,9 +4,10 @@ import { getGithubUserInfo, getRecentActivities, getRepos } from "../service";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import Button from "../components/Button";
-import { ClipLoader } from "react-spinners";
 import { getImageFromLanguage } from "../utility/getimagefromlanguage";
 import RecentActivity from "../components/RecentActivity";
+import Loader from "../components/Loader";
+import ConnectGitHub from "../components/ConnectGitHub";
 
 const Github = () => {
     const [userInfo, setUserInfo] = useState(null);
@@ -70,9 +71,9 @@ const Github = () => {
         <div className="github">
             {loading ? (
                 <div className="github-loader">
-                    <ClipLoader color="#4A90E2" size={60} />
+                    <Loader color="#4A90E2" size={60} />
                 </div>
-            ) : (
+            ) : userInfo ? (
                 <>
                     <div className="github-left">
                         <div className="title">
@@ -318,6 +319,18 @@ const Github = () => {
                         </div>
                     </div>
                 </>
+            ) : (
+                <div className="github-not-connected">
+                    <div className="github-get-started">
+                        <div className="get-started-content">
+                            <h2>Get Started with GitHub</h2>
+                            <p>
+                                Connect your GitHub account to see your repositories, insights, and recent activities.
+                            </p>
+                            <ConnectGitHub />
+                        </div>
+                    </div>
+                </div>
             )}
         </div>
     );
