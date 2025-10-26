@@ -1,5 +1,5 @@
-const CLIENT_ID = "Ov23lirRBjYVmRZbBf4G";
-const REDIRECT_URI = "http://localhost:5173/github/callback";
+const CLIENT_ID = import.meta.env.VITE_GITHUB_CLIENT_ID;
+const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI || "http://localhost:5173/github/callback";
 
 import "../styles/githubbutton.css";
 
