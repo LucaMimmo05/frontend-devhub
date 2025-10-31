@@ -73,6 +73,21 @@ export const completeTask = async (id, token) => {
         });
 };
 
+export const updateTask = async (id, taskData, token) => {
+    return axios
+        .put(`${API_BASE_URL}/task/${id}`, taskData, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Errore nella richiesta:", error);
+            throw error;
+        });
+};
+
 export const deleteTask = async (id, token) => {
     return axios
         .delete(`${API_BASE_URL}/task/${id}`, {

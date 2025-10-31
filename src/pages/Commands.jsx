@@ -6,6 +6,7 @@ import { useState } from "react";
 import Command from "../components/Command";
 import AddCommandModal from "../components/AddCommandModal";
 import DeleteModal from "../components/DeleteModal";
+import Loader from "../components/Loader";
 
 const Commands = () => {
     const [commands, setCommands] = useState([]);
@@ -13,6 +14,7 @@ const Commands = () => {
     const [editingCommand, setEditingCommand] = useState(null);
     const [commandToDelete, setCommandToDelete] = useState(null);
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchCommands = async () => {
@@ -24,6 +26,8 @@ const Commands = () => {
                 setCommands(res);
             } catch (error) {
                 console.error("Error fetching commands:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -99,11 +103,13 @@ const Commands = () => {
                 />
             )}
 
-            <div className="commands-content">
-                {commands.length === 0 ? (
-                    <p className="no-tasks-message">No commands available. Create one to get started!</p>
-                ) : (
-                    commands.map(command => (
+            {loading ? (
+                <Loader color="#4A90E2" size={60} />
+            ) : commands.length === 0 ? (
+                <p>No commands available. Click the &quot;+&quot; button to add one.</p>
+            ) : (
+                <div className="commands-list">
+                    {commands.map(command => (
                         <Command
                             key={command.id}
                             data={command}
@@ -112,9 +118,9 @@ const Commands = () => {
                             setCommandToDelete={setCommandToDelete}
                             setShowDeleteConfirm={setShowDeleteConfirm}
                         />
-                    ))
-                )}
-            </div>
+                    ))}
+                </div>
+            )}
         </section>
     );
 };
