@@ -33,7 +33,7 @@
     font-weight: 600;
 }
 .tasks-top .title p {
-    color: #AAACB3;
+    color: var(--p-color);
     font-size: 16px;
     font-weight: 500;
 }

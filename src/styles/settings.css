@@ -53,7 +53,7 @@
 .settings-item span {
     font-size: 13px;
     font-weight: 500;
-    color: #aaacb3;
+    color: var(--p-color);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -141,7 +141,7 @@
 
 .danger-text p {
     font-size: 12px;
-    color: #aaacb3;
+    color: var(--p-color);
     margin: 0;
 }
 

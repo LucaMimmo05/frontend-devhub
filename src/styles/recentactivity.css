@@ -17,7 +17,7 @@
 }
 
 .recent-activity-left p {
-    color: #aaacb3;
+    color: var(--p-color);
     font-size: 14px;
     font-weight: 500;
 }

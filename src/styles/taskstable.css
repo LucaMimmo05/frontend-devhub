@@ -176,3 +176,84 @@
 .delete-button:hover {
     background: #dc2626;
 }
+
+/* Inline editing styles */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.edit-button,
+.save-button,
+.cancel-button {
+    background: transparent;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.edit-button {
+    color: #329afe;
+}
+
+.edit-button:hover {
+    background: #329afe20;
+}
+
+.save-button {
+    color: #16a34a;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.save-button:hover {
+    background: #16a34a20;
+}
+
+.cancel-button {
+    color: #dc2626;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cancel-button:hover {
+    background: #dc262620;
+}
+
+.inline-input,
+.inline-select {
+    width: 100%;
+    padding: 6px 10px;
+    background: #0f193e;
+    border: 1px solid #329afe;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.inline-input:focus,
+.inline-select:focus {
+    outline: none;
+    border-color: #4da9ff;
+    background: #121a3f;
+}
+
+.inline-select {
+    cursor: pointer;
+}
+
+.tasks-table tbody tr.editing {
+    background: #0f193e;
+}
+
+.tasks-table tbody tr.editing:hover {
+    background: #0f193e;
+}

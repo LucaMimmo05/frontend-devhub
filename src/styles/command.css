@@ -52,7 +52,7 @@
 }
 
 .command-description p {
-    color: #aaacb3;
+    color: var(--p-color);
     font-size: 16px;
     font-weight: 400;
     margin: 0;

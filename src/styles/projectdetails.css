@@ -47,7 +47,7 @@
 }
 
 .project-details-three h2 {
-    color: #aaacb3;
+    color: var(--p-color);
 }
 
 .project-details-two {
@@ -65,12 +65,12 @@
 }
 
 .project-details-all h2 {
-    color: #aaacb3;
+    color: var(--p-color);
 }
 
 .project-details-three,
 .project-details-two h2 {
-    color: #aaacb3;
+    color: var(--p-color);
     font-size: 20px;
     font-weight: 700;
 }

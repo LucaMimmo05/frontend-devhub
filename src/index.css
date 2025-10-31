@@ -13,6 +13,7 @@
     --bg: #02061b;
     --box-color: #0a1029;
     --secondary: #329afe;
+    --p-color: #aaacb3;
 }
 
 .box {
@@ -62,7 +63,7 @@ section {
 .title p {
     font-size: 16px;
     font-weight: 500;
-    color: #aaacb3;
+    color: var(--p-color);
 }
 
 .loader {

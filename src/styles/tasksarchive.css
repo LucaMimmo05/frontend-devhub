@@ -19,7 +19,7 @@
 }
 
 .tasks-archive .title p {
-    color: #aaacb3;
+    color: var(--p-color);
     font-family: Roboto;
     font-size: 16px;
     font-style: normal;
