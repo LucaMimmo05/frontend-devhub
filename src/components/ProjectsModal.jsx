@@ -4,9 +4,12 @@ import ModalInputField from "./ModalInputField";
 import TagsInput from "./TagsInput";
 import { useState } from "react";
 import { useProject } from "../context/ProjectContext";
+import { useToast } from "../context/ToastContext";
 
 const ProjectsModal = ({ title, onClose, data }) => {
     const { setCurrentProject, setProjects } = useProject();
+    const { showSuccess, showError } = useToast();
+    const [loading, setLoading] = useState(false);
     const [inputsValues, setInputsValues] = useState({
         name: data?.name || "",
         description: data?.description || "",
@@ -19,6 +22,7 @@ const ProjectsModal = ({ title, onClose, data }) => {
 
     const handleSubmit = async e => {
         e.preventDefault();
+        setLoading(true);
         const token = localStorage.getItem("accessToken");
 
         try {
@@ -27,9 +31,11 @@ const ProjectsModal = ({ title, onClose, data }) => {
             if (data?.id) {
                 project = await updateProject(data.id, inputsValues, token);
                 setProjects(prev => prev.map(p => (p.id === project.id ? project : p)));
+                showSuccess("Project updated successfully");
             } else {
                 project = await createProject(inputsValues, token);
                 setProjects(prev => [...prev, project]);
+                showSuccess("Project created successfully");
             }
 
             setCurrentProject(project);
@@ -37,6 +43,9 @@ const ProjectsModal = ({ title, onClose, data }) => {
             onClose();
         } catch (err) {
             console.error("Error saving project:", err);
+            showError(data?.id ? "Failed to update project" : "Failed to create project");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -136,8 +145,8 @@ const ProjectsModal = ({ title, onClose, data }) => {
                         <button className="button-cancel" type="button" onClick={onClose}>
                             Cancel
                         </button>
-                        <button className="button-save" type="submit">
-                            Save
+                        <button className="button-save" type="submit" disabled={loading}>
+                            {loading ? "Saving..." : "Save"}
                         </button>
                     </div>
                 </form>

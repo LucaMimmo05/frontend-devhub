@@ -4,23 +4,31 @@ import { getFormattedDate } from "../utility/dateformatter";
 import { useState } from "react";
 import { useEffect } from "react";
 import { deleteTask } from "../service/api";
+import { useToast } from "../context/ToastContext";
 
 export default function TasksTable({ tasks, isArchive = false }) {
     const [data, setData] = useState([]);
     const [editingTask, setEditingTask] = useState(null);
     const [editValues, setEditValues] = useState({});
+    const { showSuccess, showError } = useToast();
 
     useEffect(() => {
         if (tasks) setData(tasks);
     }, [tasks]);
 
     const onTaskComplete = async taskId => {
-        const res = await completeTask(taskId, localStorage.getItem("accessToken"));
+        try {
+            const res = await completeTask(taskId, localStorage.getItem("accessToken"));
 
-        if (res && res.id === taskId && !isArchive) {
-            const filtered = data.filter(t => t.id !== taskId);
+            if (res && res.id === taskId && !isArchive) {
+                const filtered = data.filter(t => t.id !== taskId);
 
-            setData(filtered);
+                setData(filtered);
+                showSuccess("Task completed successfully");
+            }
+        } catch (error) {
+            console.error("Failed to complete task:", error);
+            showError("Failed to complete task");
         }
     };
 
@@ -29,8 +37,10 @@ export default function TasksTable({ tasks, isArchive = false }) {
             await deleteTask(id, localStorage.getItem("accessToken"));
 
             setData(prevData => prevData.filter(t => t.id !== id));
+            showSuccess("Task deleted successfully");
         } catch (err) {
             console.error("Failed to delete task:", err);
+            showError("Failed to delete task");
         }
     };
 
@@ -58,8 +68,10 @@ export default function TasksTable({ tasks, isArchive = false }) {
 
             setEditingTask(null);
             setEditValues({});
+            showSuccess("Task updated successfully");
         } catch (err) {
             console.error("Failed to update task:", err);
+            showError("Failed to update task");
         }
     };
 

@@ -6,16 +6,22 @@ import "../styles/addnotemodal.css";
 const AddNoteModal = ({ onClose, onSave, edit, initialData }) => {
     const [title, setTitle] = useState(edit ? initialData.title : "");
     const [content, setContent] = useState(edit ? initialData.content : "");
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-
         if (!title.trim() && !content.trim()) return;
-        onSave({ title: title.trim(), content: content.trim() });
-        setTitle("");
-        setContent("");
-        if (edit) {
-            onClose();
+        
+        setLoading(true);
+        try {
+            await onSave({ title: title.trim(), content: content.trim() });
+            setTitle("");
+            setContent("");
+            if (edit) {
+                onClose();
+            }
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -54,8 +60,8 @@ const AddNoteModal = ({ onClose, onSave, edit, initialData }) => {
                         <button className="button-cancel" type="button" onClick={onClose}>
                             Cancel
                         </button>
-                        <button className="button-save" type="submit">
-                            Save
+                        <button className="button-save" type="submit" disabled={loading}>
+                            {loading ? "Saving..." : "Save"}
                         </button>
                     </div>
                 </form>

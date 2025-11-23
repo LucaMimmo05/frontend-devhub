@@ -18,6 +18,8 @@ import Notes from "./pages/Notes";
 import Commands from "./pages/Commands";
 import Settings from "./pages/Settings";
 import Loader from "./components/Loader";
+import { ToastProvider } from "./context/ToastContext";
+import ToastContainer from "./components/ToastContainer";
 
 const ProtectedRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
@@ -58,97 +60,100 @@ const AppLayout = ({ children }) => {
 
 const App = () => {
     return (
-        <AuthProvider>
-            <Router>
-                <PageProvider>
-                    <ProjectProvider>
-                        <TaskProvider>
-                            <AppLayout>
-                                <Routes>
-                                    <Route
-                                        path="/"
-                                        element={
-                                            <ProtectedRoute>
-                                                <Home />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
-                                        path="/projects"
-                                        element={
-                                            <ProtectedRoute>
-                                                <Projects />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
-                                        path="/projects/:id"
-                                        element={
-                                            <ProtectedRoute>
-                                                <ProjectDetail />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
-                                        path="/tasks"
-                                        element={
-                                            <ProtectedRoute>
-                                                <Tasks />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
-                                        path="/tasks/archive"
-                                        element={
-                                            <ProtectedRoute>
-                                                <TasksArchive />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
-                                        path="/github"
-                                        element={
-                                            <ProtectedRoute>
-                                                <Github />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
-                                        path="/notes"
-                                        element={
-                                            <ProtectedRoute>
-                                                <Notes />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route
-                                        path="/commands"
-                                        element={
-                                            <ProtectedRoute>
-                                                <Commands />
-                                            </ProtectedRoute>
-                                        }
-                                    />
+        <ToastProvider>
+            <AuthProvider>
+                <Router>
+                    <PageProvider>
+                        <ProjectProvider>
+                            <TaskProvider>
+                                <AppLayout>
+                                    <Routes>
+                                        <Route
+                                            path="/"
+                                            element={
+                                                <ProtectedRoute>
+                                                    <Home />
+                                                </ProtectedRoute>
+                                            }
+                                        />
+                                        <Route
+                                            path="/projects"
+                                            element={
+                                                <ProtectedRoute>
+                                                    <Projects />
+                                                </ProtectedRoute>
+                                            }
+                                        />
+                                        <Route
+                                            path="/projects/:id"
+                                            element={
+                                                <ProtectedRoute>
+                                                    <ProjectDetail />
+                                                </ProtectedRoute>
+                                            }
+                                        />
+                                        <Route
+                                            path="/tasks"
+                                            element={
+                                                <ProtectedRoute>
+                                                    <Tasks />
+                                                </ProtectedRoute>
+                                            }
+                                        />
+                                        <Route
+                                            path="/tasks/archive"
+                                            element={
+                                                <ProtectedRoute>
+                                                    <TasksArchive />
+                                                </ProtectedRoute>
+                                            }
+                                        />
+                                        <Route
+                                            path="/github"
+                                            element={
+                                                <ProtectedRoute>
+                                                    <Github />
+                                                </ProtectedRoute>
+                                            }
+                                        />
+                                        <Route
+                                            path="/notes"
+                                            element={
+                                                <ProtectedRoute>
+                                                    <Notes />
+                                                </ProtectedRoute>
+                                            }
+                                        />
+                                        <Route
+                                            path="/commands"
+                                            element={
+                                                <ProtectedRoute>
+                                                    <Commands />
+                                                </ProtectedRoute>
+                                            }
+                                        />
 
-                                    <Route
-                                        path="/settings"
-                                        element={
-                                            <ProtectedRoute>
-                                                <Settings />
-                                            </ProtectedRoute>
-                                        }
-                                    />
-                                    <Route path="/github/callback" element={<GitHubCallback />} />
-                                    <Route path="/login" element={<AuthRedirect />} />
-                                    <Route path="/register" element={<AuthRedirect />} />
-                                    <Route path="*" element={<NotFound />} />
-                                </Routes>
-                            </AppLayout>
-                        </TaskProvider>
-                    </ProjectProvider>
-                </PageProvider>
-            </Router>
-        </AuthProvider>
+                                        <Route
+                                            path="/settings"
+                                            element={
+                                                <ProtectedRoute>
+                                                    <Settings />
+                                                </ProtectedRoute>
+                                            }
+                                        />
+                                        <Route path="/github/callback" element={<GitHubCallback />} />
+                                        <Route path="/login" element={<AuthRedirect />} />
+                                        <Route path="/register" element={<AuthRedirect />} />
+                                        <Route path="*" element={<NotFound />} />
+                                    </Routes>
+                                </AppLayout>
+                                <ToastContainer />
+                            </TaskProvider>
+                        </ProjectProvider>
+                    </PageProvider>
+                </Router>
+            </AuthProvider>
+        </ToastProvider>
     );
 };
 

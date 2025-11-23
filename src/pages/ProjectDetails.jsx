@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { getProjectById, deleteProject } from "../service/api";
 import { useProject } from "../context/ProjectContext";
 import DeleteModal from "../components/DeleteModal";
+import { useToast } from "../context/ToastContext";
 
 const ProjectDetail = () => {
     const { currentProject, setCurrentProject, setProjects } = useProject();
@@ -17,6 +18,7 @@ const ProjectDetail = () => {
     const navigate = useNavigate();
     const [openModal, setOpenModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
+    const { showSuccess, showError } = useToast();
 
     const idParam = Number(id);
 
@@ -28,9 +30,11 @@ const ProjectDetail = () => {
             setProjects(prev => prev.filter(p => p.id !== currentProject.id));
             setCurrentProject(null);
             setDeleteModal(false);
+            showSuccess("Project deleted successfully");
             navigate("/projects");
         } catch (error) {
             console.error("Error deleting project:", error);
+            showError("Failed to delete project");
         }
     };
 

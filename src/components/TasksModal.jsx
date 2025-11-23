@@ -4,9 +4,12 @@ import ModalInputDateField from "./ModalInputDateField";
 import ModalInputField from "./ModalInputField";
 import { useState } from "react";
 import { useTask } from "../context/TaskContext";
+import { useToast } from "../context/ToastContext";
 
 const TasksModal = ({ onClose, title, data }) => {
     const { setTasks } = useTask();
+    const { showSuccess, showError } = useToast();
+    const [loading, setLoading] = useState(false);
     const [inputsValues, setInputsValues] = useState({
         title: data?.title || "",
         description: data?.description || "",
@@ -16,6 +19,7 @@ const TasksModal = ({ onClose, title, data }) => {
     });
     const handleSubmit = async e => {
         e.preventDefault();
+        setLoading(true);
 
         console.log(inputsValues);
 
@@ -25,10 +29,14 @@ const TasksModal = ({ onClose, title, data }) => {
             } else {
                 await createTask(inputsValues, localStorage.getItem("accessToken"));
                 setTasks(prev => [...prev, inputsValues]);
+                showSuccess("Task created successfully");
             }
             onClose();
         } catch (error) {
             console.error("Error saving task:", error);
+            showError("Failed to create task");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -101,8 +109,8 @@ const TasksModal = ({ onClose, title, data }) => {
                             <button className="button-cancel" onClick={onClose} type="button">
                                 Cancel
                             </button>
-                            <button className="button-save" type="submit">
-                                Create
+                            <button className="button-save" type="submit" disabled={loading}>
+                                {loading ? "Creating..." : "Create"}
                             </button>
                         </div>
                     </div>

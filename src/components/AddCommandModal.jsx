@@ -8,21 +8,27 @@ const AddCommandModal = ({ onClose, onSave }) => {
     const [commandText, setCommandText] = useState("");
     const [example, setExample] = useState("");
     const [description, setDescription] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-
         if (!title.trim() || !commandText.trim()) return;
-        onSave({
-            title: title.trim(),
-            commandText: commandText.trim(),
-            example: example.trim(),
-            description: description.trim(),
-        });
-        setTitle("");
-        setCommandText("");
-        setExample("");
-        setDescription("");
+        
+        setLoading(true);
+        try {
+            await onSave({
+                title: title.trim(),
+                commandText: commandText.trim(),
+                example: example.trim(),
+                description: description.trim(),
+            });
+            setTitle("");
+            setCommandText("");
+            setExample("");
+            setDescription("");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -82,8 +88,8 @@ const AddCommandModal = ({ onClose, onSave }) => {
                         <button className="button-cancel" type="button" onClick={onClose}>
                             Cancel
                         </button>
-                        <button className="button-save" type="submit">
-                            Save
+                        <button className="button-save" type="submit" disabled={loading}>
+                            {loading ? "Saving..." : "Save"}
                         </button>
                     </div>
                 </form>

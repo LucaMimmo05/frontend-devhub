@@ -9,6 +9,8 @@ import { ClipLoader } from "react-spinners";
 import { createNote } from "../service/noteApi";
 import ShowNoteModal from "../components/ShowNoteModal";
 import DeleteModal from "../components/DeleteModal";
+import { useToast } from "../context/ToastContext";
+import EmptyState from "../components/EmptyState";
 const Notes = () => {
     const [notes, setNotes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -16,6 +18,7 @@ const Notes = () => {
     const [showModal, setShowModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
     const [currentNote, setCurrentNote] = useState(null);
+    const { showSuccess, showError } = useToast();
 
     const handleShowModalOpen = currentNote => {
         setCurrentNote(currentNote);
@@ -37,8 +40,10 @@ const Notes = () => {
             console.log("Note saved successfully:", savedNote);
             setNotes(prev => [savedNote, ...prev]);
             setAddModal(false);
+            showSuccess("Note created successfully");
         } catch (error) {
             console.error("Error saving note:", error.response?.data || error.message);
+            showError("Failed to create note");
         }
     };
 
@@ -55,8 +60,10 @@ const Notes = () => {
 
             setNotes(prevNotes => prevNotes.map(note => (note.id === updatedNote.id ? updatedNote : note)));
             setShowModal(false);
+            showSuccess("Note updated successfully");
         } catch (error) {
             console.error("Error updating note:", error.response?.data || error.message);
+            showError("Failed to update note");
         }
     };
 
@@ -78,8 +85,10 @@ const Notes = () => {
             setNotes(prevNotes => prevNotes.filter(note => note.id !== currentNote.id));
             setShowModal(false);
             setDeleteModal(false);
+            showSuccess("Note deleted successfully");
         } catch (error) {
             console.error("Error deleting note:", error.response?.data || error.message);
+            showError("Failed to delete note");
         }
     };
 
@@ -116,7 +125,22 @@ const Notes = () => {
                 ) : notes && notes.length > 0 ? (
                     notes.map(note => <Note key={note.id} data={note} onClick={() => handleShowModalOpen(note)} />)
                 ) : (
-                    <p className="no-tasks-message">No notes yet. Create one to get started!</p>
+                    <EmptyState
+                        icon={
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M15 6V5C15 3.89543 14.1046 3 13 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H13C14.1046 21 15 20.1046 15 19V18M18 9L21 12M21 12L18 15M21 12H9"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        }
+                        title="No notes yet"
+                        message="Capture your thoughts and ideas by creating your first note."
+                        actionButton={<Button type={"add"} onClick={() => setAddModal(true)} />}
+                    />
                 )}
             </div>
             {showModal && (

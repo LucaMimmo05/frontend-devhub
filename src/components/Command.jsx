@@ -1,5 +1,6 @@
 import "../styles/command.css";
 import { useState } from "react";
+import { useToast } from "../context/ToastContext";
 const Command = ({ data, onSave, setEditingCommand, setShowDeleteConfirm, setCommandToDelete }) => {
     const navigator = window.navigator;
     const [hasClicked, setHasClicked] = useState(false);
@@ -8,10 +9,12 @@ const Command = ({ data, onSave, setEditingCommand, setShowDeleteConfirm, setCom
     const [isEditingtitle, setIsEditingTitle] = useState(false);
     const [isEditingDescription, setIsEditingDescription] = useState(false);
     const [isEditingCommandText, setIsEditingCommandText] = useState(false);
+    const { showSuccess } = useToast();
 
     const handleClick = () => {
         navigator.clipboard.writeText(data.commandText);
         setHasClicked(true);
+        showSuccess("Command copied to clipboard");
         // eslint-disable-next-line no-undef
         setTimeout(() => setHasClicked(false), 5000);
     };

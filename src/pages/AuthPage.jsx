@@ -4,6 +4,7 @@ import InputField from "../components/InputField";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
+import { useToast } from "../context/ToastContext";
 
 const AuthPage = () => {
     const location = useLocation();
@@ -20,6 +21,7 @@ const AuthPage = () => {
 
     const navigate = useNavigate();
     const { login } = useAuth();
+    const { showSuccess, showError, showInfo } = useToast();
 
     const toggleMode = () => {
         if (isAnimating) return;
@@ -48,6 +50,7 @@ const AuthPage = () => {
 
                 login(data.accessToken, data.refreshToken);
                 console.log("Login successful", data);
+                showSuccess("Login successful! Welcome back.");
                 navigate("/");
             }
         } catch (error) {
@@ -56,12 +59,12 @@ const AuthPage = () => {
                 console.error("Error status:", error.response.status);
                 console.error("Error data:", error.response.data);
                 if (error.response.status === 401) {
-                    window.alert("Email o password non corretti.");
+                    showError("Invalid email or password. Please try again.");
                 } else {
-                    window.alert(`Errore di login: ${error.response.data.message || "Errore sconosciuto"}`);
+                    showError(`Login error: ${error.response.data.message || "Unknown error"}`);
                 }
             } else {
-                window.alert("Errore di connessione. Riprova più tardi.");
+                showError("Connection error. Please try again later.");
             }
         }
     };
@@ -89,10 +92,11 @@ const AuthPage = () => {
 
                 if (data.accessToken && data.refreshToken) {
                     login(data.accessToken, data.refreshToken);
+                    showSuccess("Registration successful! Welcome to DevHub.");
                     navigate("/");
                 } else {
                     // Se non ci sono i token, probabilmente l'utente è stato creato ma dobbiamo fare login
-                    window.alert("Registrazione completata! Ora puoi fare il login.");
+                    showSuccess("Registration complete! You can now log in.");
                     setIsLoginMode(true);
                     navigate("/login", { replace: true });
                 }
@@ -104,24 +108,22 @@ const AuthPage = () => {
                 console.error("Error data:", error.response.data);
                 console.error("Full error response:", error.response);
 
-                const errorMessage = error.response.data?.message || error.response.data?.error || "Errore sconosciuto";
+                const errorMessage = error.response.data?.message || error.response.data?.error || "Unknown error";
 
                 if (error.response.status === 409) {
                     // Se l'errore è 409 ma l'utente è stato comunque creato, suggeriamo di fare login
-                    window.alert(
-                        "L'utente potrebbe essere già stato creato. Prova a fare il login con queste credenziali."
-                    );
+                    showInfo("User may already exist. Try logging in with these credentials.");
                     setIsLoginMode(true);
                     navigate("/login", { replace: true });
                     // Copia l'email nel campo login per comodità
                     setLoginEmail(registerEmail);
                 } else if (error.response.status === 400) {
-                    window.alert(`Dati non validi: ${errorMessage}`);
+                    showError(`Invalid data: ${errorMessage}`);
                 } else {
-                    window.alert(`Errore di registrazione (${error.response.status}): ${errorMessage}`);
+                    showError(`Registration error (${error.response.status}): ${errorMessage}`);
                 }
             } else {
-                window.alert("Errore di connessione. Riprova più tardi.");
+                showError("Connection error. Please try again later.");
             }
         }
     };
