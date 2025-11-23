@@ -22,6 +22,15 @@
     height: 660px;
 }
 
+.commands-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+    height: calc(711px - 86px);
+    padding-right: 30px;
+}
+
 .commands-content .no-tasks-message {
     position: absolute;
     top: 50%;
@@ -35,3 +44,25 @@
     z-index: 10;
     pointer-events: none;
 }
+
+
+
+.commands-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.commands-list::-webkit-scrollbar-track {
+    background: #121733;
+    border-radius: 10px;
+}
+
+.commands-list::-webkit-scrollbar-thumb {
+    background: #329afe;
+    border-radius: 10px;
+}
+
+.commands-list::-webkit-scrollbar-thumb:hover {
+    background: #2684d4;
+}
+
+

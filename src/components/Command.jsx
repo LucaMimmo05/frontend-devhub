@@ -3,8 +3,8 @@ import { useState } from "react";
 const Command = ({ data, onSave, setEditingCommand, setShowDeleteConfirm, setCommandToDelete }) => {
     const navigator = window.navigator;
     const [hasClicked, setHasClicked] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
     const [commandData, setCommandData] = useState(data);
-    const [commandInputValue, setCommandInputValue] = useState("");
     const [isEditingtitle, setIsEditingTitle] = useState(false);
     const [isEditingDescription, setIsEditingDescription] = useState(false);
     const [isEditingCommandText, setIsEditingCommandText] = useState(false);
@@ -16,54 +16,80 @@ const Command = ({ data, onSave, setEditingCommand, setShowDeleteConfirm, setCom
         setTimeout(() => setHasClicked(false), 5000);
     };
 
-    const handleCommandTextChange = e => {
-        setCommandInputValue(e.target.value);
+    const handleSaveCommand = async () => {
+        setIsSaving(true);
+        setIsEditingTitle(false);
+        setIsEditingDescription(false);
+        setIsEditingCommandText(false);
+        if (onSave) {
+            await onSave(commandData);
+        }
+        // eslint-disable-next-line no-undef
+        setTimeout(() => setIsSaving(false), 1000);
     };
 
-    const handleKeyDown = e => {
+    const handleKeyDown = async e => {
         if (e.key === "Enter") {
-            const parts = commandInputValue.split(" ");
-            const cmd = parts[0] || "";
-            const example = parts.slice(1).join(" ") || "";
-
-            const newData = {
-                ...commandData,
-                commandText: cmd,
-                example: example,
-            };
-
-            setCommandData(newData);
-            setCommandInputValue("");
+            await handleSaveCommand();
+        }
+        if (e.key === "Escape") {
             setIsEditingTitle(false);
             setIsEditingDescription(false);
             setIsEditingCommandText(false);
-            if (onSave) {
-                onSave(newData);
-            }
+            setCommandData(data);
         }
     };
 
     return (
-        <div className="command box">
+        <div className={`command box ${isSaving ? "saving" : ""}`}>
             {isEditingtitle ? (
-                <input
-                    className="update-command"
-                    type="text"
-                    value={commandData.title}
-                    onChange={e => setCommandData({ ...commandData, title: e.target.value })}
-                    onBlur={() => setIsEditingTitle(false)}
-                    onKeyDown={handleKeyDown}
-                />
+                <div className="editing-field">
+                    <input
+                        className="update-command editing"
+                        type="text"
+                        value={commandData.title}
+                        onChange={e => setCommandData({ ...commandData, title: e.target.value })}
+                        onBlur={() => setIsEditingTitle(false)}
+                        onKeyDown={handleKeyDown}
+                        placeholder="Command title"
+                        autoFocus
+                    />
+                    <span className="edit-hint">Press Enter to save, Esc to cancel</span>
+                </div>
             ) : (
                 <div className="command-header">
                     {" "}
                     <h2
-                        onDoubleClick={() => {
+                        className="editable-field"
+                        onClick={() => {
                             setIsEditingTitle(true);
                             setEditingCommand(data);
                         }}
+                        title="Click to edit"
                     >
                         {commandData.title}
+                        <svg
+                            className="edit-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="16"
+                            height="16"
+                            fill="none"
+                        >
+                            <path
+                                d="M15.2141 5.98239L16.6158 4.58063C17.39 3.80646 18.6452 3.80646 19.4194 
+                                4.58063C20.1935 5.3548 20.1935 6.60998 19.4194 7.38415L18.0176 
+                                8.78591M15.2141 5.98239L6.98023 14.2163C5.93493 15.2616 5.41226 15.7842 
+                                5.05637 16.4211C4.70047 17.058 4.3424 18.5619 4 20C5.43809 19.6576 
+                                6.94199 19.2995 7.57889 18.9436C8.21579 18.5877 8.73844 18.0651 
+                                9.78375 17.0198L18.0176 8.78591M15.2141 5.98239L18.0176 8.78591"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path d="M11 20H17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
                     </h2>
                     <button
                         className="command-delete-btn"
@@ -116,21 +142,48 @@ const Command = ({ data, onSave, setEditingCommand, setShowDeleteConfirm, setCom
 
             <div className="command-content">
                 {isEditingCommandText ? (
-                    <input
-                        className="update-command"
-                        value={commandInputValue}
-                        onChange={handleCommandTextChange}
-                        onBlur={() => setIsEditingCommandText(false)}
-                        onKeyDown={handleKeyDown}
-                        autoFocus
-                    />
+                    <div
+                        className="editing-field command-editing"
+                        onBlur={e => {
+                            // Solo chiudi se il focus esce completamente dal container
+                            if (!e.currentTarget.contains(e.relatedTarget)) {
+                                setIsEditingCommandText(false);
+                            }
+                        }}
+                    >
+                        <div className="command-inputs-row">
+                            <div className="command-input-group">
+                                <input
+                                    className="update-command editing command-text-input"
+                                    value={commandData.commandText}
+                                    onChange={e => setCommandData({ ...commandData, commandText: e.target.value })}
+                                    onKeyDown={handleKeyDown}
+                                    placeholder="command"
+                                    autoFocus
+                                />
+                                <label className="input-label">Command</label>
+                            </div>
+                            <div className="command-input-group">
+                                <input
+                                    className="update-command editing command-example-input"
+                                    value={commandData.example}
+                                    onChange={e => setCommandData({ ...commandData, example: e.target.value })}
+                                    onKeyDown={handleKeyDown}
+                                    placeholder="--flags or arguments"
+                                />
+                                <label className="input-label">Arguments</label>
+                            </div>
+                        </div>
+                        <span className="edit-hint">Enter to save, Esc to cancel</span>
+                    </div>
                 ) : (
                     <pre
-                        onDoubleClick={() => {
+                        className="editable-field"
+                        onClick={() => {
                             setIsEditingCommandText(true);
-                            setCommandInputValue(`${commandData.commandText} ${commandData.example}`.trim());
                             setEditingCommand(data);
                         }}
+                        title="Click to edit"
                     >
                         &gt; &nbsp;
                         <strong>{commandData.commandText}</strong> <em>{commandData.example}</em>
@@ -166,24 +219,52 @@ const Command = ({ data, onSave, setEditingCommand, setShowDeleteConfirm, setCom
                 </button>
             </div>
             {isEditingDescription ? (
-                <input
-                    className="update-command"
-                    value={commandData.description}
-                    onChange={e => setCommandData({ ...commandData, description: e.target.value })}
-                    onBlur={() => setIsEditingDescription(false)}
-                    onKeyDown={handleKeyDown}
-                />
+                <div className="editing-field">
+                    <input
+                        className="update-command editing"
+                        value={commandData.description}
+                        onChange={e => setCommandData({ ...commandData, description: e.target.value })}
+                        onBlur={() => setIsEditingDescription(false)}
+                        onKeyDown={handleKeyDown}
+                        placeholder="Command description"
+                        autoFocus
+                    />
+                    <span className="edit-hint">Press Enter to save, Esc to cancel</span>
+                </div>
             ) : (
                 <div className="command-description">
                     <p
-                        onDoubleClick={() => {
+                        className="editable-field"
+                        onClick={() => {
                             setIsEditingDescription(true);
                             setEditingCommand(data);
                         }}
+                        title="Click to edit"
                     >
                         {" "}
                         {commandData.description}
                     </p>
+                </div>
+            )}
+            {isSaving && (
+                <div className="saving-indicator">
+                    <svg
+                        className="saving-spinner"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                    >
+                        <path
+                            d="M12 3V6M12 18V21M21 12H18M6 12H3M18.364 5.636L16.95 7.05M7.05 16.95L5.636 
+                            18.364M18.364 18.364L16.95 16.95M7.05 7.05L5.636 5.636"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                        />
+                    </svg>
+                    <span>Saving changes...</span>
                 </div>
             )}
         </div>
