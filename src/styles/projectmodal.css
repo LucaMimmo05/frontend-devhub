@@ -6,17 +6,17 @@
     height: 70vh;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 3.125rem; /* 50px */
 }
 
 /* small variant for compact modals (used by NotesModal) */
 .small-modal {
-    width: 520px;
-    max-width: calc(100vw - 40px);
+    width: 32.5rem; /* 520px */
+    max-width: calc(100vw - 2.5rem); /* 40px */
     height: auto;
     max-height: 85vh;
-    gap: 16px;
-    padding: 24px;
+    gap: 1rem; /* 16px */
+    padding: 1.5rem; /* 24px */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -25,51 +25,51 @@
 }
 
 .project-modal span {
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
 .project-modal h2 {
-    font-size: 35px;
+    font-size: 2.1875rem; /* 35px */
 }
 
 /* small-modal specific overrides */
 .small-modal h2 {
-    font-size: 24px;
+    font-size: 1.5rem; /* 24px */
 }
 
 .small-modal .project-modal-content {
     /* leave room for header/footer and make content scrollable if needed */
-    max-height: calc(80vh - 120px);
+    max-height: calc(80vh - 7.5rem); /* 120px */
     overflow: auto;
 }
 .project-modal-inputs {
     display: flex;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
 }
 
 .project-modal-input {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
 }
 
 .project-modal-left,
 .project-modal-right {
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
 .desc-input {
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
     background: #161f46;
-    padding: 10px;
+    padding: 0.625rem; /* 10px */
     border: none;
-    height: 78px;
+    height: 4.875rem; /* 78px */
     color: white;
     resize: none;
 }
@@ -88,22 +88,22 @@
     color: white;
     outline: none;
     border: none;
-    border-radius: 10px;
-    padding: 5px 8px;
-    font-size: 14px;
+    border-radius: 0.625rem; /* 10px */
+    padding: 0.3125rem 0.5rem; /* 5px 8px */
+    font-size: 0.875rem; /* 14px */
 }
 
 .project-notes {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
 }
 
 .notes-input {
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
     background: #161f46;
-    padding: 10px;
+    padding: 0.625rem; /* 10px */
     border: none;
     flex: 1;
     color: white;
@@ -123,28 +123,28 @@
 .project-modal-buttons {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
     flex: 1;
     align-items: flex-end;
 }
 
 .project-modal-buttons .button-cancel,
 .project-modal-buttons .button-save {
-    width: 128px;
-    padding: 10px 10px;
-    gap: 10px;
+    width: 8rem; /* 128px */
+    padding: 0.625rem 0.625rem; /* 10px 10px */
+    gap: 0.625rem; /* 10px */
     cursor: pointer;
     border: none;
     color: white;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
 }
 
 .button-cancel {
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
     background: #121733;
 }
 
 .button-save {
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
     background: #329afe;
 }

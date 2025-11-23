@@ -1,18 +1,18 @@
 .add-button {
-    padding-inline: 15px;
-    height: 50px;
-    gap: 10px;
-    border-radius: 10px;
+    padding-inline: 0.9375rem; /* 15px */
+    height: 3.125rem; /* 50px */
+    gap: 0.625rem; /* 10px */
+    border-radius: 0.625rem; /* 10px */
     background: #121733;
     border: none;
     color: white;
-    font-size: 30px;
+    font-size: 1.875rem; /* 30px */
     font-weight: 200;
     cursor: pointer;
 }
 
 .add-button.text {
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-weight: 500;
 }
 

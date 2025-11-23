@@ -12,30 +12,30 @@
 }
 
 .delete-modal h2 {
-    font-size: 24px;
+    font-size: 1.5rem; /* 24px */
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
 }
 
 .delete-modal-text {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
 }
 
 .delete-modal-buttons {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
 }
 
 .delete-modal-buttons button {
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem; /* 10px 20px */
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3125rem; /* 5px */
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-weight: 500;
 }
 

@@ -1,26 +1,26 @@
 .settings {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
     height: 100%;
 }
 
 .settings-box {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 1.5625rem; /* 25px */
 }
 
 .settings-box hr {
     width: 100%;
-    height: 2px;
+    height: 0.125rem; /* 2px */
     background-color: #162038;
     border: none;
-    border-radius: 2px;
+    border-radius: 0.125rem; /* 2px */
 }
 
 .settings-box .title {
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
 }
 
 .settings-content {
@@ -33,46 +33,46 @@
 .settings-items {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
     flex-wrap: wrap;
 }
 
 .settings-item {
     flex: 1;
-    min-width: 200px;
+    min-width: 12.5rem; /* 200px */
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 16px;
+    gap: 0.625rem; /* 10px */
+    padding: 1rem; /* 16px */
     background-color: rgba(50, 154, 254, 0.05);
     border: 1px solid rgba(50, 154, 254, 0.15);
-    border-radius: 8px;
+    border-radius: 0.5rem; /* 8px */
     transition: all 0.3s ease;
 }
 
 .settings-item span {
-    font-size: 13px;
+    font-size: 0.8125rem; /* 13px */
     font-weight: 500;
     color: var(--p-color);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03125rem; /* 0.5px */
 }
 
 .settings-actions {
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 0.625rem; /* 10px */
+    margin-top: 0.625rem; /* 10px */
     width: 100%;
     justify-content: flex-end;
 }
 
 .button-save {
-    padding: 12px 24px;
+    padding: 0.75rem 1.5rem; /* 12px 24px */
     background-color: #329afe;
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 0.5rem; /* 8px */
+    font-size: 1rem; /* 16px */
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -80,7 +80,7 @@
 
 .button-save:hover:not(:disabled) {
     background-color: #2581d8;
-    box-shadow: 0 2px 8px rgba(50, 154, 254, 0.2);
+    box-shadow: 0 0.125rem 0.5rem rgba(50, 154, 254, 0.2); /* 2px 8px */
 }
 
 .button-save:disabled {
@@ -91,7 +91,7 @@
 .setting {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.9375rem; /* 15px */
 }
 
 
@@ -107,17 +107,17 @@
 .danger-content {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.9375rem; /* 15px */
 }
 
 .danger-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
+    padding: 1rem; /* 16px */
     background-color: rgba(239, 68, 68, 0.08);
     border: 1px solid rgba(239, 68, 68, 0.2);
-    border-radius: 8px;
+    border-radius: 0.5rem; /* 8px */
     transition: all 0.3s ease;
 }
 
@@ -129,29 +129,29 @@
 .danger-text {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0.25rem; /* 4px */
 }
 
 .danger-text h3 {
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
     font-weight: 600;
     color: #ef4444;
     margin: 0;
 }
 
 .danger-text p {
-    font-size: 12px;
+    font-size: 0.75rem; /* 12px */
     color: var(--p-color);
     margin: 0;
 }
 
 .button-danger {
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem; /* 10px 20px */
     background-color: #ef4444;
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: 0.5rem; /* 8px */
+    font-size: 0.875rem; /* 14px */
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -160,7 +160,7 @@
 
 .button-danger:hover {
     background-color: #dc2626;
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    box-shadow: 0 0.125rem 0.5rem rgba(239, 68, 68, 0.3); /* 2px 8px */
 }
 
 .button-danger:active {

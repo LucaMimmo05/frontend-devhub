@@ -1,6 +1,6 @@
 .show-note-modal {
-    width: 600px;
-    height: 500px;
+    width: 37.5rem; /* 600px */
+    height: 31.25rem; /* 500px */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -20,20 +20,20 @@
 }
 
 .show-modal-note-title h2 {
-    font-size: 24px;
+    font-size: 1.5rem; /* 24px */
     font-weight: 700;
 }
 
 .show-modal-content {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
 }
 
 .show-modal-note-buttons {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
 }
 
 .show-modal-note-bottom {
@@ -44,17 +44,17 @@
 
 .show-modal-note-bottom p {
     color: var(--p-color);
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
     font-weight: 400;
 }
 
 .modal-close-btn {
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
     background: #121733;
     border: none;
     color: white;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 0.625rem 1.25rem; /* 10px 20px */
+    font-size: 1rem; /* 16px */
     cursor: pointer;
 }
 
@@ -64,22 +64,22 @@
 }
 .modal-save-btn,
 .modal-edit-btn {
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
     background: var(--secondary);
     border: none;
     color: white;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 0.625rem 1.25rem; /* 10px 20px */
+    font-size: 1rem; /* 16px */
     cursor: pointer;
 }
 
 .modal-delete-btn {
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
     background-color: transparent;
     border: none;
     color: white;
-    padding: 10px 15px;
-    font-size: 16px;
+    padding: 0.625rem 0.9375rem; /* 10px 15px */
+    font-size: 1rem; /* 16px */
     cursor: pointer;
 }
 

@@ -13,14 +13,14 @@
 }
 
 .note-title h2 {
-    font-size: 20px;
+    font-size: 1.25rem; /* 20px */
     font-weight: 600;
-    margin: 0 0 8px 0;
+    margin: 0 0 0.5rem 0; /* 8px */
 }
 
 .note-content {
     flex: 1;
-    max-height: 120px;
+    max-height: 7.5rem; /* 120px */
     overflow-wrap: break-word;
     overflow: hidden;
     display: -webkit-box;
@@ -43,12 +43,12 @@
 }
 
 .note-see-details {
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
     background: var(--secondary);
     border: none;
     color: white;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 0.625rem 1.25rem; /* 10px 20px */
+    font-size: 1rem; /* 16px */
     cursor: pointer;
 }
 

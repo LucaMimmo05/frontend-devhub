@@ -1,12 +1,12 @@
 .task {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
     color: white;
-    font-size: 14px;
-    padding: 10px 24px;
+    font-size: 0.875rem; /* 14px */
+    padding: 0.625rem 1.5rem; /* 10px 24px */
     
-    border-radius: 8px;
+    border-radius: 0.5rem; /* 8px */
     font-weight: bold;
 }
 
@@ -33,8 +33,8 @@
 }
 
 .circle-priority {
-    width: 12px;
-    height: 12px;
+    width: 0.75rem; /* 12px */
+    height: 0.75rem; /* 12px */
     border-radius: 50%;
 }
 

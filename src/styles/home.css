@@ -12,7 +12,7 @@
 
 .home-top h1 {
     color: white;
-    font-size: 35px;
+    font-size: 2.1875rem; /* 35px */
     font-weight: 600;
 }
 
@@ -24,22 +24,22 @@
 
 .home-date-time p {
     color: #fff;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    padding: 10px;
+    padding: 0.625rem; /* 10px */
 }
 
 .home-main-box .title {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
     color: white;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-weight: 600;
-    padding: 10px 10px 10px 0;
+    padding: 0.625rem 0.625rem 0.625rem 0; /* 10px */
 }
 
 .home-main-box .tasks {
@@ -62,25 +62,25 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 10px 0;
+    padding: 0.625rem 0; /* 10px */
     position: relative;
-    height: 60px;
+    height: 3.75rem; /* 60px */
 }
 
 .task-bottom button {
     display: flex;
-    padding: 10px;
+    padding: 0.625rem; /* 10px */
     justify-content: center;
     align-items: center;
-    width: 180px;
-    gap: 5px;
-    border-radius: 10px;
+    width: 11.25rem; /* 180px */
+    gap: 0.3125rem; /* 5px */
+    border-radius: 0.625rem; /* 10px */
     background: var(--primary, #121733);
     border: none;
     color: white;
     color: #fff;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -97,9 +97,9 @@
 .task-cont {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
     align-content: flex-start;
-    padding-bottom: 60px;
+    padding-bottom: 3.75rem; /* 60px */
 }
 
 .no-tasks-message {
@@ -108,7 +108,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: var(--p-color);
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-weight: 500;
     z-index: 10;
     pointer-events: none;
@@ -118,7 +118,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 30px;
+    gap: 1.875rem; /* 30px */
     grid-area: main;
     grid-area: 1 / 1 / 2 / 2;
     position: relative;
@@ -128,12 +128,12 @@
     display: grid;
     grid-template-columns: 2fr 2fr 2fr;
     grid-template-rows: 2fr 1.5fr;
-    gap: 32px;
+    gap: 2rem; /* 32px */
     grid-template-areas:
         "main main right"
         "left center right";
     width: 100%;
-    padding-top: 20px;
+    padding-top: 1.25rem; /* 20px */
     height: 100%;
 }
 
@@ -144,7 +144,7 @@
     grid-area: right;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 1.875rem; /* 30px */
     position: relative;
 }
 
@@ -153,7 +153,7 @@
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
     position: relative;
 }
 
@@ -162,7 +162,7 @@
 
     /* subheading-box */
     font-family: inherit;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -179,7 +179,7 @@
 .left-bottom-box .title {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
 }
 .center-bottom-box {
     grid-area: center;
@@ -188,14 +188,14 @@
 .right-box .title {
     display: flex;
     color: white;
-    font-size: 16px;
-    gap: 10px;
+    font-size: 1rem; /* 16px */
+    gap: 0.625rem; /* 10px */
 }
 
 .repository-cont {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.9375rem; /* 15px */
     position: relative;
 }
 
@@ -205,18 +205,18 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    min-height: 300px;
+    min-height: 18.75rem; /* 300px */
 }
 
 .home-get-started .get-started-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    padding: 30px;
+    gap: 0.9375rem; /* 15px */
+    padding: 1.875rem; /* 30px */
     background: linear-gradient(135deg, rgba(50, 154, 254, 0.1) 0%, rgba(50, 154, 254, 0.05) 100%);
     border: 1px solid rgba(50, 154, 254, 0.2);
-    border-radius: 12px;
+    border-radius: 0.75rem; /* 12px */
     text-align: center;
     width: 100%;
 }
@@ -227,26 +227,26 @@
 }
 
 .home-get-started .get-started-content p {
-    font-size: 13px;
+    font-size: 0.8125rem; /* 13px */
     color: var(--p-color);
     margin: 0;
     line-height: 1.5;
 }
 
 .home-get-started .get-started-content button {
-    margin-top: 5px;
+    margin-top: 0.3125rem; /* 5px */
 }
 
 .get-started-button {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
+    gap: 0.5rem; /* 8px */
+    padding: 0.625rem 1.25rem; /* 10px 20px */
     background-color: #329afe;
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: 0.5rem; /* 8px */
+    font-size: 0.875rem; /* 14px */
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -254,8 +254,8 @@
 
 .get-started-button:hover {
     background-color: #2581d8;
-    box-shadow: 0 2px 8px rgba(50, 154, 254, 0.3);
-    transform: translateY(-2px);
+    box-shadow: 0 0.125rem 0.5rem rgba(50, 154, 254, 0.3); /* 2px 8px */
+    transform: translateY(-0.125rem); /* -2px */
 }
 
 .get-started-button:active {

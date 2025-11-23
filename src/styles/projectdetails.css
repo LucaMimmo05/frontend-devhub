@@ -1,7 +1,7 @@
 .project-details {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 1.875rem; /* 30px */
     width: 100%;
     background-color: var(--bg);
     color: white;
@@ -17,33 +17,33 @@
 
 .project-details-top .title {
     display: flex;
-    gap: 15px;
+    gap: 0.9375rem; /* 15px */
     align-items: center;
     flex-direction: row;
 }
 
 .project-details-top .title h1 {
-    font-size: 35px;
+    font-size: 2.1875rem; /* 35px */
 }
 
 .project-details-content {
     height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+    gap: 2rem; /* 32px */
 }
 
 .project-details-container {
     display: grid;
     grid-template-rows: repeat(10, 1fr);
-    gap: 32px;
+    gap: 2rem; /* 32px */
 }
 
 .project-details-three {
     grid-row: span 3;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
 }
 
 .project-details-three h2 {
@@ -61,7 +61,7 @@
     grid-row: 3 / -1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
 }
 
 .project-details-all h2 {
@@ -71,31 +71,31 @@
 .project-details-three,
 .project-details-two h2 {
     color: var(--p-color);
-    font-size: 20px;
+    font-size: 1.25rem; /* 20px */
     font-weight: 700;
 }
 .project-details-three,
 .project-details-two p {
     color: white;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-weight: 400;
 }
 
 .technology {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
 }
 .technology p {
     display: flex;
 
-    padding: 5px 10px;
+    padding: 0.3125rem 0.625rem; /* 5px 10px */
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
 
     width: fit-content;
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
     opacity: 0.7;
     background: #121733;
 }
@@ -106,34 +106,34 @@
     justify-content: space-between;
 }
 .progress h2 {
-    font-size: 19px;
+    font-size: 1.1875rem; /* 19px */
 }
 .progress-bar {
     background-color: #121733;
     width: 85%;
-    height: 7px;
-    border-radius: 50px;
+    height: 0.4375rem; /* 7px */
+    border-radius: 3.125rem; /* 50px */
 }
 .percentage {
     background-color: #329afe;
     height: 100%;
-    border-radius: 50px;
+    border-radius: 3.125rem; /* 50px */
 }
 
 .progress-bar-cont {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 0.9375rem; /* 15px */
 }
 
 .progress-bar-cont p {
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px */
     font-style: normal;
     font-weight: 500;
     line-height: normal;
 }
 .project-details-buttons {
     display: flex;
-    gap: 10px;
+    gap: 0.625rem; /* 10px */
     align-items: center;
 }

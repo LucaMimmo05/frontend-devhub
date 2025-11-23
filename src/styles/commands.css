@@ -1,6 +1,6 @@
 .commands {
     display: flex;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
     width: 100%;
     flex-direction: column;
 }
@@ -14,21 +14,21 @@
 
 .commands-content {
     display: grid;
-    gap: 15px;
+    gap: 0.9375rem; /* 15px */
     grid-template-columns: repeat(2, 1fr);
-    padding-right: 30px;
+    padding-right: 1.875rem; /* 30px */
     overflow-y: auto;
     position: relative;
-    height: 660px;
+    height: 41.25rem; /* 660px */
 }
 
 .commands-list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.9375rem; /* 15px */
     overflow-y: auto;
-    height: calc(711px - 86px);
-    padding-right: 30px;
+    height: calc(44.4375rem - 5.375rem); /* 711px - 86px */
+    padding-right: 1.875rem; /* 30px */
 }
 
 .commands-content .no-tasks-message {
@@ -37,7 +37,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: var(--p-color);
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-weight: 500;
     margin: 0;
     white-space: nowrap;
@@ -48,17 +48,17 @@
 
 
 .commands-list::-webkit-scrollbar {
-    width: 8px;
+    width: 0.5rem; /* 8px */
 }
 
 .commands-list::-webkit-scrollbar-track {
     background: #121733;
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
 }
 
 .commands-list::-webkit-scrollbar-thumb {
     background: #329afe;
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
 }
 
 .commands-list::-webkit-scrollbar-thumb:hover {

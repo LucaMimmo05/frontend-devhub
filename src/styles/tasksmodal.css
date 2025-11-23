@@ -10,17 +10,17 @@
     height: 80vh;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 3.125rem; /* 50px */
 }
 
 .tasks-modal h1 {
-    font-size: 35px;
+    font-size: 2.1875rem; /* 35px */
 }
 
 .modal-values {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 1.5625rem; /* 25px */
 }
 
 .modal-content {

@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 46px 75px;
+    padding: 2.875rem 4.6875rem; /* 46px 75px */
     transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
 }
@@ -53,7 +53,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 1.25rem; /* 20px */
     position: relative;
 }
 
@@ -68,14 +68,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 70px;
+    gap: 4.375rem; /* 70px */
 }
 
 .form-cont h1 {
     text-align: center;
     color: #02061b;
     font-family: Roboto;
-    font-size: 40px;
+    font-size: 2.5rem; /* 40px */
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -85,7 +85,7 @@
     color: #000;
     text-align: center;
     font-family: Roboto;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-style: normal;
     font-weight: 300;
     line-height: normal;
@@ -94,7 +94,7 @@
 .form-cont span {
     color: #000;
     font-family: Roboto;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -109,7 +109,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 41px;
+    gap: 2.5625rem; /* 41px */
     position: relative;
 }
 
@@ -123,7 +123,7 @@
     color: #fff;
     text-align: center;
     font-family: "Fira Code" !important;
-    font-size: 25px;
+    font-size: 1.5625rem; /* 25px */
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -146,7 +146,7 @@
 .auth-form {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 1.875rem; /* 30px */
     align-items: center;
 }
 
@@ -154,19 +154,19 @@
 
 .auth-form button {
     display: flex;
-    width: 160px;
-    height: 45px;
-    padding: 20px;
+    width: 10rem; /* 160px */
+    height: 2.8125rem; /* 45px */
+    padding: 1.25rem; /* 20px */
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    border-radius: 10px;
+    gap: 0.625rem; /* 10px */
+    border-radius: 0.625rem; /* 10px */
     background: #329afe;
     border: none;
     color: #f1f1f1;
     text-align: center;
     font-family: Roboto;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     font-style: normal;
     font-weight: 500;
     line-height: normal;

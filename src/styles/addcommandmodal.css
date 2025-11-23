@@ -8,7 +8,7 @@
     flex-direction: column;
     max-height: none;
     overflow: visible;
-    gap: 16px;
+    gap: 1rem; /* 16px */
 }
 
 .notes-input {
@@ -16,12 +16,12 @@
     background-color: rgba(50, 154, 254, 0.05);
     border: 1px solid rgba(50, 154, 254, 0.2);
     color: #ffffff;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 14px;
+    padding: 0.5rem 0.75rem; /* 8px 12px */
+    border-radius: 0.25rem; /* 4px */
+    font-size: 0.875rem; /* 14px */
     resize: none;
-    min-height: 60px;
-    max-height: 120px;
+    min-height: 3.75rem; /* 60px */
+    max-height: 7.5rem; /* 120px */
     transition: all 0.3s ease;
 }
 
@@ -29,5 +29,5 @@
     outline: none;
     background-color: rgba(50, 154, 254, 0.1);
     border-color: rgba(50, 154, 254, 0.5);
-    box-shadow: 0 0 0 3px rgba(50, 154, 254, 0.1);
+    box-shadow: 0 0 0 0.1875rem rgba(50, 154, 254, 0.1); /* 3px */
 }
