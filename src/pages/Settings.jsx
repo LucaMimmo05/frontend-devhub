@@ -4,18 +4,39 @@ import { useState } from "react";
 import "../styles/settings.css";
 import { deleteUserAccount, updateUserSettings } from "../service/userApi";
 import DeleteModal from "../components/DeleteModal";
+import { useToast } from "../context/ToastContext";
+import { validateLength, validatePassword, validatePasswordMatch } from "../utility/validation";
 
 const Settings = () => {
     const { user, setUser, logout } = useAuth();
+    const { showSuccess, showError } = useToast();
     const [name, setName] = useState(user?.name || "");
     const [surname, setSurname] = useState(user?.surname || "");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isSaving, setIsSaving] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [accountErrors, setAccountErrors] = useState({});
+    const [passwordErrors, setPasswordErrors] = useState({});
 
     const handleSave = async e => {
         e.preventDefault();
+        
+        // Client-side validation
+        const errors = {};
+        const nameError = validateLength(name, 2, 50, "Name");
+        const surnameError = validateLength(surname, 2, 50, "Surname");
+        
+        if (nameError) errors.name = nameError;
+        if (surnameError) errors.surname = surnameError;
+        
+        if (Object.keys(errors).length > 0) {
+            setAccountErrors(errors);
+            showError("Please fix the validation errors");
+            return;
+        }
+        
+        setAccountErrors({});
         setIsSaving(true);
         try {
             // TODO: Add API call to save settings
@@ -24,8 +45,10 @@ const Settings = () => {
 
             await updateUserSettings(token, { name, surname });
             setUser(prevUser => ({ ...prevUser, name, surname }));
+            showSuccess("Settings updated successfully");
         } catch (error) {
             console.error("Error saving settings:", error);
+            showError("Failed to update settings");
         } finally {
             setIsSaving(false);
         }
@@ -33,10 +56,26 @@ const Settings = () => {
 
     const handleChangePassword = async e => {
         e.preventDefault();
+        
+        // Client-side validation
+        const errors = {};
+        const passwordError = validatePassword(password);
+        const matchError = validatePasswordMatch(password, confirmPassword);
+        
+        if (passwordError) errors.password = passwordError;
+        if (matchError) errors.confirmPassword = matchError;
+        
+        if (Object.keys(errors).length > 0) {
+            setPasswordErrors(errors);
+            showError("Please fix the validation errors");
+            return;
+        }
+        
+        setPasswordErrors({});
 
         if (password !== confirmPassword) {
             console.error("Passwords do not match");
-
+            showError("Passwords do not match");
             return;
         }
 
@@ -47,8 +86,10 @@ const Settings = () => {
             await updateUserSettings(token, { password });
             setPassword("");
             setConfirmPassword("");
+            showSuccess("Password changed successfully");
         } catch (error) {
             console.error("Error changing password:", error);
+            showError("Failed to change password");
         } finally {
             setIsSaving(false);
         }
@@ -92,6 +133,10 @@ const Settings = () => {
                                     value={name}
                                     name={"name"}
                                     onChange={e => setName(e.target.value)}
+                                    error={!!accountErrors.name}
+                                    errorMessage={accountErrors.name}
+                                    minLength={2}
+                                    maxLength={50}
                                 />
                             </div>
                             <div className="settings-item">
@@ -101,6 +146,10 @@ const Settings = () => {
                                     value={surname}
                                     name={"surname"}
                                     onChange={e => setSurname(e.target.value)}
+                                    error={!!accountErrors.surname}
+                                    errorMessage={accountErrors.surname}
+                                    minLength={2}
+                                    maxLength={50}
                                 />
                             </div>
                         </div>
@@ -134,6 +183,9 @@ const Settings = () => {
                                     value={password}
                                     name={"password"}
                                     onChange={e => setPassword(e.target.value)}
+                                    error={!!passwordErrors.password}
+                                    errorMessage={passwordErrors.password}
+                                    minLength={6}
                                 />
                             </div>
                             <div className="settings-item">
@@ -143,6 +195,9 @@ const Settings = () => {
                                     value={confirmPassword}
                                     name={"confirmPassword"}
                                     onChange={e => setConfirmPassword(e.target.value)}
+                                    error={!!passwordErrors.confirmPassword}
+                                    errorMessage={passwordErrors.confirmPassword}
+                                    minLength={6}
                                 />
                             </div>
                         </div>

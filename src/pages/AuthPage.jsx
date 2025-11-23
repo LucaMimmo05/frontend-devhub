@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import { useToast } from "../context/ToastContext";
+import { validateEmail, validatePassword, validateRequired, validateLength, parseBackendErrors } from "../utility/validation";
 
 const AuthPage = () => {
     const location = useLocation();
@@ -13,11 +14,13 @@ const AuthPage = () => {
 
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
+    const [loginErrors, setLoginErrors] = useState({});
 
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
+    const [registerErrors, setRegisterErrors] = useState({});
 
     const navigate = useNavigate();
     const { login } = useAuth();
@@ -39,6 +42,23 @@ const AuthPage = () => {
 
     const handleLoginSubmit = async e => {
         e.preventDefault();
+        
+        // Client-side validation
+        const errors = {};
+        const emailError = validateEmail(loginEmail);
+        const passwordError = validatePassword(loginPassword);
+        
+        if (emailError) errors.email = emailError;
+        if (passwordError) errors.password = passwordError;
+        
+        if (Object.keys(errors).length > 0) {
+            setLoginErrors(errors);
+            showError("Please fix the validation errors");
+            return;
+        }
+        
+        setLoginErrors({});
+        
         try {
             const response = await axios.post("http://localhost:8080/api/auth/login", {
                 email: loginEmail,
@@ -55,6 +75,13 @@ const AuthPage = () => {
             }
         } catch (error) {
             console.error("Login failed", error);
+            
+            // Parse backend validation errors
+            const backendErrors = parseBackendErrors(error);
+            if (Object.keys(backendErrors).length > 0) {
+                setLoginErrors(backendErrors);
+            }
+            
             if (error.response) {
                 console.error("Error status:", error.response.status);
                 console.error("Error data:", error.response.data);
@@ -71,6 +98,26 @@ const AuthPage = () => {
 
     const handleRegisterSubmit = async e => {
         e.preventDefault();
+        
+        // Client-side validation
+        const errors = {};
+        const nameError = validateRequired(name, "Name") || validateLength(name, 2, 50, "Name");
+        const surnameError = validateRequired(surname, "Surname") || validateLength(surname, 2, 50, "Surname");
+        const emailError = validateEmail(registerEmail);
+        const passwordError = validatePassword(registerPassword);
+        
+        if (nameError) errors.name = nameError;
+        if (surnameError) errors.surname = surnameError;
+        if (emailError) errors.email = emailError;
+        if (passwordError) errors.password = passwordError;
+        
+        if (Object.keys(errors).length > 0) {
+            setRegisterErrors(errors);
+            showError("Please fix the validation errors");
+            return;
+        }
+        
+        setRegisterErrors({});
 
         const registerData = {
             name: name,
@@ -103,6 +150,13 @@ const AuthPage = () => {
             }
         } catch (error) {
             console.error("Register failed", error);
+            
+            // Parse backend validation errors
+            const backendErrors = parseBackendErrors(error);
+            if (Object.keys(backendErrors).length > 0) {
+                setRegisterErrors(backendErrors);
+            }
+            
             if (error.response) {
                 console.error("Error status:", error.response.status);
                 console.error("Error data:", error.response.data);
@@ -147,12 +201,19 @@ const AuthPage = () => {
                                         placeholder="Email"
                                         value={loginEmail}
                                         onChange={e => setLoginEmail(e.target.value)}
+                                        error={!!loginErrors.email}
+                                        errorMessage={loginErrors.email}
+                                        required
                                     />
                                     <InputField
                                         type="password"
                                         placeholder="Password"
                                         value={loginPassword}
                                         onChange={e => setLoginPassword(e.target.value)}
+                                        error={!!loginErrors.password}
+                                        errorMessage={loginErrors.password}
+                                        required
+                                        minLength={6}
                                     />
                                     <button type="submit">Sign in</button>
                                     <p onClick={toggleMode}>
@@ -192,24 +253,41 @@ const AuthPage = () => {
                                         placeholder="Name"
                                         value={name}
                                         onChange={e => setName(e.target.value)}
+                                        error={!!registerErrors.name}
+                                        errorMessage={registerErrors.name}
+                                        required
+                                        minLength={2}
+                                        maxLength={50}
                                     />
                                     <InputField
                                         type="text"
                                         placeholder="Surname"
                                         value={surname}
                                         onChange={e => setSurname(e.target.value)}
+                                        error={!!registerErrors.surname}
+                                        errorMessage={registerErrors.surname}
+                                        required
+                                        minLength={2}
+                                        maxLength={50}
                                     />
                                     <InputField
                                         type="email"
                                         placeholder="Email"
                                         value={registerEmail}
                                         onChange={e => setRegisterEmail(e.target.value)}
+                                        error={!!registerErrors.email}
+                                        errorMessage={registerErrors.email}
+                                        required
                                     />
                                     <InputField
                                         type="password"
                                         placeholder="Password"
                                         value={registerPassword}
                                         onChange={e => setRegisterPassword(e.target.value)}
+                                        error={!!registerErrors.password}
+                                        errorMessage={registerErrors.password}
+                                        required
+                                        minLength={6}
                                     />
                                     <button type="submit">Register</button>
                                     <p onClick={toggleMode}>

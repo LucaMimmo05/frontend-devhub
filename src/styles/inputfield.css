@@ -17,3 +17,24 @@
     outline: none;
     border-bottom: 0.125rem solid #329afe; /* 2px */
 }
+
+.input-field.error {
+    border-bottom: 0.125rem solid #ef4444;
+}
+
+.input-field.error:focus {
+    border-bottom: 0.125rem solid #ef4444;
+}
+
+.input-field-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.input-field-error-message {
+    color: #ef4444;
+    font-size: 0.75rem; /* 12px */
+    margin-top: 0.25rem;
+    min-height: 1rem;
+}

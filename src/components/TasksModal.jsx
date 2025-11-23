@@ -5,11 +5,13 @@ import ModalInputField from "./ModalInputField";
 import { useState } from "react";
 import { useTask } from "../context/TaskContext";
 import { useToast } from "../context/ToastContext";
+import { validateRequired, validateLength, parseBackendErrors } from "../utility/validation";
 
 const TasksModal = ({ onClose, title, data }) => {
     const { setTasks } = useTask();
     const { showSuccess, showError } = useToast();
     const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({});
     const [inputsValues, setInputsValues] = useState({
         title: data?.title || "",
         description: data?.description || "",
@@ -19,6 +21,20 @@ const TasksModal = ({ onClose, title, data }) => {
     });
     const handleSubmit = async e => {
         e.preventDefault();
+        
+        // Client-side validation
+        const validationErrors = {};
+        const titleError = validateRequired(inputsValues.title, "Task title") || validateLength(inputsValues.title, 1, 200, "Task title");
+        
+        if (titleError) validationErrors.title = titleError;
+        
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            showError("Please fix the validation errors");
+            return;
+        }
+        
+        setErrors({});
         setLoading(true);
 
         console.log(inputsValues);
@@ -34,6 +50,13 @@ const TasksModal = ({ onClose, title, data }) => {
             onClose();
         } catch (error) {
             console.error("Error saving task:", error);
+            
+            // Parse backend validation errors
+            const backendErrors = parseBackendErrors(error);
+            if (Object.keys(backendErrors).length > 0) {
+                setErrors(backendErrors);
+            }
+            
             showError("Failed to create task");
         } finally {
             setLoading(false);
@@ -55,7 +78,11 @@ const TasksModal = ({ onClose, title, data }) => {
                                     type="text"
                                     placeholder="Es. Design Homepage"
                                     required
+                                    value={inputsValues.title}
                                     onChange={e => setInputsValues({ ...inputsValues, title: e.target.value })}
+                                    error={!!errors.title}
+                                    errorMessage={errors.title}
+                                    maxLength={200}
                                 />
                             </div>
                             <div className="project-modal-input">

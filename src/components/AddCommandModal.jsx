@@ -2,6 +2,7 @@ import { useState } from "react";
 import ModalInputField from "./ModalInputField";
 import "../styles/projectmodal.css";
 import "../styles/addcommandmodal.css";
+import { validateRequired, validateLength } from "../utility/validation";
 
 const AddCommandModal = ({ onClose, onSave }) => {
     const [title, setTitle] = useState("");
@@ -9,9 +10,26 @@ const AddCommandModal = ({ onClose, onSave }) => {
     const [example, setExample] = useState("");
     const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({});
 
     const handleSubmit = async e => {
         e.preventDefault();
+        
+        // Client-side validation
+        const validationErrors = {};
+        const titleError = validateRequired(title, "Command title") || validateLength(title, 1, 100, "Command title");
+        const commandError = validateRequired(commandText, "Command text");
+        
+        if (titleError) validationErrors.title = titleError;
+        if (commandError) validationErrors.commandText = commandError;
+        
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+        
+        setErrors({});
+        
         if (!title.trim() || !commandText.trim()) return;
         
         setLoading(true);
@@ -46,6 +64,10 @@ const AddCommandModal = ({ onClose, onSave }) => {
                                     name={"title"}
                                     onChange={e => setTitle(e.target.value)}
                                     placeholder="Command title"
+                                    error={!!errors.title}
+                                    errorMessage={errors.title}
+                                    required
+                                    maxLength={100}
                                 />
                             </div>
 

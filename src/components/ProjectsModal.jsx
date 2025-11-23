@@ -5,11 +5,13 @@ import TagsInput from "./TagsInput";
 import { useState } from "react";
 import { useProject } from "../context/ProjectContext";
 import { useToast } from "../context/ToastContext";
+import { validateRequired, validateLength, parseBackendErrors } from "../utility/validation";
 
 const ProjectsModal = ({ title, onClose, data }) => {
     const { setCurrentProject, setProjects } = useProject();
     const { showSuccess, showError } = useToast();
     const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({});
     const [inputsValues, setInputsValues] = useState({
         name: data?.name || "",
         description: data?.description || "",
@@ -22,6 +24,20 @@ const ProjectsModal = ({ title, onClose, data }) => {
 
     const handleSubmit = async e => {
         e.preventDefault();
+        
+        // Client-side validation
+        const validationErrors = {};
+        const nameError = validateRequired(inputsValues.name, "Project name") || validateLength(inputsValues.name, 1, 100, "Project name");
+        
+        if (nameError) validationErrors.name = nameError;
+        
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            showError("Please fix the validation errors");
+            return;
+        }
+        
+        setErrors({});
         setLoading(true);
         const token = localStorage.getItem("accessToken");
 
@@ -43,6 +59,13 @@ const ProjectsModal = ({ title, onClose, data }) => {
             onClose();
         } catch (err) {
             console.error("Error saving project:", err);
+            
+            // Parse backend validation errors
+            const backendErrors = parseBackendErrors(err);
+            if (Object.keys(backendErrors).length > 0) {
+                setErrors(backendErrors);
+            }
+            
             showError(data?.id ? "Failed to update project" : "Failed to create project");
         } finally {
             setLoading(false);
@@ -64,6 +87,10 @@ const ProjectsModal = ({ title, onClose, data }) => {
                                     type="text"
                                     placeholder="Es. Rossi"
                                     onChange={e => setInputsValues({ ...inputsValues, name: e.target.value })}
+                                    error={!!errors.name}
+                                    errorMessage={errors.name}
+                                    required
+                                    maxLength={100}
                                 />
                             </div>
                             <div className="project-modal-input">
