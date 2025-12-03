@@ -3,7 +3,7 @@
     border-bottom: 1px solid #898989;
     width: 100%;
     display: flex;
-    width: 21.875rem; /* 350px */
+    width: 100%;
     height: 2.5rem; /* 40px */
     flex-shrink: 0;
     padding: 0.625rem; /* 10px */
@@ -30,6 +30,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    width: 100%;
 }
 
 .input-field-error-message {
