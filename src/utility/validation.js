@@ -12,9 +12,11 @@ export const validateEmail = email => {
         return "Email is required";
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailRegex.test(email)) {
         return "Invalid email format";
     }
+
     return null;
 };
 
@@ -28,6 +30,7 @@ export const validateRequired = (value, fieldName) => {
     if (!value || (typeof value === "string" && value.trim() === "")) {
         return `${fieldName} is required`;
     }
+
     return null;
 };
 
@@ -82,8 +85,8 @@ export const validatePassword = password => {
         return "Password is required";
     }
 
-    if (password.length < 6) {
-        return "Password must be at least 6 characters";
+    if (password.length < 4) {
+        return "Password must be at least 4 characters";
     }
 
     return null;
@@ -99,6 +102,7 @@ export const validatePasswordMatch = (password, confirmPassword) => {
     if (password !== confirmPassword) {
         return "Passwords do not match";
     }
+
     return null;
 };
 
