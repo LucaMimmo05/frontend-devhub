@@ -3,9 +3,15 @@ import "../styles/authpage.css";
 import InputField from "../components/InputField";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import axios from "axios";
+import { loginUser, registerUser } from "../service/authApi";
 import { useToast } from "../context/ToastContext";
-import { validateEmail, validatePassword, validateRequired, validateLength, parseBackendErrors } from "../utility/validation";
+import {
+    validateEmail,
+    validatePassword,
+    validateRequired,
+    validateLength,
+    parseBackendErrors,
+} from "../utility/validation";
 
 const AuthPage = () => {
     const location = useLocation();
@@ -42,28 +48,25 @@ const AuthPage = () => {
 
     const handleLoginSubmit = async e => {
         e.preventDefault();
-        
-        // Client-side validation
+
         const errors = {};
         const emailError = validateEmail(loginEmail);
         const passwordError = validatePassword(loginPassword);
-        
+
         if (emailError) errors.email = emailError;
         if (passwordError) errors.password = passwordError;
-        
+
         if (Object.keys(errors).length > 0) {
             setLoginErrors(errors);
             showError("Please fix the validation errors");
+
             return;
         }
-        
+
         setLoginErrors({});
-        
+
         try {
-            const response = await axios.post("http://localhost:8080/api/auth/login", {
-                email: loginEmail,
-                password: loginPassword,
-            });
+            const response = await loginUser(loginEmail, loginPassword);
 
             if (response.status === 200) {
                 const data = response.data;
@@ -75,13 +78,14 @@ const AuthPage = () => {
             }
         } catch (error) {
             console.error("Login failed", error);
-            
+
             // Parse backend validation errors
             const backendErrors = parseBackendErrors(error);
+
             if (Object.keys(backendErrors).length > 0) {
                 setLoginErrors(backendErrors);
             }
-            
+
             if (error.response) {
                 console.error("Error status:", error.response.status);
                 console.error("Error data:", error.response.data);
@@ -98,42 +102,35 @@ const AuthPage = () => {
 
     const handleRegisterSubmit = async e => {
         e.preventDefault();
-        
+
         // Client-side validation
         const errors = {};
         const nameError = validateRequired(name, "Name") || validateLength(name, 2, 50, "Name");
         const surnameError = validateRequired(surname, "Surname") || validateLength(surname, 2, 50, "Surname");
         const emailError = validateEmail(registerEmail);
         const passwordError = validatePassword(registerPassword);
-        
+
         if (nameError) errors.name = nameError;
         if (surnameError) errors.surname = surnameError;
         if (emailError) errors.email = emailError;
         if (passwordError) errors.password = passwordError;
-        
+
         if (Object.keys(errors).length > 0) {
             setRegisterErrors(errors);
             showError("Please fix the validation errors");
+
             return;
         }
-        
+
         setRegisterErrors({});
 
-        const registerData = {
-            name: name,
-            surname: surname,
-            email: registerEmail,
-            password: registerPassword,
-        };
-
-        console.log("Attempting registration with data:", registerData);
+        console.log("Attempting registration with data:", { name, surname, email: registerEmail });
 
         try {
-            const response = await axios.post("http://localhost:8080/api/auth/register", registerData);
+            const response = await registerUser(name, surname, registerEmail, registerPassword);
 
             console.log("Registration response:", response);
 
-            // Controlla se la registrazione è avvenuta con successo (201 o 200)
             if (response.status === 201 || response.status === 200) {
                 const data = response.data;
 
@@ -142,7 +139,6 @@ const AuthPage = () => {
                     showSuccess("Registration successful! Welcome to DevHub.");
                     navigate("/");
                 } else {
-                    // Se non ci sono i token, probabilmente l'utente è stato creato ma dobbiamo fare login
                     showSuccess("Registration complete! You can now log in.");
                     setIsLoginMode(true);
                     navigate("/login", { replace: true });
@@ -150,13 +146,14 @@ const AuthPage = () => {
             }
         } catch (error) {
             console.error("Register failed", error);
-            
+
             // Parse backend validation errors
             const backendErrors = parseBackendErrors(error);
+
             if (Object.keys(backendErrors).length > 0) {
                 setRegisterErrors(backendErrors);
             }
-            
+
             if (error.response) {
                 console.error("Error status:", error.response.status);
                 console.error("Error data:", error.response.data);
@@ -213,7 +210,7 @@ const AuthPage = () => {
                                         error={!!loginErrors.password}
                                         errorMessage={loginErrors.password}
                                         required
-                                        minLength={6}
+                                        minLength={4}
                                     />
                                     <button type="submit">Sign in</button>
                                     <p onClick={toggleMode}>

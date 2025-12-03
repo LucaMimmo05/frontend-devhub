@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
+import { verifyToken, refreshToken as refreshTokenApi, getGithubToken } from "../service/authApi";
 
 const AuthContext = createContext();
 
@@ -72,9 +73,7 @@ export const AuthProvider = ({ children }) => {
 
     const verifyTokenWithServer = async token => {
         try {
-            await axios.post("http://localhost:8080/api/auth/verify", {
-                token: token,
-            });
+            await verifyToken(token);
 
             return true;
         } catch (error) {
@@ -86,9 +85,7 @@ export const AuthProvider = ({ children }) => {
 
     const refreshAccessTokenInternal = async refreshTokenValue => {
         try {
-            const response = await axios.post("http://localhost:8080/api/auth/refresh", {
-                refreshToken: refreshTokenValue,
-            });
+            const response = await refreshTokenApi(refreshTokenValue);
 
             const newAccessToken = response.data.accessToken;
 
@@ -189,11 +186,7 @@ export const AuthProvider = ({ children }) => {
             setUser(userData);
 
             try {
-                const response = await axios.get("http://localhost:8080/github", {
-                    headers: {
-                        Authorization: `Bearer ${access}`,
-                    },
-                });
+                const response = await getGithubToken(access);
 
                 console.log("git token:", response.data);
 
