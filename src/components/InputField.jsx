@@ -1,22 +1,10 @@
 import "../styles/inputfield.css";
 
-const InputField = ({
-    type,
-    placeholder,
-    value,
-    onChange,
-    required = false,
-    error = false,
-    errorMessage = "",
-    minLength,
-    maxLength,
-    pattern,
-    name,
-}) => {
+const InputField = ({ type, placeholder, value, onChange, required = false, minLength, maxLength, pattern, name }) => {
     return (
         <div className="input-field-wrapper">
             <input
-                className={`input-field ${error ? "error" : ""}`}
+                className="input-field"
                 type={type}
                 placeholder={placeholder}
                 value={value}
@@ -27,7 +15,6 @@ const InputField = ({
                 pattern={pattern}
                 name={name}
             />
-            {error && errorMessage && <span className="input-field-error-message">{errorMessage}</span>}
         </div>
     );
 };

@@ -111,52 +111,60 @@ const Commands = () => {
                 />
             )}
 
-            {loading ? (
-                <Loader color="#4A90E2" size={60} />
-            ) : commands.length === 0 ? (
-                <EmptyState
-                    icon={
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M9 3.5H5.5C4.67157 3.5 4 4.17157 4 5V18.5C4 19.3284 4.67157 20 5.5 20H18.5C19.3284 20 20 19.3284 20 18.5V15M14.5 3.5H18.5C19.3284 3.5 20 4.17157 20 5V9"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
+            <div className="commands-content">
+                {loading ? (
+                    <Loader color="#4A90E2" size={60} />
+                ) : commands.length === 0 ? (
+                    <EmptyState
+                        icon={
+                            <svg
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M9 3.5H5.5C4.67157 3.5 4 4.17157 4 5V18.5C4 19.3284 4.67157 20 5.5 20H18.5C19.3284 20 20 19.3284 20 18.5V15M14.5 3.5H18.5C19.3284 3.5 20 4.17157 20 5V9"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M7 13.5H11M7 9.5H13M7 17.5H9"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                />
+                            </svg>
+                        }
+                        title="No commands saved"
+                        message="Store your frequently used commands here for quick access."
+                        actionButton={
+                            <Button
+                                type={"add"}
+                                onClick={() => {
+                                    setShowAddCommandModal(true);
+                                }}
                             />
-                            <path
-                                d="M7 13.5H11M7 9.5H13M7 17.5H9"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
+                        }
+                    />
+                ) : (
+                    <div className="commands-list">
+                        {commands.map(command => (
+                            <Command
+                                key={command.id}
+                                data={command}
+                                onSave={handleSaveCommand}
+                                setEditingCommand={setEditingCommand}
+                                setCommandToDelete={setCommandToDelete}
+                                setShowDeleteConfirm={setShowDeleteConfirm}
                             />
-                        </svg>
-                    }
-                    title="No commands saved"
-                    message="Store your frequently used commands here for quick access."
-                    actionButton={
-                        <Button
-                            type={"add"}
-                            onClick={() => {
-                                setShowAddCommandModal(true);
-                            }}
-                        />
-                    }
-                />
-            ) : (
-                <div className="commands-list">
-                    {commands.map(command => (
-                        <Command
-                            key={command.id}
-                            data={command}
-                            onSave={handleSaveCommand}
-                            setEditingCommand={setEditingCommand}
-                            setCommandToDelete={setCommandToDelete}
-                            setShowDeleteConfirm={setShowDeleteConfirm}
-                        />
-                    ))}
-                </div>
-            )}
+                        ))}
+                    </div>
+                )}
+            </div>
         </section>
     );
 };
