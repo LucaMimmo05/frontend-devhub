@@ -21,19 +21,22 @@ const TasksModal = ({ onClose, title, data }) => {
     });
     const handleSubmit = async e => {
         e.preventDefault();
-        
+
         // Client-side validation
         const validationErrors = {};
-        const titleError = validateRequired(inputsValues.title, "Task title") || validateLength(inputsValues.title, 1, 200, "Task title");
-        
+        const titleError =
+            validateRequired(inputsValues.title, "Task title") ||
+            validateLength(inputsValues.title, 1, 200, "Task title");
+
         if (titleError) validationErrors.title = titleError;
-        
+
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             showError("Please fix the validation errors");
+
             return;
         }
-        
+
         setErrors({});
         setLoading(true);
 
@@ -50,13 +53,14 @@ const TasksModal = ({ onClose, title, data }) => {
             onClose();
         } catch (error) {
             console.error("Error saving task:", error);
-            
+
             // Parse backend validation errors
             const backendErrors = parseBackendErrors(error);
+
             if (Object.keys(backendErrors).length > 0) {
                 setErrors(backendErrors);
             }
-            
+
             showError("Failed to create task");
         } finally {
             setLoading(false);

@@ -127,7 +127,13 @@ const Notes = () => {
                 ) : (
                     <EmptyState
                         icon={
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
                                 <path
                                     d="M15 6V5C15 3.89543 14.1046 3 13 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H13C14.1046 21 15 20.1046 15 19V18M18 9L21 12M21 12L18 15M21 12H9"
                                     stroke="currentColor"

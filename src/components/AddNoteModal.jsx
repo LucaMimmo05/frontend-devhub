@@ -12,24 +12,25 @@ const AddNoteModal = ({ onClose, onSave, edit, initialData }) => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        
+
         // Client-side validation
         const validationErrors = {};
         const titleError = validateRequired(title, "Note title") || validateLength(title, 1, 200, "Note title");
         const contentError = validateRequired(content, "Note content");
-        
+
         if (titleError) validationErrors.title = titleError;
         if (contentError) validationErrors.content = contentError;
-        
+
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
+
             return;
         }
-        
+
         setErrors({});
-        
+
         if (!title.trim() && !content.trim()) return;
-        
+
         setLoading(true);
         try {
             await onSave({ title: title.trim(), content: content.trim() });

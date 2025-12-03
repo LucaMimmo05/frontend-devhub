@@ -14,24 +14,25 @@ const AddCommandModal = ({ onClose, onSave }) => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        
+
         // Client-side validation
         const validationErrors = {};
         const titleError = validateRequired(title, "Command title") || validateLength(title, 1, 100, "Command title");
         const commandError = validateRequired(commandText, "Command text");
-        
+
         if (titleError) validationErrors.title = titleError;
         if (commandError) validationErrors.commandText = commandError;
-        
+
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
+
             return;
         }
-        
+
         setErrors({});
-        
+
         if (!title.trim() || !commandText.trim()) return;
-        
+
         setLoading(true);
         try {
             await onSave({

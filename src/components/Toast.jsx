@@ -13,10 +13,13 @@ const Toast = ({ id, message, type, onClose }) => {
         const timer = setInterval(() => {
             setProgress(prev => {
                 const newProgress = prev - decrement;
+
                 if (newProgress <= 0) {
                     clearInterval(timer);
+
                     return 0;
                 }
+
                 return newProgress;
             });
         }, interval);

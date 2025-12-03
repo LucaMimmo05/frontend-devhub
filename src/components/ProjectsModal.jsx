@@ -24,19 +24,22 @@ const ProjectsModal = ({ title, onClose, data }) => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        
+
         // Client-side validation
         const validationErrors = {};
-        const nameError = validateRequired(inputsValues.name, "Project name") || validateLength(inputsValues.name, 1, 100, "Project name");
-        
+        const nameError =
+            validateRequired(inputsValues.name, "Project name") ||
+            validateLength(inputsValues.name, 1, 100, "Project name");
+
         if (nameError) validationErrors.name = nameError;
-        
+
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             showError("Please fix the validation errors");
+
             return;
         }
-        
+
         setErrors({});
         setLoading(true);
         const token = localStorage.getItem("accessToken");
@@ -59,13 +62,14 @@ const ProjectsModal = ({ title, onClose, data }) => {
             onClose();
         } catch (err) {
             console.error("Error saving project:", err);
-            
+
             // Parse backend validation errors
             const backendErrors = parseBackendErrors(err);
+
             if (Object.keys(backendErrors).length > 0) {
                 setErrors(backendErrors);
             }
-            
+
             showError(data?.id ? "Failed to update project" : "Failed to create project");
         } finally {
             setLoading(false);

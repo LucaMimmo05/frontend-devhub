@@ -21,21 +21,22 @@ const Settings = () => {
 
     const handleSave = async e => {
         e.preventDefault();
-        
+
         // Client-side validation
         const errors = {};
         const nameError = validateLength(name, 2, 50, "Name");
         const surnameError = validateLength(surname, 2, 50, "Surname");
-        
+
         if (nameError) errors.name = nameError;
         if (surnameError) errors.surname = surnameError;
-        
+
         if (Object.keys(errors).length > 0) {
             setAccountErrors(errors);
             showError("Please fix the validation errors");
+
             return;
         }
-        
+
         setAccountErrors({});
         setIsSaving(true);
         try {
@@ -56,26 +57,28 @@ const Settings = () => {
 
     const handleChangePassword = async e => {
         e.preventDefault();
-        
+
         // Client-side validation
         const errors = {};
         const passwordError = validatePassword(password);
         const matchError = validatePasswordMatch(password, confirmPassword);
-        
+
         if (passwordError) errors.password = passwordError;
         if (matchError) errors.confirmPassword = matchError;
-        
+
         if (Object.keys(errors).length > 0) {
             setPasswordErrors(errors);
             showError("Please fix the validation errors");
+
             return;
         }
-        
+
         setPasswordErrors({});
 
         if (password !== confirmPassword) {
             console.error("Passwords do not match");
             showError("Passwords do not match");
+
             return;
         }
 
