@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { useState } from "react";
 import "../styles/projects.css";
 import Project from "../components/Project";
