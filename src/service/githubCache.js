@@ -102,12 +102,9 @@ export const withCache = async (type, userId, params, fetchFn) => {
     const cachedData = getCache(cacheKey);
 
     if (cachedData !== null) {
-        console.log(`[Cache HIT] ${type}`, params);
-
         return cachedData;
     }
 
-    console.log(`[Cache MISS] ${type}`, params);
     const data = await fetchFn();
 
     const ttl = CACHE_CONFIG[type]?.ttl || DEFAULT_TTL;
