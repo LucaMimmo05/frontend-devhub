@@ -37,15 +37,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: var(--p-color);
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-weight: 500;
     margin: 0;
     white-space: nowrap;
     z-index: 10;
     pointer-events: none;
 }
-
-
 
 .commands-list::-webkit-scrollbar {
     width: 0.5rem; /* 8px */
@@ -64,5 +62,3 @@
 .commands-list::-webkit-scrollbar-thumb:hover {
     background: #2684d4;
 }
-
-

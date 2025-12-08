@@ -14,7 +14,7 @@
 }
 
 .tasks-modal h1 {
-    font-size: 2.1875rem; /* 35px */
+    font-size: var(--fs-h1);
 }
 
 .modal-values {

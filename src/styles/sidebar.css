@@ -1,6 +1,5 @@
 .sidebar {
     background-color: #000414;
-    height: 100%;
     width: 20rem; /* 320px */
     border-radius: 1.875rem; /* 30px */
     padding: 1.875rem; /* 30px */
@@ -22,7 +21,7 @@
 
 .sidebar-top h3 {
     color: var(--grey-200, #bab5ba);
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -94,8 +93,14 @@
 .profile h4 {
     color: #f1f1f1;
     text-align: center;
-    font-size: 1.25rem; /* 20px */
+    font-size: var(--fs-h3);
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+}
+
+@media (max-width: 1024px) {
+    .sidebar {
+        display: none;
+    }
 }

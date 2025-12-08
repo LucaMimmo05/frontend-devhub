@@ -25,19 +25,19 @@
 }
 
 .project-modal span {
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
 .project-modal h2 {
-    font-size: 2.1875rem; /* 35px */
+    font-size: var(--fs-h1);
 }
 
 /* small-modal specific overrides */
 .small-modal h2 {
-    font-size: 1.5rem; /* 24px */
+    font-size: var(--fs-h3);
 }
 
 .small-modal .project-modal-content {
@@ -90,7 +90,7 @@
     border: none;
     border-radius: 0.625rem; /* 10px */
     padding: 0.3125rem 0.5rem; /* 5px 8px */
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-p);
 }
 
 .project-notes {
@@ -136,7 +136,7 @@
     cursor: pointer;
     border: none;
     color: white;
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
 }
 
 .button-cancel {

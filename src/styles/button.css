@@ -6,13 +6,13 @@
     background: #121733;
     border: none;
     color: white;
-    font-size: 1.875rem; /* 30px */
+    font-size: var(--fs-h2);
     font-weight: 200;
     cursor: pointer;
 }
 
 .add-button.text {
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-weight: 500;
 }
 

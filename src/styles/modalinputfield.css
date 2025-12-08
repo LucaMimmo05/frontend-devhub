@@ -34,8 +34,7 @@
 
 .project-input-field-error-message {
     color: #ef4444;
-    font-size: 0.75rem; /* 12px */
+    font-size: var(--fs-small);
     margin-top: 0.25rem;
     min-height: 1rem;
 }
-

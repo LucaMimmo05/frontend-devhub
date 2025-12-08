@@ -20,7 +20,7 @@
 }
 
 .show-modal-note-title h2 {
-    font-size: 1.5rem; /* 24px */
+    font-size: var(--fs-h3);
     font-weight: 700;
 }
 
@@ -44,7 +44,7 @@
 
 .show-modal-note-bottom p {
     color: var(--p-color);
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-p);
     font-weight: 400;
 }
 
@@ -54,7 +54,7 @@
     border: none;
     color: white;
     padding: 0.625rem 1.25rem; /* 10px 20px */
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     cursor: pointer;
 }
 
@@ -69,7 +69,7 @@
     border: none;
     color: white;
     padding: 0.625rem 1.25rem; /* 10px 20px */
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     cursor: pointer;
 }
 
@@ -79,7 +79,7 @@
     border: none;
     color: white;
     padding: 0.625rem 0.9375rem; /* 10px 15px */
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     cursor: pointer;
 }
 

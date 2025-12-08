@@ -12,12 +12,12 @@
 }
 
 .recent-activity-left h2 {
-    font-size: 1.125rem; /* 18px */
+    font-size: var(--fs-h3);
     font-weight: 600;
 }
 
 .recent-activity-left p {
     color: var(--p-color);
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-p);
     font-weight: 500;
 }

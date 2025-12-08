@@ -72,7 +72,7 @@
     text-align: center;
     color: #02061b;
     font-family: Roboto;
-    font-size: 2.5rem; /* 40px */
+    font-size: var(--fs-h1);
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -82,7 +82,7 @@
     color: #000;
     text-align: center;
     font-family: Roboto;
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-style: normal;
     font-weight: 300;
     line-height: normal;
@@ -91,7 +91,7 @@
 .form-cont span {
     color: #000;
     font-family: Roboto;
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -120,7 +120,7 @@
     color: #fff;
     text-align: center;
     font-family: "Fira Code" !important;
-    font-size: 1.5625rem; /* 25px */
+    font-size: var(--fs-h2);
     font-style: normal;
     font-weight: 500;
     line-height: 1.4;
@@ -197,7 +197,7 @@
     color: #f1f1f1;
     text-align: center;
     font-family: Roboto;
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -274,6 +274,6 @@
     }
 
     .blue-section h1 {
-        font-size: 1rem; /* 20px */
+        font-size: var(--fs-p);
     }
 }

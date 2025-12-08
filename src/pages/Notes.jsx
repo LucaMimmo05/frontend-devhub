@@ -11,6 +11,7 @@ import ShowNoteModal from "../components/ShowNoteModal";
 import DeleteModal from "../components/DeleteModal";
 import { useToast } from "../context/ToastContext";
 import EmptyState from "../components/EmptyState";
+import BurgerMenu from "../components/BurgerMenu";
 const Notes = () => {
     const [notes, setNotes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -112,7 +113,10 @@ const Notes = () => {
         <section className="notes">
             <div className="notes-top">
                 <div className="title">
-                    <h1>Notes</h1>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                        <BurgerMenu />
+                        <h1>Notes</h1>
+                    </div>
                     <p>Capture and organize your notes</p>
                 </div>
                 <Button type={"add"} onClick={() => setAddModal(true)} />

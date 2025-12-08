@@ -1,10 +1,17 @@
 .app-container {
     background-color: var(--bg);
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
+    position: relative;
 }
 
 .app-padding {
     padding: 25px 30px;
 }
 
+@media (max-width: 768px) {
+    .app-padding {
+        padding: 1rem;
+    }
+}

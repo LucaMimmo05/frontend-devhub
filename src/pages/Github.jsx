@@ -8,6 +8,7 @@ import { getImageFromLanguage } from "../utility/getimagefromlanguage";
 import RecentActivity from "../components/RecentActivity";
 import Loader from "../components/Loader";
 import ConnectGitHub from "../components/ConnectGitHub";
+import BurgerMenu from "../components/BurgerMenu";
 
 const Github = () => {
     const [userInfo, setUserInfo] = useState(null);
@@ -77,7 +78,10 @@ const Github = () => {
                 <>
                     <div className="github-left">
                         <div className="title">
-                            <h1>Github</h1>
+                            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                                <BurgerMenu />
+                                <h1>Github</h1>
+                            </div>
                             <p>Stay connected with your GitHub activity.</p>
                         </div>
                         <div className="github-left-cont">

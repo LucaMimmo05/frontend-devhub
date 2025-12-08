@@ -18,7 +18,7 @@
     color: #ffffff;
     padding: 0.5rem 0.75rem; /* 8px 12px */
     border-radius: 0.25rem; /* 4px */
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-p);
     resize: none;
     min-height: 3.75rem; /* 60px */
     max-height: 7.5rem; /* 120px */

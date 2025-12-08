@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 1.5;
     overflow: hidden;
 }
 
@@ -13,7 +14,7 @@
 }
 
 .note-title h2 {
-    font-size: 1.25rem; /* 20px */
+    font-size: var(--fs-h3); /* Responsive font size */
     font-weight: 600;
     margin: 0 0 0.5rem 0; /* 8px */
 }
@@ -34,6 +35,7 @@
 
 .note-content p {
     margin: 0;
+    font-size: var(--fs-p); /* Responsive font size */
 }
 
 .note-date {
@@ -47,8 +49,8 @@
     background: var(--secondary);
     border: none;
     color: white;
-    padding: 0.625rem 1.25rem; /* 10px 20px */
-    font-size: 1rem; /* 16px */
+    padding: clamp(0.4rem, 1vw, 0.625rem) clamp(0.8rem, 2vw, 1.25rem); /* Responsive padding */
+    font-size: var(--fs-p); /* Responsive font size */
     cursor: pointer;
 }
 

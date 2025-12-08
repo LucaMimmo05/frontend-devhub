@@ -63,7 +63,7 @@
 }
 
 .menu-setting h4 {
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-p);
     font-weight: 500;
     margin: 0;
     letter-spacing: 0.01875rem; /* 0.3px */

@@ -7,6 +7,7 @@ import { useState } from "react";
 import TasksModal from "../components/TasksModal";
 import { useTask } from "../context/TaskContext";
 import { useNavigate } from "react-router-dom";
+import BurgerMenu from "../components/BurgerMenu";
 
 const Tasks = () => {
     const { tasks, setTasks } = useTask();
@@ -36,7 +37,10 @@ const Tasks = () => {
         <section className="tasks">
             <div className="tasks-top">
                 <div className="title">
-                    <h1>Tasks</h1>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                        <BurgerMenu />
+                        <h1>Tasks</h1>
+                    </div>
                     <p>Organize your tasks here.</p>
                 </div>
                 <div className="tasks-buttons">

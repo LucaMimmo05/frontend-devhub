@@ -6,6 +6,7 @@ import { deleteUserAccount, updateUserSettings } from "../service/userApi";
 import DeleteModal from "../components/DeleteModal";
 import { useToast } from "../context/ToastContext";
 import { validateLength, validatePassword, validatePasswordMatch } from "../utility/validation";
+import BurgerMenu from "../components/BurgerMenu";
 
 const Settings = () => {
     const { user, setUser, logout } = useAuth();
@@ -117,7 +118,10 @@ const Settings = () => {
         <section className="settings">
             <div className="settings-top">
                 <div className="title">
-                    <h1>Settings</h1>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                        <BurgerMenu />
+                        <h1>Settings</h1>
+                    </div>
                     <p>Manage your account settings and preferences</p>
                 </div>
             </div>

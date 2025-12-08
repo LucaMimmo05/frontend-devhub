@@ -8,6 +8,7 @@ import { getCommand, getRepos, getTasksNotCompleted } from "../service/api";
 import { getFormattedDate, getFormattedTime } from "../utility/dateformatter";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
+import BurgerMenu from "../components/BurgerMenu";
 const Home = () => {
     const { user } = useAuth();
     const [date, setDate] = useState("");
@@ -74,7 +75,10 @@ const Home = () => {
     return (
         <section className="home">
             <div className="home-top">
-                <h1>Welcome back, {user.name}!</h1>
+                <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                    <BurgerMenu />
+                    <h1>Welcome back, {user.name}!</h1>
+                </div>
                 <div className="home-date-time">
                     <p>{date}</p>
                     <p>{time}</p>

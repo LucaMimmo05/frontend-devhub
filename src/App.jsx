@@ -3,7 +3,8 @@ import "./App.css";
 import AuthPage from "./pages/AuthPage";
 import GitHubCallback from "./pages/GitHubCallBack";
 import NotFound from "./pages/NotFound";
-import Sidebar from "./components/Sidebar"; // Assumendo tu abbia un componente Sidebar
+import Sidebar from "./components/Sidebar";
+import BurgerMenu from "./components/BurgerMenu";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { PageProvider } from "./context/PageContext";
 import { ProjectProvider } from "./context/ProjectContext";

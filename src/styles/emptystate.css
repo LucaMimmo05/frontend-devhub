@@ -36,14 +36,14 @@
 }
 
 .empty-state-title {
-    font-size: 20px;
+    font-size: var(--fs-h3);
     font-weight: 600;
     color: white;
     margin: 0;
 }
 
 .empty-state-message {
-    font-size: 15px;
+    font-size: var(--fs-p);
     font-weight: 400;
     color: var(--p-color);
     margin: 0;
@@ -69,26 +69,10 @@
         width: 30px;
         height: 30px;
     }
-
-    .empty-state-title {
-        font-size: 18px;
-    }
-
-    .empty-state-message {
-        font-size: 14px;
-    }
 }
 
 @media (max-width: 320px) {
     .empty-state {
         padding: 30px 15px;
-    }
-
-    .empty-state-title {
-        font-size: 16px;
-    }
-
-    .empty-state-message {
-        font-size: 13px;
     }
 }

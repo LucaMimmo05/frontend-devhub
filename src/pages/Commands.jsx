@@ -9,6 +9,7 @@ import DeleteModal from "../components/DeleteModal";
 import Loader from "../components/Loader";
 import { useToast } from "../context/ToastContext";
 import EmptyState from "../components/EmptyState";
+import BurgerMenu from "../components/BurgerMenu";
 
 const Commands = () => {
     const [commands, setCommands] = useState([]);
@@ -80,7 +81,10 @@ const Commands = () => {
         <section className="commands">
             <div className="commands-top">
                 <div className="title">
-                    <h1>Commands</h1>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                        <BurgerMenu />
+                        <h1>Commands</h1>
+                    </div>
                     <p>Store your commands here for easy access.</p>
                 </div>
                 <Button

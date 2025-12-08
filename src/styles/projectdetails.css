@@ -23,7 +23,7 @@
 }
 
 .project-details-top .title h1 {
-    font-size: 2.1875rem; /* 35px */
+    font-size: var(--fs-h1);
 }
 
 .project-details-content {
@@ -71,13 +71,13 @@
 .project-details-three,
 .project-details-two h2 {
     color: var(--p-color);
-    font-size: 1.25rem; /* 20px */
+    font-size: var(--fs-h3);
     font-weight: 700;
 }
 .project-details-three,
 .project-details-two p {
     color: white;
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-weight: 400;
 }
 
@@ -106,7 +106,7 @@
     justify-content: space-between;
 }
 .progress h2 {
-    font-size: 1.1875rem; /* 19px */
+    font-size: var(--fs-h3);
 }
 .progress-bar {
     background-color: #121733;
@@ -127,7 +127,7 @@
 }
 
 .progress-bar-cont p {
-    font-size: 1.125rem; /* 18px */
+    font-size: var(--fs-h3);
     font-style: normal;
     font-weight: 500;
     line-height: normal;

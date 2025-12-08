@@ -1,12 +1,13 @@
 import "../styles/sidebaritem.css";
 import { useNavigate } from "react-router-dom";
-const SidebarItem = ({ icon, text, page }) => {
+const SidebarItem = ({ icon, text, page, onClick }) => {
     const navigate = useNavigate();
     const isActive = window.location.pathname.includes(page) && page !== "/" ? true : window.location.pathname === page;
 
     const handleClick = () => {
         if (!page) return;
         navigate(page);
+        if (onClick) onClick();
     };
 
     return (

@@ -1,68 +1,40 @@
 .github-signin-container {
-  background-color: #000;
-  transition: background-color 0.3s ease;
-  border-radius: 0.375rem; /* 6px */
-  border: none;
+    background-color: #000;
+    transition: background-color 0.3s ease;
+    border-radius: 0.375rem; /* 6px */
+    border: none;
 }
 
 .github-signin-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #000;
-  color: #fff;
-  font-size: 1rem; /* 16px */
-  font-weight: 600;
-  padding: 0.625rem 1.25rem; /* 10px 20px */
-  border: none;
-  border-radius: 0.375rem; /* 6px */
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  gap: 0.5rem; /* 8px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+    font-size: var(--fs-p);
+    font-weight: 600;
+    padding: 0.625rem 1.25rem; /* 10px 20px */
+    border: none;
+    border-radius: 0.375rem; /* 6px */
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    gap: 0.5rem; /* 8px */
 }
 
 .github-signin-btn:hover {
-  background-color: #333;
-}
-
-.github-signin-container {
-  background-color: #000;
-  transition: background-color 0.3s ease;
-  border-radius: 0.375rem; /* 6px */
-  border: none;
-}
-
-.github-signin-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #000;
-  color: #fff;
-  font-size: 1rem; /* 16px */
-  font-weight: 600;
-  padding: 0.625rem 1.25rem; /* 10px 20px */
-  border: none;
-  border-radius: 0.375rem; /* 6px */
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  gap: 0.5rem; /* 8px */
-}
-
-.github-signin-btn:hover {
-  background-color: #333;
+    background-color: #333;
 }
 
 .github-signin-btn .github-icon {
-  width: 1.5625rem; /* 25px */
-  height: 1.5625rem; /* 25px */
-  margin-right: 0.5rem; /* 8px */
+    width: 1.5625rem; /* 25px */
+    height: 1.5625rem; /* 25px */
+    margin-right: 0.5rem; /* 8px */
 }
 
 .github-signin-btn span {
-  font-family: Arial, sans-serif;
-  font-size: 1rem; /* 16px */
+    font-family: Arial, sans-serif;
+    font-size: var(--fs-p);
 }
+

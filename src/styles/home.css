@@ -8,11 +8,13 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .home-top h1 {
     color: white;
-    font-size: 2.1875rem; /* 35px */
+    font-size: var(--fs-h1);
     font-weight: 600;
 }
 
@@ -20,11 +22,12 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    gap: 1rem;
 }
 
 .home-date-time p {
     color: #fff;
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -37,7 +40,7 @@
     justify-content: center;
     gap: 0.625rem; /* 10px */
     color: white;
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-weight: 600;
     padding: 0.625rem 0.625rem 0.625rem 0; /* 10px */
 }
@@ -80,7 +83,7 @@
     color: white;
     color: #fff;
     font-family: inherit;
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -108,10 +111,20 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: var(--p-color);
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-weight: 500;
     z-index: 10;
     pointer-events: none;
+}
+
+.home-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5rem; /* 24px */
+    width: 100%;
+    padding-top: 1.25rem; /* 20px */
+    height: 100%;
 }
 
 .home-main-box {
@@ -119,76 +132,49 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 1.875rem; /* 30px */
-    grid-area: main;
-    grid-area: 1 / 1 / 2 / 2;
     position: relative;
-}
-
-.home-content {
-    display: grid;
-    grid-template-columns: 2fr 2fr 2fr;
-    grid-template-rows: 2fr 1.5fr;
-    gap: 2rem; /* 32px */
-    grid-template-areas:
-        "main main right"
-        "left center right";
-    width: 100%;
-    padding-top: 1.25rem; /* 20px */
-    height: 100%;
-}
-
-.home-main-box {
-    grid-area: main;
-}
-.right-box {
-    grid-area: right;
-    display: flex;
-    flex-direction: column;
-    gap: 1.875rem; /* 30px */
-    position: relative;
+    min-width: 0;
+    min-height: 0;
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
 }
 
 .left-bottom-box {
-    grid-area: left;
-    color: white;
     display: flex;
     flex-direction: column;
     gap: 1.25rem; /* 20px */
     position: relative;
+    min-width: 0;
+    min-height: 0;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
 }
 
-.left-bottom-box h4 {
-    color: #fff;
-
-    /* subheading-box */
-    font-family: inherit;
-    font-size: 1rem; /* 16px */
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
-.left-bottom-box h2 {
-    color: #fff;
-    font-family: inherit;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.left-bottom-box .title {
+.center-bottom-box {
     display: flex;
     flex-direction: column;
-    gap: 0.625rem; /* 10px */
+    gap: 1.25rem;
+    min-width: 0;
+    min-height: 0;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
 }
-.center-bottom-box {
-    grid-area: center;
+
+.right-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1.875rem; /* 30px */
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
 }
 
 .right-box .title {
     display: flex;
     color: white;
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     gap: 0.625rem; /* 10px */
 }
 
@@ -227,7 +213,7 @@
 }
 
 .home-get-started .get-started-content p {
-    font-size: 0.8125rem; /* 13px */
+    font-size: var(--fs-small);
     color: var(--p-color);
     margin: 0;
     line-height: 1.5;
@@ -246,7 +232,7 @@
     color: white;
     border: none;
     border-radius: 0.5rem; /* 8px */
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-p);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -261,3 +247,136 @@
 .get-started-button:active {
     transform: translateY(0);
 }
+
+@media (max-width: 1440px) {
+    .home-content {
+        grid-template-columns: 1.5fr 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .home-date-time {
+        align-items: flex-end;
+    }
+
+    .home-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .home-main-box .tasks {
+        flex-direction: column;
+    }
+
+    .task-bottom button {
+        width: 100%;
+        position: relative;
+        bottom: auto;
+        right: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .home {
+        padding: 1rem;
+    }
+
+    .home-date-time {
+        display: none;
+    }
+    .home-top {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 0.5rem;
+    }
+
+    .home-date-time {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .home-content {
+        grid-template-columns: 1fr;
+        padding-top: 1.5rem;
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    .home-main-box,
+    .center-bottom-box {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .task-cont {
+        gap: 0.75rem;
+        padding-bottom: 2rem;
+    }
+
+    .home-main-box .title {
+        justify-content: flex-start;
+    }
+
+    .home-main-box .tasks {
+        flex-direction: column;
+    }
+
+    .task-bottom button {
+        width: 100%;
+    }
+    .home-main-box .tasks {
+        flex-direction: column;
+    }
+
+    .task-bottom button {
+        width: 100%;
+    }
+
+    .box {
+        padding: 1.5rem;
+@media (max-width: 480px) {
+    .home {
+        padding: 0.75rem;
+    }
+
+    .home-date-time {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .home-content {
+        gap: 1rem;
+    }right-box,
+    .left-bottom-box {
+        display: none;
+    }
+    .box {
+        padding: 1.25rem;
+    }
+
+    .task-cont {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .task-bottom button {
+    .task-bottom button {
+        padding: 0.5rem;
+    }
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .task-bottom button {
+        padding: 0.5rem;
+    }
+
+    .left-bottom-box h2 {
+    .left-bottom-box h2 {
+        /* font-size: 0.9rem; removed */
+    }
+
+    .left-bottom-box h4 {
+        /* font-size: 0.8rem; removed */
+    }

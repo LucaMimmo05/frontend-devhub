@@ -51,7 +51,7 @@
 }
 
 .settings-item span {
-    font-size: 0.8125rem; /* 13px */
+    font-size: var(--fs-small);
     font-weight: 500;
     color: var(--p-color);
     text-transform: uppercase;
@@ -72,7 +72,7 @@
     color: white;
     border: none;
     border-radius: 0.5rem; /* 8px */
-    font-size: 1rem; /* 16px */
+    font-size: var(--fs-p);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -93,8 +93,6 @@
     flex-direction: column;
     gap: 0.9375rem; /* 15px */
 }
-
-
 
 .settings-box.danger-zone .title hr {
     background-color: rgba(239, 68, 68, 0.3);
@@ -133,14 +131,14 @@
 }
 
 .danger-text h3 {
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-small);
     font-weight: 600;
     color: #ef4444;
     margin: 0;
 }
 
 .danger-text p {
-    font-size: 0.75rem; /* 12px */
+    font-size: var(--fs-small);
     color: var(--p-color);
     margin: 0;
 }
@@ -151,7 +149,7 @@
     color: white;
     border: none;
     border-radius: 0.5rem; /* 8px */
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-small);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;

@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import ProjectsModal from "../components/ProjectsModal";
 import { useProject } from "../context/ProjectContext";
 import EmptyState from "../components/EmptyState";
+import BurgerMenu from "../components/BurgerMenu";
 
 const Projects = () => {
     const { projects } = useProject();
@@ -23,7 +24,10 @@ const Projects = () => {
         <section className="projects">
             <div className="projects-top">
                 <div className="title">
-                    <h1>Projects</h1>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                        <BurgerMenu />
+                        <h1>Projects</h1>
+                    </div>
                     <p>Your active and archived projects in one place.</p>
                 </div>
                 <Button type={"add"} onClick={handleClick} />

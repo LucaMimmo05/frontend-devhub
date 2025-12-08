@@ -14,7 +14,7 @@
 .tasks-table th {
     text-align: left;
     padding: 0.75rem 1rem; /* 12px 16px */
-    font-size: 0.8125rem; /* 13px */
+    font-size: var(--fs-small);
     text-transform: uppercase;
     color: white;
     border-bottom: 1px solid #0f193e;
@@ -22,7 +22,7 @@
 
 .tasks-table td {
     padding: 0.75rem 1rem; /* 12px 16px */
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-p);
     color: #ffffff;
 
     border-bottom: 1px solid #0f193e;
@@ -43,7 +43,7 @@
 }
 
 .task-description {
-    font-size: 0.75rem; /* 12px */
+    font-size: var(--fs-small);
     margin: 0.125rem 0 0; /* 2px */
 }
 
@@ -51,7 +51,7 @@
 .status {
     padding: 0.25rem 0.5rem; /* 4px 8px */
     border-radius: 0.75rem; /* 12px */
-    font-size: 0.75rem; /* 12px */
+    font-size: var(--fs-small);
     font-weight: 600;
     text-transform: capitalize;
 }
@@ -75,7 +75,7 @@
 .priority {
     padding: 0.25rem 0.5rem; /* 4px 8px */
     border-radius: 0.75rem; /* 12px */
-    font-size: 0.75rem; /* 12px */
+    font-size: var(--fs-small);
     font-weight: 600;
     text-transform: capitalize;
 }
@@ -112,7 +112,7 @@
 .btn {
     padding: 0.25rem 0.625rem; /* 4px 10px */
     border-radius: 0.375rem; /* 6px */
-    font-size: 0.75rem; /* 12px */
+    font-size: var(--fs-small);
     font-weight: 500;
     border: none;
     cursor: pointer;
@@ -142,7 +142,7 @@
     text-align: center;
     padding: 1.25rem; /* 20px */
     color: #ffffff;
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-p);
 }
 
 .table-container::-webkit-scrollbar {
@@ -167,7 +167,7 @@
     background: transparent;
     padding: 0.3125rem 0.4375rem; /* 5px 7px */
     border-radius: 0.3125rem; /* 5px */
-    font-size: 0.75rem; /* 12px */
+    font-size: var(--fs-small);
     font-weight: 500;
     border: none;
     cursor: pointer;
@@ -209,7 +209,7 @@
 
 .save-button {
     color: #16a34a;
-    font-size: 1.25rem; /* 20px */
+    font-size: var(--fs-h3);
     font-weight: bold;
 }
 
@@ -219,7 +219,7 @@
 
 .cancel-button {
     color: #dc2626;
-    font-size: 1.125rem; /* 18px */
+    font-size: var(--fs-h3);
     font-weight: bold;
 }
 
@@ -235,7 +235,7 @@
     border: 1px solid #329afe;
     border-radius: 0.25rem; /* 4px */
     color: #ffffff;
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-p);
     font-family: inherit;
 }
 

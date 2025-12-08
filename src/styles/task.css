@@ -3,9 +3,9 @@
     align-items: center;
     gap: 0.625rem; /* 10px */
     color: white;
-    font-size: 0.875rem; /* 14px */
+    font-size: var(--fs-p);
     padding: 0.625rem 1.5rem; /* 10px 24px */
-    
+
     border-radius: 0.5rem; /* 8px */
     font-weight: bold;
 }
